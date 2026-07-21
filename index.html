@@ -1,0 +1,1188 @@
+<title>クリスマス・モンスターズ 攻略手帖</title>
+<!--
+  ==== 広告について ====
+  このページは元々 Claude Artifact 上で公開されており、Artifactの厳格なCSPにより
+  外部の広告ネットワークのスクリプトは読み込めません(=ここでは広告は動きません)。
+
+  自前ホスティング(GitHub Pages など)へ移行して収益化する場合は、docs/DEPLOY_WIKI.md
+  の手順に沿って、下記3か所の <div class="ad-slot"> ... </div> 内のコメントに
+  実際の広告タグ(例: Google AdSenseの <ins class="adsbygoogle">...) を貼り、
+  下のAdSenseローダーのコメントを外して、head部分に相当するファイル先頭に
+  移動してください。
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+    crossorigin="anonymous"></script>
+-->
+<style>
+  :root{
+    --night:#0c1130;
+    --panel:#141b3d;
+    --panel-2:#1b2450;
+    --line:rgba(238,241,251,0.12);
+    --frost:#eef1fb;
+    --frost-dim:#98a1c8;
+    --candle:#f0b84a;
+    --candle-dim:#c99a4a;
+    --holly:#e2665f;
+    --el-fire:#e5533a;
+    --el-water:#3a7be5;
+    --el-wood:#3aa53a;
+    --el-metal:#c9a227;
+    --el-earth:#a5703a;
+    --el-light:#d8bc2e;
+    --el-dark:#8a3ae5;
+    --shadow:0 10px 30px rgba(0,0,0,0.35);
+    --serif:Georgia,"Iowan Old Style","Hiragino Mincho ProN","Yu Mincho",serif;
+    --sans:-apple-system,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic","Helvetica Neue",Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ }
+  }
+  @media (prefers-color-scheme: light){
+    :root{
+      --night:#eef1f8;
+      --panel:#ffffff;
+      --panel-2:#f3f5fc;
+      --line:rgba(20,26,56,0.10);
+      --frost:#141a38;
+      --frost-dim:#5a6284;
+      --candle:#a5691a;
+      --candle-dim:#8a5a1a;
+      --holly:#c8433c;
+      --shadow:0 10px 24px rgba(20,26,56,0.08);
+    }
+  }
+  :root[data-theme="dark"]{
+    --night:#0c1130; --panel:#141b3d; --panel-2:#1b2450;
+    --line:rgba(238,241,251,0.12); --frost:#eef1fb; --frost-dim:#98a1c8;
+    --candle:#f0b84a; --holly:#e2665f; --shadow:0 10px 30px rgba(0,0,0,0.35);
+  }
+  :root[data-theme="light"]{
+    --night:#eef1f8; --panel:#ffffff; --panel-2:#f3f5fc;
+    --line:rgba(20,26,56,0.10); --frost:#141a38; --frost-dim:#5a6284;
+    --candle:#a5691a; --holly:#c8433c; --shadow:0 10px 24px rgba(20,26,56,0.08);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    background:var(--night);
+    color:var(--frost);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--candle); color:#171308; }
+  a{ color:var(--candle); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline:2px solid var(--candle); outline-offset:2px; border-radius:2px;
+  }
+  h1,h2,h3{ font-family:var(--serif); font-weight:700; text-wrap:balance; margin:0; }
+  p{ margin:0; }
+  img,canvas{ display:block; }
+
+  .wrap{ max-width:880px; margin:0 auto; padding:0 20px 96px; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+    background:
+      radial-gradient(ellipse 140% 100% at 50% -20%, color-mix(in srgb, var(--candle) 14%, transparent), transparent 60%),
+      var(--panel);
+    border-bottom:1px solid var(--line);
+  }
+  .hero-inner{ max-width:880px; margin:0 auto; padding:56px 20px 40px; position:relative; z-index:2; }
+  .snowcv{ position:absolute; inset:0; width:100%; height:100%; z-index:1; opacity:0.8; }
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--candle); display:flex; align-items:center; gap:10px; margin-bottom:14px;
+  }
+  .eyebrow::before{ content:""; width:22px; height:1px; background:var(--candle); display:inline-block; }
+  h1.title{ font-size:clamp(2rem,5vw,2.75rem); letter-spacing:-0.01em; line-height:1.15; }
+  h1.title em{ display:block; font-style:italic; font-size:0.42em; color:var(--frost-dim); font-weight:400; margin-top:10px; letter-spacing:0; }
+  .pitch{ max-width:60ch; margin-top:18px; color:var(--frost-dim); font-size:1.02rem; }
+  .facts{ display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
+  .fact{
+    background:var(--panel-2); border:1px solid var(--line); border-radius:10px;
+    padding:10px 16px; min-width:108px;
+  }
+  .fact b{ font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:1.35rem; color:var(--candle); display:block; }
+  .fact span{ font-size:12px; color:var(--frost-dim); }
+  .vignette{ display:flex; gap:6px; align-items:flex-end; margin-top:26px; }
+  .vignette canvas{ image-rendering:pixelated; width:64px; height:64px; }
+
+  /* ---------- toc ---------- */
+  .toc{
+    position:sticky; top:0; z-index:10;
+    background:color-mix(in srgb, var(--night) 88%, transparent);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .toc-row{
+    max-width:880px; margin:0 auto; padding:10px 20px;
+    display:flex; gap:6px; overflow-x:auto; scrollbar-width:thin;
+  }
+  .toc-row a{
+    flex:0 0 auto; font-family:var(--mono); font-size:12px; color:var(--frost-dim);
+    padding:6px 10px; border-radius:999px; border:1px solid transparent; white-space:nowrap;
+  }
+  .toc-row a b{ color:var(--candle); font-weight:600; margin-right:5px; }
+  .toc-row a.active{ border-color:var(--line); background:var(--panel-2); color:var(--frost); }
+
+  /* ---------- sections ---------- */
+  section{ padding-top:64px; scroll-margin-top:60px; }
+  .chapter-head{ margin-bottom:26px; }
+  .chapter-head .eyebrow::before{ display:none; }
+  .chapter-head h2{ font-size:clamp(1.4rem,3vw,1.75rem); margin-top:4px; }
+  .chapter-head .rule{ width:48px; height:2px; background:var(--candle); margin:14px 0 12px; }
+  .chapter-head .lede{ color:var(--frost-dim); max-width:62ch; }
+
+  .prose p + p{ margin-top:12px; }
+  .prose{ max-width:66ch; color:var(--frost); }
+  .prose strong{ color:var(--candle); font-weight:600; }
+
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:20px 22px;
+  }
+  .grid{ display:grid; gap:14px; }
+  .grid-2{ grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
+
+  .kv{ display:grid; grid-template-columns:auto 1fr; gap:6px 16px; font-size:14px; }
+  .kv dt{ font-family:var(--mono); color:var(--frost-dim); }
+  .kv dd{ margin:0; }
+
+  kbd{
+    font-family:var(--mono); font-size:12.5px; background:var(--panel-2);
+    border:1px solid var(--line); border-bottom-width:2px; border-radius:5px;
+    padding:2px 7px; color:var(--frost);
+  }
+
+  /* ---------- element chips ---------- */
+  .chip{
+    display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600;
+    padding:3px 9px 3px 7px; border-radius:999px; white-space:nowrap;
+    background:var(--panel-2); border:1px solid var(--line); color:var(--frost);
+  }
+  .chip .dot{ width:8px; height:8px; border-radius:50%; flex:0 0 auto; }
+  .el-fire .dot{ background:var(--el-fire); } .el-water .dot{ background:var(--el-water); }
+  .el-wood .dot{ background:var(--el-wood); } .el-metal .dot{ background:var(--el-metal); }
+  .el-earth .dot{ background:var(--el-earth); } .el-light .dot{ background:var(--el-light); }
+  .el-dark .dot{ background:var(--el-dark); }
+
+  .tag{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.04em; text-transform:uppercase;
+    padding:2px 7px; border-radius:5px; border:1px solid var(--line); color:var(--frost-dim);
+  }
+  .tag.boss{ color:var(--holly); border-color:color-mix(in srgb, var(--holly) 45%, var(--line)); }
+  .tag.lock{ color:var(--candle); border-color:color-mix(in srgb, var(--candle) 45%, var(--line)); }
+
+  /* ---------- controls ---------- */
+  .keys{ display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; }
+  .keys .card{ display:flex; align-items:center; gap:14px; padding:14px 16px; }
+  .keys .card span{ font-size:13.5px; color:var(--frost-dim); }
+
+  /* ---------- walkthrough ---------- */
+  .steps{ position:relative; margin-left:6px; padding-left:30px; border-left:1px solid var(--line); }
+  .step{ position:relative; padding-bottom:30px; }
+  .step:last-child{ padding-bottom:0; }
+  .step::before{
+    content:attr(data-n); position:absolute; left:-42px; top:0;
+    width:26px; height:26px; border-radius:50%; background:var(--panel-2); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:12px; color:var(--candle);
+  }
+  .step h3{ font-size:1.05rem; margin-bottom:6px; }
+  .step .prose{ font-size:14.5px; color:var(--frost-dim); }
+  .step .prose strong{ color:var(--frost); }
+
+  /* ---------- facility cards ---------- */
+  .facility{ display:flex; flex-direction:column; gap:10px; }
+  .facility h3{ font-size:1.05rem; display:flex; align-items:center; gap:8px; }
+  .facility .prose{ font-size:14px; color:var(--frost-dim); }
+  .price-list{ list-style:none; margin:4px 0 0; padding:0; font-size:13.5px; display:grid; gap:5px; }
+  .price-list li{ display:flex; justify-content:space-between; gap:10px; border-top:1px dashed var(--line); padding-top:5px; }
+  .price-list li:first-child{ border-top:none; padding-top:0; }
+  .price-list b{ font-family:var(--mono); color:var(--candle); font-variant-numeric:tabular-nums; }
+
+  /* ---------- tactics ---------- */
+  .tactics{ display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); }
+  .tactic-card{ border-top:3px solid var(--candle); }
+  .tactic-card h3{ font-size:1rem; }
+  .tactic-card .prose{ font-size:13.5px; color:var(--frost-dim); margin-top:8px; }
+
+  /* ---------- element cycle ---------- */
+  .cycle{ display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
+  .cycle .node{
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+    width:64px;
+  }
+  .cycle .node i{ width:34px; height:34px; border-radius:50%; }
+  .cycle .node b{ font-size:12px; }
+  .cycle .arrow{ color:var(--frost-dim); font-family:var(--mono); }
+  .duo{ display:flex; align-items:center; gap:18px; margin-top:22px; }
+  .duo .node i{ width:40px; height:40px; border-radius:50%; }
+  .duo .vs{ font-family:var(--mono); color:var(--candle); font-size:13px; }
+
+  .formula{
+    font-family:var(--mono); font-size:13px; background:var(--panel-2);
+    border:1px solid var(--line); border-radius:8px; padding:12px 14px;
+    overflow-x:auto; white-space:pre;
+  }
+
+  /* ---------- tables ---------- */
+  .tbl-wrap{ overflow-x:auto; border:1px solid var(--line); border-radius:12px; }
+  table{ border-collapse:collapse; width:100%; font-size:13.5px; min-width:640px; }
+  thead th{
+    position:sticky; top:0; background:var(--panel-2); text-align:left;
+    font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.05em;
+    color:var(--frost-dim); padding:10px 12px; border-bottom:1px solid var(--line);
+  }
+  tbody td{ padding:9px 12px; border-bottom:1px solid var(--line); vertical-align:middle; }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr:hover{ background:var(--panel-2); }
+  td.num{ font-family:var(--mono); font-variant-numeric:tabular-nums; text-align:right; }
+  td.name-ja{ font-weight:600; }
+  td.name-en{ color:var(--frost-dim); font-size:12px; }
+
+  /* ---------- bestiary ---------- */
+  .fam-head{ display:flex; align-items:center; gap:10px; margin:34px 0 14px; }
+  .fam-head:first-child{ margin-top:0; }
+  .fam-head h3{ font-size:1.05rem; }
+  .fam-grid{ display:grid; gap:10px; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); }
+  .line-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px;
+    padding:14px; display:flex; align-items:center; gap:10px;
+  }
+  .mon{ display:flex; flex-direction:column; align-items:center; gap:4px; width:78px; flex:0 0 auto; }
+  .mon canvas{ image-rendering:pixelated; width:52px; height:52px; }
+  .mon .n-ja{ font-size:12px; font-weight:600; text-align:center; line-height:1.25; }
+  .mon .n-en{ font-size:10px; color:var(--frost-dim); text-align:center; }
+  .mon .lv{ font-family:var(--mono); font-size:10px; color:var(--candle); }
+  .arrow-mid{ color:var(--frost-dim); font-size:18px; flex:0 0 auto; }
+  .line-card.single{ justify-content:center; }
+  .line-note{ font-size:11.5px; color:var(--frost-dim); margin-top:6px; text-align:center; }
+
+  .special-grid{ display:grid; gap:10px; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); margin-top:14px; }
+  .special-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px;
+    display:flex; gap:12px; align-items:center;
+  }
+  .special-card .txt{ font-size:12.5px; color:var(--frost-dim); }
+  .special-card .txt b{ display:block; color:var(--frost); font-size:13.5px; margin-bottom:2px; }
+
+  /* ---------- fusion matrix ---------- */
+  .matrix-wrap{ overflow-x:auto; }
+  table.matrix{ border-collapse:collapse; min-width:760px; }
+  table.matrix th, table.matrix td{ border:1px solid var(--line); text-align:center; padding:6px; }
+  table.matrix thead th{ position:static; }
+  table.matrix .corner{ background:var(--panel-2); }
+  table.matrix .rowhead{ background:var(--panel-2); text-align:left; padding-left:10px; white-space:nowrap; }
+  table.matrix td.cell{ padding:8px 6px; }
+  table.matrix .cell canvas{ image-rendering:pixelated; width:32px; height:32px; margin:0 auto 4px; }
+  table.matrix .cell .cn{ font-size:10.5px; line-height:1.2; }
+
+  .recipe-list{ list-style:none; margin:16px 0 0; padding:0; display:grid; gap:8px; }
+  .recipe-list li{
+    display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:10px 14px; font-size:13.5px;
+  }
+  .recipe-list .combo{ display:flex; align-items:center; gap:8px; }
+  .recipe-list .result{ font-weight:600; color:var(--candle); display:flex; align-items:center; gap:6px; }
+
+  /* ---------- tips ---------- */
+  .tips{ display:grid; gap:12px; }
+  .tip{ display:flex; gap:14px; }
+  .tip .n{ font-family:var(--mono); color:var(--candle); font-size:13px; flex:0 0 24px; padding-top:2px; }
+  .tip .prose{ font-size:14.5px; }
+
+  footer{ margin-top:80px; padding-top:24px; border-top:1px solid var(--line); color:var(--frost-dim); font-size:12.5px; }
+  footer .snow{ font-family:var(--mono); letter-spacing:0.2em; opacity:0.5; margin-bottom:8px; }
+
+  /* ---------- 広告スロット ----------
+     章の切れ目にだけ置き、本文や表の途中には絶対に割り込ませない。
+     min-heightで面積を確保し、広告が入ってもレイアウトが動かないようにする。 */
+  .ad-slot{
+    margin:56px 0; min-height:100px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    border:1px dashed var(--line); border-radius:12px; background:var(--panel-2);
+  }
+  .ad-slot-label{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--frost-dim); opacity:0.65;
+  }
+
+  @media (max-width:560px){
+    .hero-inner{ padding:44px 18px 32px; }
+    .steps{ padding-left:24px; }
+    .step::before{ left:-36px; width:22px; height:22px; font-size:11px; }
+  }
+</style>
+
+<div class="hero">
+  <canvas class="snowcv" id="snowcv"></canvas>
+  <div class="hero-inner">
+    <div class="eyebrow">クリスマス・モンスターズ 非公式ガイド</div>
+    <h1 class="title">攻略手帖<em>クリスマスイブの夜、森で目をさましてから、すべてのモンスターを集め終えるまで。</em></h1>
+    <p class="pitch">
+      このページは、ブラウザだけで遊べる2Dモンスター育成RPG「クリスマス・モンスターズ」の攻略ノートです。
+      操作方法からストーリーの進め方、街の施設、バトルの仕組み、全44種のモンスター図鑑、
+      合成表、そしてクリア後のやり込みまで、実際のゲームデータをもとにまとめました。
+    </p>
+    <div class="facts">
+      <div class="fact"><b>7</b><span>ぞくせい</span></div>
+      <div class="fact"><b>44</b><span>モンスター</span></div>
+      <div class="fact"><b>27</b><span>とくぎ</span></div>
+      <div class="fact"><b>3</b><span>さくせん</span></div>
+    </div>
+    <div class="vignette">
+      <canvas class="spr" data-mon="slime" width="16" height="16" title="スライム"></canvas>
+      <canvas class="spr" data-mon="hero" width="16" height="16" title="ゆうしゃ"></canvas>
+      <canvas class="spr" data-mon="dragonkid" width="16" height="16" title="ドラゴンぼうや"></canvas>
+    </div>
+  </div>
+</div>
+
+<nav class="toc" id="toc">
+  <div class="toc-row">
+    <a href="#intro"><b>01</b>はじめに</a>
+    <a href="#controls"><b>02</b>そうさ方法</a>
+    <a href="#walkthrough"><b>03</b>ぼうけんの流れ</a>
+    <a href="#town"><b>04</b>街の施設</a>
+    <a href="#battle"><b>05</b>バトルシステム</a>
+    <a href="#elements"><b>06</b>ぞくせい相性</a>
+    <a href="#spells"><b>07</b>とくぎ図鑑</a>
+    <a href="#bestiary"><b>08</b>モンスター図鑑</a>
+    <a href="#fusion"><b>09</b>ごうせい表</a>
+    <a href="#tips"><b>10</b>せんりゃくのコツ</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="intro">
+    <div class="chapter-head">
+      <div class="eyebrow">01 / Introduction</div>
+      <h2>はじめに</h2>
+      <div class="rule"></div>
+      <p class="lede">物語のはじまりと、この手帖の読みかた。</p>
+    </div>
+    <div class="prose">
+      <p>
+        物語は、クリスマスイブの夜からはじまります。主人公はサンタさんに
+        「おもちゃはいらないので、勇者になって世界中を旅する冒険映画が見たい」という
+        てがみを書いて眠りにつき、目が覚めると見知らぬ森の中に倒れていました。
+        目の前では、小さな<strong>スライム</strong>が悪いモンスターと戦っている――そこから、
+        すべてのモンスター集めとぼうけんがはじまります。
+      </p>
+      <p>
+        本作はビルド不要・外部素材ゼロで動くブラウザRPGで、グラフィックは16×16ドットの
+        タイルとスプライトをすべてコードで生成しています。この手帖に貼ってあるモンスターの
+        アイコンも、実際のゲームと同じ生成ロジックでその場で描いたものです。
+      </p>
+      <p>
+        表示言語は <strong>English / にほんご</strong> をタイトル画面や「せってい」から
+        いつでも切り替えられます（デフォルトは英語）。この手帖ではモンスターと技の名前を
+        日本語名・英語名の両方で載せているので、どちらの言語で遊んでいても迷わないはずです。
+      </p>
+    </div>
+  </section>
+
+  <section id="controls">
+    <div class="chapter-head">
+      <div class="eyebrow">02 / Controls</div>
+      <h2>そうさ方法</h2>
+      <div class="rule"></div>
+      <p class="lede">必要なキーはこれだけ。フィールドでもバトルでも共通です。</p>
+    </div>
+    <div class="keys">
+      <div class="card"><kbd>↑↓←→</kbd> / <kbd>WASD</kbd><span style="margin-left:auto">マス目移動・カーソル</span></div>
+      <div class="card"><kbd>Space</kbd><span style="margin-left:auto">けってい／ミニメニューを開く</span></div>
+      <div class="card"><kbd>X</kbd> / <kbd>ESC</kbd><span style="margin-left:auto">キャンセル</span></div>
+    </div>
+    <div class="prose" style="margin-top:18px">
+      <p>
+        フィールドで正面に人・看板・カウンターなど「反応できるもの」があるとき、Spaceキーは
+        そのままミニメニューを飛ばして直接話しかけます。何もない場所でSpaceを押すと、
+        <strong>はなす/しらべる・モンスター・どうぐ・せってい・とじる</strong>のミニメニューが開きます。
+      </p>
+      <p>
+        「モンスター」メニューの最後にある<strong>じんけい</strong>では、バトル開始時の
+        初期配置をバトル画面と同じ10×10マスの左3列の中で自由に組めます。前衛・後衛を
+        自分で決められるので、打たれ弱い回復役は後ろに置くと安定します。
+      </p>
+    </div>
+  </section>
+
+  <section id="walkthrough">
+    <div class="chapter-head">
+      <div class="eyebrow">03 / Walkthrough</div>
+      <h2>ぼうけんの流れ</h2>
+      <div class="rule"></div>
+      <p class="lede">オープニングからクリア後コンテンツまでの一本道。</p>
+    </div>
+    <div class="steps">
+      <div class="step" data-n="1">
+        <h3>森でスライムと出会う</h3>
+        <p class="prose">目覚めた森で、悪いモンスターと戦うスライムに手を貸すとチュートリアルバトルが始まります。
+        バトル画面の使い方を吹き出しで説明してくれるので、その通りに戦えば勝てます。勝利後、スライムが最初の仲間になります。</p>
+      </div>
+      <div class="step" data-n="2">
+        <h3>カステラ城下町に到着</h3>
+        <p class="prose">森を北へ抜けると城下町。<strong>やどや・どうぐや・まほうつかいの家・ぼくじょう</strong>が並び、
+        ここが以後の拠点になります（詳しくは次の章）。</p>
+      </div>
+      <div class="step" data-n="3">
+        <h3>お城で王様に話す</h3>
+        <p class="prose">城の王様に会うと、城の裏にある<strong>どうくつ</strong>にあふれるモンスターの討伐を頼まれます。
+        話し終えると、みはりの兵士が退き、どうくつへ入れるようになります。</p>
+      </div>
+      <div class="step" data-n="4">
+        <h3>どうくつ B1・B2を進む</h3>
+        <p class="prose">ランダムエンカウントの2階層。入口付近は弱い敵が1体だけですが、
+        奥へ進むほど同時に出る数（最大3体）もレベルも上がっていきます。焦らず入口周辺で
+        レベルを整えてから奥を目指すのがコツです。</p>
+      </div>
+      <div class="step" data-n="5">
+        <h3>最深部でブラックサンタ戦</h3>
+        <p class="prose">どうくつの主、<strong>ブラックサンタ</strong>とその手下との戦い。
+        よい子の夢を奪う存在として立ちはだかります。属性の弱点を突けるパーティで挑みましょう。</p>
+      </div>
+      <div class="step" data-n="6">
+        <h3>王様からのほうび</h3>
+        <p class="prose">討伐後、王様の前にワープしてお礼を言われ、伝説のモンスター
+        <strong>ホーリーナイト（Lv12）</strong>が仲間になります。</p>
+      </div>
+      <div class="step" data-n="7">
+        <h3 style="display:flex; align-items:center; gap:8px">クリア後 <span class="tag lock">POSTGAME</span></h3>
+        <p class="prose">改心したブラックサンタが最深部に居座っており、再戦を挑んで勝つと今度こそ仲間にできます。
+        さらにクリア後限定で、<strong>こんとんのりゅう</strong>と<strong>イヴ</strong>という2体の
+        真の最終合成モンスターが解禁されます（09章）。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 広告スロット1: ストーリー章の直後 (自前ホスティング時にAdSense等のタグへ差し替え) -->
+  <div class="ad-slot" data-ad-slot="wiki-mid-1">
+    <span class="ad-slot-label">Advertisement</span>
+    <!-- ここに広告ネットワークのタグを貼る -->
+  </div>
+
+  <section id="town">
+    <div class="chapter-head">
+      <div class="eyebrow">04 / Town</div>
+      <h2>街の施設</h2>
+      <div class="rule"></div>
+      <p class="lede">カステラ城下町でできること。ぼうけんの合間は必ずここに戻ってこよう。</p>
+    </div>
+    <div class="grid grid-2">
+      <div class="card facility">
+        <h3>🛏 やどや</h3>
+        <p class="prose">「たびのきろく」でセーブ、「ひとやすみ」（20G）でパーティ全員のHP・MP・状態異常を全回復。
+        メニューは上から<strong>ひとやすみ → たびのきろく → やめる</strong>の順です。</p>
+      </div>
+      <div class="card facility">
+        <h3>🎒 どうぐや</h3>
+        <p class="prose">アイテムの売買。「かう」画面ではカーソルを合わせた品の説明が下に表示されます。</p>
+        <ul class="price-list">
+          <li>やくそう（HP+30）<b>30G</b></li>
+          <li>どくけしそう（どく治療）<b>10G</b></li>
+          <li>まほうのみず（MP+20）<b>80G</b></li>
+          <li>かえりのはね（城下町へワープ）<b>25G</b></li>
+          <li>ちからのたね（こうげき+3）<b>300G</b></li>
+        </ul>
+      </div>
+      <div class="card facility">
+        <h3>🧪 まほうつかいの家</h3>
+        <p class="prose"><strong>Lv10以上</strong>のモンスター2ひきを「まほうのなべ」に入れると、
+        新しいモンスターが生まれます（09章で詳しく）。ごうせい表もこの場で確認できます。</p>
+      </div>
+      <div class="card facility">
+        <h3>🐑 ぼくじょう</h3>
+        <p class="prose">手持ちが3ぴきいっぱいのときに預けておける場所。あずかり中のモンスターは
+        話しかけると右側にリスト表示され、いつでも入れ替えできます（最後の1ぴきは預けられません）。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="battle">
+    <div class="chapter-head">
+      <div class="eyebrow">05 / Battle System</div>
+      <h2>バトルシステム</h2>
+      <div class="rule"></div>
+      <p class="lede">10×10マスの自動タクティクスバトル。指示するのは「さくせん」だけ。</p>
+    </div>
+    <div class="prose">
+      <p>
+        エンカウントすると、10×10マスのフィールドに味方は左側・敵は右側で対峙します。
+        行動順は<strong>すばやさ（AGI）の高い順</strong>。各モンスターに移動・攻撃・とくぎの
+        指示を出すのではなく、次の3つの「さくせん」を割り当てて、あとは自動で戦ってもらいます。
+      </p>
+    </div>
+    <div class="tactics" style="margin-top:16px">
+      <div class="card tactic-card">
+        <h3>ガンガンいこう<span class="tag" style="margin-left:8px">Go all out</span></h3>
+        <p class="prose">最もダメージの出る手段（とくぎ優先度が高い）を選び、4割の確率でHPが一番低い敵を狙う。とにかく速攻したいときに。</p>
+      </div>
+      <div class="card tactic-card">
+        <h3>いろいろやろう<span class="tag" style="margin-left:8px">Mix it up</span></h3>
+        <p class="prose">HP40%未満の味方がいれば回復を優先。3割強でどく技、5割で攻撃とくぎを織り交ぜる、バランス型。</p>
+      </div>
+      <div class="card tactic-card">
+        <h3>いのちをだいじに<span class="tag" style="margin-left:8px">Stay safe</span></h3>
+        <p class="prose">HP60%未満の味方をまず回復。自分のHPが25%を切ると距離を取る、堅実型。回復役に向く。</p>
+      </div>
+    </div>
+    <div class="prose" style="margin-top:18px">
+      <p>
+        バトル中に<kbd>Space</kbd>を押すと、次のラウンドから全員のさくせんを変更できます
+        （画面下にも操作説明が常時表示されます）。攻撃時には属性ごとに専用パーティクルが出るほか、
+        バトルの演出速度は「せってい」の<strong>バトルスピード</strong>（ゆっくり／ふつう／はやい）で
+        調整可能です。デフォルトはゆっくりめの「ふつう」。
+      </p>
+      <p>
+        状態異常もいくつかあります。<strong>どく</strong>は毎ラウンド最大HPの8%を削り、
+        <strong>しばり</strong>（ルートバインド等）は確率で1ターン行動不能に、
+        <strong>アイアンウォール</strong>は自分の防御を3ラウンドの間1.5倍にします。
+      </p>
+    </div>
+  </section>
+
+  <section id="elements">
+    <div class="chapter-head">
+      <div class="eyebrow">06 / Elements</div>
+      <h2>ぞくせい相性</h2>
+      <div class="rule"></div>
+      <p class="lede">火・水・木・金・土・光・闇の7属性。攻撃側と防御側の相性でダメージが変わります。</p>
+    </div>
+    <div class="card">
+      <p class="prose" style="margin-bottom:20px">五行の相剋にならい、<strong>火は金を、金は木を、木は土を、土は水を、水は火を</strong>それぞれ打ち破ります。
+      加えて<strong>光と闇はおたがいに</strong>強く効きます。得意な属性で攻めると<strong>ダメージ1.5倍</strong>、
+      不利な属性を受けると<strong>0.65倍</strong>です。</p>
+      <div class="cycle">
+        <div class="node"><i style="background:var(--el-fire)"></i><b>火</b></div>
+        <div class="arrow">→</div>
+        <div class="node"><i style="background:var(--el-metal)"></i><b>金</b></div>
+        <div class="arrow">→</div>
+        <div class="node"><i style="background:var(--el-wood)"></i><b>木</b></div>
+        <div class="arrow">→</div>
+        <div class="node"><i style="background:var(--el-earth)"></i><b>土</b></div>
+        <div class="arrow">→</div>
+        <div class="node"><i style="background:var(--el-water)"></i><b>水</b></div>
+        <div class="arrow">→</div>
+        <div class="node" style="opacity:0.45"><i style="background:var(--el-fire)"></i><b>火</b></div>
+      </div>
+      <div class="duo">
+        <div class="node"><i style="background:var(--el-light)"></i><b>光</b></div>
+        <div class="vs">⇄ おたがいに強い ⇄</div>
+        <div class="node"><i style="background:var(--el-dark)"></i><b>闇</b></div>
+      </div>
+    </div>
+    <div class="formula" style="margin-top:16px">物理攻撃　= (ATK×1.6 − 相手DEF×0.8) × 属性倍率 × 0.9〜1.1
+攻撃とくぎ = (威力 + MAG×1.2 − 相手DEF×0.4) × 属性倍率 × 0.9〜1.1
+回復量　  = 威力 + MAG
+どく　　  = 命中判定あり／バトル中は毎ラウンド 最大HP×8%</div>
+  </section>
+
+  <section id="spells">
+    <div class="chapter-head">
+      <div class="eyebrow">07 / Spellbook</div>
+      <h2>とくぎ図鑑</h2>
+      <div class="rule"></div>
+      <p class="lede">全27の技・魔法。射程はバトルグリッド上のマス距離です。</p>
+    </div>
+
+    <h3 style="font-size:.95rem; margin:0 0 10px; color:var(--frost-dim)">単体こうげき</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>とくぎ</th><th>ぞくせい</th><th class="num">MP</th><th class="num">威力</th><th class="num">射程</th><th>おぼえるモンスター</th></tr></thead>
+        <tbody>
+          <tr><td><span class="name-ja">ファイア</span><br><span class="name-en">Fire</span></td><td><span class="chip el-fire"><i class="dot"></i>火</span></td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td>ほのおトカゲ@3・ドラゴンぼうや@1・えんおおかみ@3・サラマンダー@1・こりゅう@1</td></tr>
+          <tr><td><span class="name-ja">アクアショット</span><br><span class="name-en">Aqua Shot</span></td><td><span class="chip el-water"><i class="dot"></i>水</span></td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td>スライム@6・ゆきだるまん@2・キングスライム@1</td></tr>
+          <tr><td><span class="name-ja">リーフカッター</span><br><span class="name-en">Leaf Cutter</span></td><td><span class="chip el-wood"><i class="dot"></i>木</span></td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td>わるキノコ@7・もりのせい@4・おおおにキノコ@7・たいじゅのせいれい@5</td></tr>
+          <tr><td><span class="name-ja">メタルエッジ</span><br><span class="name-en">Metal Edge</span></td><td><span class="chip el-metal"><i class="dot"></i>金</span></td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td>ブリキへい@6・メタルビー@9・くずてつロボ@5・ぜんまいタイタン@1・せんとうロボ@1・メタルクイーン@1・はがねのゴーレム@1</td></tr>
+          <tr><td><span class="name-ja">ロックスロー</span><br><span class="name-en">Rock Throw</span></td><td><span class="chip el-earth"><i class="dot"></i>土</span></td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td>いわゴーレム@8・どろにんぎょう@6・ゴブリンキング@1・どろのきょじん@8・だいちのタイタン@1</td></tr>
+          <tr><td><span class="name-ja">シャインフラッシュ</span><br><span class="name-en">Shine Flash</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td class="num">2</td><td class="num">14</td><td class="num">3</td><td>ほしのこ@2・あばれトナカイ@5・ホーリーナイト@1・ひかりが@4・るなが@1・りゅうせいのこ@1・オーロラトナカイ@1・だらくのきし@1・そりびきトナカイ@1</td></tr>
+          <tr><td><span class="name-ja">ダークボール</span><br><span class="name-en">Dark Ball</span></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td class="num">2</td><td class="num">14</td><td class="num">3</td><td>おおコウモリ@5・やみけもの@4・ブラックサンタ@1・あくむいぬ@4・きゅうけつコウモリおう@1・あくむのおう@1・だらくのきし@1</td></tr>
+          <tr><td><span class="name-ja">ファイアストーム</span><br><span class="name-en">Fire Storm</span></td><td><span class="chip el-fire"><i class="dot"></i>火</span></td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td>ドラゴンぼうや@12・こりゅう@1・こんとんのりゅう@1</td></tr>
+          <tr><td><span class="name-ja">タイダルウェイブ</span><br><span class="name-en">Tidal Wave</span></td><td><span class="chip el-water"><i class="dot"></i>水</span></td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td>スライム@14・ゆきだるまん@13・キングスライム@11・ゆきおんな@1・そりびきトナカイ@8</td></tr>
+          <tr><td><span class="name-ja">ホーリーレイ</span><br><span class="name-en">Holy Ray</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td class="num">5</td><td class="num">32</td><td class="num">3</td><td>ホーリーナイト@13・サンタさま@1・イヴ@1</td></tr>
+          <tr><td><span class="name-ja">ダークネビュラ</span><br><span class="name-en">Dark Nebula</span></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td class="num">5</td><td class="num">32</td><td class="num">3</td><td>ブラックサンタ@1・だらくのきし@12・こんとんのりゅう@1・イヴ@1</td></tr>
+          <tr><td><span class="name-ja">フレイムクロー</span><br><span class="name-en">Flame Claw</span></td><td><span class="chip el-fire"><i class="dot"></i>火</span></td><td class="num">2</td><td class="num">18</td><td class="num">1</td><td>えんおおかみ@9・サラマンダー@9</td></tr>
+          <tr><td><span class="name-ja">ムーンビーム</span><br><span class="name-en">Moonbeam</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td class="num">3</td><td class="num">22</td><td class="num">3</td><td>るなが@8・オーロラトナカイ@9</td></tr>
+          <tr><td><span class="name-ja">インフェルノ</span><br><span class="name-en">Inferno</span></td><td><span class="chip el-fire"><i class="dot"></i>火</span></td><td class="num">7</td><td class="num">40</td><td class="num">3</td><td>こりゅう@15</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:.95rem; margin:26px 0 10px; color:var(--frost-dim)">全体こうげき・状態異常・特殊効果</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>とくぎ</th><th>ぞくせい</th><th>効果</th><th class="num">MP</th><th class="num">威力</th><th>おぼえるモンスター</th></tr></thead>
+        <tbody>
+          <tr><td><span class="name-ja">クエイク</span><br><span class="name-en">Quake</span></td><td><span class="chip el-earth"><i class="dot"></i>土</span></td><td>敵全体に攻撃</td><td class="num">6</td><td class="num">18</td><td>だいちのタイタン@12</td></tr>
+          <tr><td><span class="name-ja">スターシャワー</span><br><span class="name-en">Star Shower</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>敵全体に攻撃</td><td class="num">6</td><td class="num">16</td><td>りゅうせいのこ@8</td></tr>
+          <tr><td><span class="name-ja">ニードルストーム</span><br><span class="name-en">Needle Storm</span></td><td><span class="chip el-metal"><i class="dot"></i>金</span></td><td>敵全体に攻撃</td><td class="num">6</td><td class="num">16</td><td>メタルクイーン@10</td></tr>
+          <tr><td><span class="name-ja">オブリビオン</span><br><span class="name-en">Oblivion</span></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td>敵全体に攻撃</td><td class="num">8</td><td class="num">26</td><td>こんとんのりゅう@16</td></tr>
+          <tr><td><span class="name-ja">ルートバインド</span><br><span class="name-en">Root Bind</span></td><td><span class="chip el-wood"><i class="dot"></i>木</span></td><td>50%でしばり</td><td class="num">3</td><td class="num">14</td><td>おおおにキノコ@13・たいじゅのせいれい@12</td></tr>
+          <tr><td><span class="name-ja">フロストキス</span><br><span class="name-en">Frost Kiss</span></td><td><span class="chip el-water"><i class="dot"></i>水</span></td><td>40%でしばり</td><td class="num">4</td><td class="num">24</td><td>ゆきおんな@9</td></tr>
+          <tr><td><span class="name-ja">ナイトメア</span><br><span class="name-en">Nightmare</span></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td>40%でしばり</td><td class="num">4</td><td class="num">24</td><td>あくむのおう@11</td></tr>
+          <tr><td><span class="name-ja">ブラッドドレイン</span><br><span class="name-en">Blood Drain</span></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td>与ダメージの50%を吸収</td><td class="num">3</td><td class="num">16</td><td>きゅうけつコウモリおう@8</td></tr>
+          <tr><td><span class="name-ja">アイアンウォール</span><br><span class="name-en">Iron Wall</span></td><td><span class="chip el-metal"><i class="dot"></i>金</span></td><td>自分のDEF×1.5（3ラウンド）</td><td class="num">2</td><td class="num">—</td><td>ぜんまいタイタン@9・せんとうロボ@11・はがねのゴーレム@10</td></tr>
+          <tr><td><span class="name-ja">ポイズン</span><br><span class="name-en">Poison</span></td><td><span class="chip el-wood"><i class="dot"></i>木</span></td><td>70%でどく</td><td class="num">2</td><td class="num">—</td><td>わるキノコ@1・どろにんぎょう@3・おおおにキノコ@1・どろのきょじん@1</td></tr>
+          <tr><td><span class="name-ja">ヒール</span><br><span class="name-en">Heal</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>単体回復</td><td class="num">2</td><td class="num">26</td><td>スライム@1・もりのせい@1・キングスライム@1・ホーリーナイト@6・たいじゅのせいれい@1</td></tr>
+          <tr><td><span class="name-ja">ハイヒール</span><br><span class="name-en">High Heal</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>単体回復</td><td class="num">5</td><td class="num">60</td><td>もりのせい@15・サンタさま@1</td></tr>
+          <tr><td><span class="name-ja">ジェネシス</span><br><span class="name-en">Genesis</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>味方全体を回復</td><td class="num">8</td><td class="num">45</td><td>イヴ@16</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 広告スロット2: 一番読まれる図鑑チャプターの手前 -->
+  <div class="ad-slot" data-ad-slot="wiki-mid-2">
+    <span class="ad-slot-label">Advertisement</span>
+    <!-- ここに広告ネットワークのタグを貼る -->
+  </div>
+
+  <section id="bestiary">
+    <div class="chapter-head">
+      <div class="eyebrow">08 / Bestiary</div>
+      <h2>モンスター図鑑</h2>
+      <div class="rule"></div>
+      <p class="lede">属性ごとの「進化ライン」で整理しました。→ は同じ種族どうしをLv10以上で合成したときの行き先です。</p>
+    </div>
+
+    <div class="fam-head"><span class="chip el-fire"><i class="dot"></i>火のなかま</span></div>
+    <div class="fam-grid">
+      <div class="line-card">
+        <div class="mon"><canvas class="spr" data-mon="lizard" width="16" height="16"></canvas><span class="n-ja">ほのおトカゲ</span><span class="n-en">Flame Lizard</span></div>
+        <div class="arrow-mid">→</div>
+        <div class="mon"><canvas class="spr" data-mon="salamander" width="16" height="16"></canvas><span class="n-ja">サラマンダー</span><span class="n-en">Salamander</span></div>
+      </div>
+      <div class="line-card">
+        <div class="mon"><canvas class="spr" data-mon="dragonkid" width="16" height="16"></canvas><span class="n-ja">ドラゴンぼうや</span><span class="n-en">Dragon Kid</span></div>
+        <div class="arrow-mid">→</div>
+        <div class="mon"><canvas class="spr" data-mon="elderdragon" width="16" height="16"></canvas><span class="n-ja">こりゅう</span><span class="n-en">Elder Dragon</span></div>
+      </div>
+      <div class="line-card single">
+        <div class="mon"><canvas class="spr" data-mon="emberwolf" width="16" height="16"></canvas><span class="n-ja">えんおおかみ</span><span class="n-en">Ember Wolf</span><span class="line-note">進化なし・野生のみ</span></div>
+      </div>
+    </div>
+
+    <div class="fam-head"><span class="chip el-water"><i class="dot"></i>水のなかま</span></div>
+    <div class="fam-grid">
+      <div class="line-card">
+        <div class="mon"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><span class="n-ja">スライム</span><span class="n-en">Slime<br>（最初の仲間）</span></div>
+        <div class="arrow-mid">→</div>
+        <div class="mon"><canvas class="spr" data-mon="kingslime" width="16" height="16"></canvas><span class="n-ja">キングスライム</span><span class="n-en">King Slime</span></div>
+      </div>
+      <div class="line-card">
+        <div class="mon"><canvas class="spr" data-mon="snowman" width="16" height="16"></canvas><span class="n-ja">ゆきだるまん</span><span class="n-en">Snowman</span></div>
+        <div class="arrow-mid">→</div>
+        <div class="mon"><canvas class="spr" data-mon="yukionna" width="16" height="16"></canvas><span class="n-ja">ゆきおんな</span><span class="n-en">Yuki-onna</span></div>
+      </div>
+    </div>
+
+    <div class="fam-head"><span class="chip el-wood"><i class="dot"></i>木のなかま</span></div>
+    <div class="fam-grid">
+      <div class="line-card">
+        <div class="mon"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><span class="n-ja">わるキノコ</span><span class="n-en">Bad Shroom</span></div>
+        <div class="arrow-mid">→</div>
+        <div class="mon"><canvas class="spr" data-mon="eldershroom" width="16" height="16"></canvas><span class="n-ja">おおおにキノコ</span><span class="n-en">Elder Shroom</span></div>
+      </div>
+      <div class="line-card">
+        <div class="mon"><canvas class="spr" data-mon="fairy" width="16" height="16"></canvas><span class="n-ja">もりのせい</span><span class="n-en">Forest Sprite</span></div>
+        <div class="arrow-mid">→</div>
+        <div class="mon"><canvas class="spr" data-mon="elderent" width="16" height="16"></canvas><span class="n-ja">たいじゅのせいれい</span><span class="n-en">Elder Ent</span></div>
+      </div>
+    </div>
+
+    <div class="fam-head"><span class="chip el-metal"><i class="dot"></i>金のなかま</span></div>
+    <div class="fam-grid">
+      <div class="line-card">
+        <div class="mon"><canvas class="spr" data-mon="scrapbot" width="16" height="16"></canvas><span class="n-ja">くずてつロボ</span><span class="n-en">Scrap Bot</span></div>
+        <div class="arrow-mid">→</div>
+        <div class="mon"><canvas class="spr" data-mon="clockworktitan" width="16" height="16"></canvas><span class="n-ja">ぜんまいタイタン</span><span class="n-en">Clockwork Titan</span></div>
+      </div>
+      <div class="line-card">
+        <div class="mon"><canvas class="spr" data-mon="tinsoldier" width="16" height="16"></canvas><span class="n-ja">ブリキへい</span><span class="n-en">Tin Soldier</span></div>
+        <div class="arrow-mid">→</div>
+        <div class="mon"><canvas class="spr" data-mon="warmachine" width="16" height="16"></canvas><span class="n-ja">せんとうロボ</span><span class="n-en">War Machine</span></div>
+      </div>
+      <div class="line-card">
+        <div class="mon"><canvas class="spr" data-mon="metalbee" width="16" height="16"></canvas><span class="n-ja">メタルビー</span><span class="n-en">Metal Bee</span></div>
+        <div class="arrow-mid">→</div>
+        <div class="mon"><canvas class="spr" data-mon="steelhornetqueen" width="16" height="16"></canvas><span class="n-ja">メタルクイーン</span><span class="n-en">Steel Hornet Queen</span></div>
+      </div>
+    </div>
+
+    <div class="fam-head"><span class="chip el-earth"><i class="dot"></i>土のなかま</span></div>
+    <div class="fam-grid">
+      <div class="line-card">
+        <div class="mon"><canvas class="spr" data-mon="goblin" width="16" height="16"></canvas><span class="n-ja">いたずらゴブリン</span><span class="n-en">Prank Goblin</span></div>
+        <div class="arrow-mid">→</div>
+        <div class="mon"><canvas class="spr" data-mon="goblinking" width="16" height="16"></canvas><span class="n-ja">ゴブリンキング</span><span class="n-en">Goblin King</span></div>
+      </div>
+      <div class="line-card">
+        <div class="mon"><canvas class="spr" data-mon="golem" width="16" height="16"></canvas><span class="n-ja">いわゴーレム</span><span class="n-en">Rock Golem</span></div>
+        <div class="arrow-mid">→</div>
+        <div class="mon"><canvas class="spr" data-mon="titangolem" width="16" height="16"></canvas><span class="n-ja">だいちのタイタン</span><span class="n-en">Titan Golem</span></div>
+      </div>
+      <div class="line-card">
+        <div class="mon"><canvas class="spr" data-mon="mudman" width="16" height="16"></canvas><span class="n-ja">どろにんぎょう</span><span class="n-en">Mud Doll</span></div>
+        <div class="arrow-mid">→</div>
+        <div class="mon"><canvas class="spr" data-mon="claycolossus" width="16" height="16"></canvas><span class="n-ja">どろのきょじん</span><span class="n-en">Clay Colossus</span></div>
+      </div>
+    </div>
+
+    <div class="fam-head"><span class="chip el-light"><i class="dot"></i>光のなかま</span></div>
+    <div class="fam-grid">
+      <div class="line-card">
+        <div class="mon"><canvas class="spr" data-mon="glowmoth" width="16" height="16"></canvas><span class="n-ja">ひかりが</span><span class="n-en">Glow Moth</span></div>
+        <div class="arrow-mid">→</div>
+        <div class="mon"><canvas class="spr" data-mon="lunamoth" width="16" height="16"></canvas><span class="n-ja">るなが</span><span class="n-en">Luna Moth</span></div>
+      </div>
+      <div class="line-card">
+        <div class="mon"><canvas class="spr" data-mon="starkid" width="16" height="16"></canvas><span class="n-ja">ほしのこ</span><span class="n-en">Star Kid</span></div>
+        <div class="arrow-mid">→</div>
+        <div class="mon"><canvas class="spr" data-mon="cometkid" width="16" height="16"></canvas><span class="n-ja">りゅうせいのこ</span><span class="n-en">Comet Kid</span></div>
+      </div>
+      <div class="line-card">
+        <div class="mon"><canvas class="spr" data-mon="reindeer" width="16" height="16"></canvas><span class="n-ja">あばれトナカイ</span><span class="n-en">Wild Reindeer</span></div>
+        <div class="arrow-mid">→</div>
+        <div class="mon"><canvas class="spr" data-mon="auroradeer" width="16" height="16"></canvas><span class="n-ja">オーロラトナカイ</span><span class="n-en">Aurora Reindeer</span></div>
+      </div>
+      <div class="line-card single">
+        <div class="mon"><canvas class="spr" data-mon="knight" width="16" height="16"></canvas><span class="n-ja">ホーリーナイト</span><span class="n-en">Holy Knight</span><span class="line-note">王様からのほうび（Lv12）</span></div>
+      </div>
+      <div class="line-card single">
+        <div class="mon"><canvas class="spr" data-mon="santa" width="16" height="16"></canvas><span class="n-ja">サンタさま</span><span class="n-en">Santa</span><span class="line-note">特別合成のみ／09章</span></div>
+      </div>
+    </div>
+
+    <div class="fam-head"><span class="chip el-dark"><i class="dot"></i>闇のなかま</span></div>
+    <div class="fam-grid">
+      <div class="line-card">
+        <div class="mon"><canvas class="spr" data-mon="bat" width="16" height="16"></canvas><span class="n-ja">おおコウモリ</span><span class="n-en">Big Bat</span></div>
+        <div class="arrow-mid">→</div>
+        <div class="mon"><canvas class="spr" data-mon="vampirelord" width="16" height="16"></canvas><span class="n-ja">きゅうけつコウモリおう</span><span class="n-en">Vampire Lord</span></div>
+      </div>
+      <div class="line-card">
+        <div class="mon"><canvas class="spr" data-mon="shadowbeast" width="16" height="16"></canvas><span class="n-ja">やみけもの</span><span class="n-en">Shadow Beast</span></div>
+        <div class="arrow-mid">→</div>
+        <div class="mon"><canvas class="spr" data-mon="nightmarelord" width="16" height="16"></canvas><span class="n-ja">あくむのおう</span><span class="n-en">Nightmare Lord</span></div>
+      </div>
+      <div class="line-card single">
+        <div class="mon"><canvas class="spr" data-mon="nightmarehound" width="16" height="16"></canvas><span class="n-ja">あくむいぬ</span><span class="n-en">Nightmare Hound</span><span class="line-note">進化なし・野生のみ</span></div>
+      </div>
+      <div class="line-card single">
+        <div class="mon"><canvas class="spr" data-mon="blacksanta" width="16" height="16"></canvas><span class="n-ja">ブラックサンタ</span><span class="n-en">Black Santa</span><span class="tag boss" style="margin-top:4px">BOSS</span></div>
+      </div>
+    </div>
+
+    <div class="fam-head" style="margin-top:40px"><span class="chip"><i class="dot" style="background:var(--candle)"></i>クロス合成・とくべつなモンスター</span></div>
+    <p class="prose" style="font-size:13.5px; color:var(--frost-dim); margin-bottom:6px">
+      違う系統どうしを掛け合わせて生まれる、進化ラインに属さないモンスターたち。
+    </p>
+    <div class="special-grid">
+      <div class="special-card">
+        <div class="mon"><canvas class="spr" data-mon="irongolem" width="16" height="16"></canvas></div>
+        <div class="txt"><b>はがねのゴーレム</b>いわゴーレム × ブリキへい</div>
+      </div>
+      <div class="special-card">
+        <div class="mon"><canvas class="spr" data-mon="fallenknight" width="16" height="16"></canvas></div>
+        <div class="txt"><b>だらくのきし</b>ホーリーナイト × やみけもの</div>
+      </div>
+      <div class="special-card">
+        <div class="mon"><canvas class="spr" data-mon="sleighdeer" width="16" height="16"></canvas></div>
+        <div class="txt"><b>そりびきトナカイ</b>あばれトナカイ × ゆきだるまん</div>
+      </div>
+      <div class="special-card">
+        <div class="mon"><canvas class="spr" data-mon="chaosdragon" width="16" height="16"></canvas></div>
+        <div class="txt"><b>こんとんのりゅう</b><span class="tag lock">POSTGAME</span><br>こりゅう × あくむのおう</div>
+      </div>
+      <div class="special-card">
+        <div class="mon"><canvas class="spr" data-mon="eve" width="16" height="16"></canvas></div>
+        <div class="txt"><b>イヴ</b><span class="tag lock">POSTGAME</span><br>ブラックサンタ × サンタさま</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="fusion">
+    <div class="chapter-head">
+      <div class="eyebrow">09 / Fusion Lab</div>
+      <h2>モンスターごうせい表</h2>
+      <div class="rule"></div>
+      <p class="lede">まほうつかいの家の「まほうのなべ」で使う早見表。生まれる子は必ず<strong>Lv1</strong>から。</p>
+    </div>
+    <div class="prose">
+      <p>
+        合成には<strong>2ひきともLv10以上</strong>が必要です。判定には優先順位があり、
+        <strong>①同じ種族どうし</strong>なら08章の進化ライン（特別レシピ）が優先され、
+        <strong>②違う種族どうし</strong>の場合は、両者の<strong>属性の組みあわせ</strong>で
+        下の表を参照します。
+      </p>
+    </div>
+
+    <h3 style="font-size:.95rem; margin:24px 0 10px; color:var(--frost-dim)">属性ごうせい表（種族が違う場合）</h3>
+    <div class="matrix-wrap">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th class="corner"></th>
+            <th><span class="chip el-fire"><i class="dot"></i>火</span></th>
+            <th><span class="chip el-water"><i class="dot"></i>水</span></th>
+            <th><span class="chip el-wood"><i class="dot"></i>木</span></th>
+            <th><span class="chip el-metal"><i class="dot"></i>金</span></th>
+            <th><span class="chip el-earth"><i class="dot"></i>土</span></th>
+            <th><span class="chip el-light"><i class="dot"></i>光</span></th>
+            <th><span class="chip el-dark"><i class="dot"></i>闇</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th class="rowhead"><span class="chip el-fire"><i class="dot"></i>火</span></th>
+            <td class="cell"><canvas class="spr" data-mon="dragonkid" width="16" height="16"></canvas><div class="cn">ドラゴンぼうや</div></td>
+            <td class="cell"><canvas class="spr" data-mon="lizard" width="16" height="16"></canvas><div class="cn">ほのおトカゲ</div></td>
+            <td class="cell"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><div class="cn">わるキノコ</div></td>
+            <td class="cell"><canvas class="spr" data-mon="metalbee" width="16" height="16"></canvas><div class="cn">メタルビー</div></td>
+            <td class="cell"><canvas class="spr" data-mon="lizard" width="16" height="16"></canvas><div class="cn">ほのおトカゲ</div></td>
+            <td class="cell"><canvas class="spr" data-mon="dragonkid" width="16" height="16"></canvas><div class="cn">ドラゴンぼうや</div></td>
+            <td class="cell"><canvas class="spr" data-mon="shadowbeast" width="16" height="16"></canvas><div class="cn">やみけもの</div></td>
+          </tr>
+          <tr>
+            <th class="rowhead"><span class="chip el-water"><i class="dot"></i>水</span></th>
+            <td class="cell"><canvas class="spr" data-mon="lizard" width="16" height="16"></canvas><div class="cn">ほのおトカゲ</div></td>
+            <td class="cell"><canvas class="spr" data-mon="snowman" width="16" height="16"></canvas><div class="cn">ゆきだるまん</div></td>
+            <td class="cell"><canvas class="spr" data-mon="fairy" width="16" height="16"></canvas><div class="cn">もりのせい</div></td>
+            <td class="cell"><canvas class="spr" data-mon="tinsoldier" width="16" height="16"></canvas><div class="cn">ブリキへい</div></td>
+            <td class="cell"><canvas class="spr" data-mon="mudman" width="16" height="16"></canvas><div class="cn">どろにんぎょう</div></td>
+            <td class="cell"><canvas class="spr" data-mon="snowman" width="16" height="16"></canvas><div class="cn">ゆきだるまん</div></td>
+            <td class="cell"><canvas class="spr" data-mon="bat" width="16" height="16"></canvas><div class="cn">おおコウモリ</div></td>
+          </tr>
+          <tr>
+            <th class="rowhead"><span class="chip el-wood"><i class="dot"></i>木</span></th>
+            <td class="cell"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><div class="cn">わるキノコ</div></td>
+            <td class="cell"><canvas class="spr" data-mon="fairy" width="16" height="16"></canvas><div class="cn">もりのせい</div></td>
+            <td class="cell"><canvas class="spr" data-mon="fairy" width="16" height="16"></canvas><div class="cn">もりのせい</div></td>
+            <td class="cell"><canvas class="spr" data-mon="metalbee" width="16" height="16"></canvas><div class="cn">メタルビー</div></td>
+            <td class="cell"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><div class="cn">わるキノコ</div></td>
+            <td class="cell"><canvas class="spr" data-mon="fairy" width="16" height="16"></canvas><div class="cn">もりのせい</div></td>
+            <td class="cell"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><div class="cn">わるキノコ</div></td>
+          </tr>
+          <tr>
+            <th class="rowhead"><span class="chip el-metal"><i class="dot"></i>金</span></th>
+            <td class="cell"><canvas class="spr" data-mon="metalbee" width="16" height="16"></canvas><div class="cn">メタルビー</div></td>
+            <td class="cell"><canvas class="spr" data-mon="tinsoldier" width="16" height="16"></canvas><div class="cn">ブリキへい</div></td>
+            <td class="cell"><canvas class="spr" data-mon="metalbee" width="16" height="16"></canvas><div class="cn">メタルビー</div></td>
+            <td class="cell"><canvas class="spr" data-mon="metalbee" width="16" height="16"></canvas><div class="cn">メタルビー</div></td>
+            <td class="cell"><canvas class="spr" data-mon="golem" width="16" height="16"></canvas><div class="cn">いわゴーレム</div></td>
+            <td class="cell"><canvas class="spr" data-mon="knight" width="16" height="16"></canvas><div class="cn">ホーリーナイト</div></td>
+            <td class="cell"><canvas class="spr" data-mon="tinsoldier" width="16" height="16"></canvas><div class="cn">ブリキへい</div></td>
+          </tr>
+          <tr>
+            <th class="rowhead"><span class="chip el-earth"><i class="dot"></i>土</span></th>
+            <td class="cell"><canvas class="spr" data-mon="lizard" width="16" height="16"></canvas><div class="cn">ほのおトカゲ</div></td>
+            <td class="cell"><canvas class="spr" data-mon="mudman" width="16" height="16"></canvas><div class="cn">どろにんぎょう</div></td>
+            <td class="cell"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><div class="cn">わるキノコ</div></td>
+            <td class="cell"><canvas class="spr" data-mon="golem" width="16" height="16"></canvas><div class="cn">いわゴーレム</div></td>
+            <td class="cell"><canvas class="spr" data-mon="golem" width="16" height="16"></canvas><div class="cn">いわゴーレム</div></td>
+            <td class="cell"><canvas class="spr" data-mon="reindeer" width="16" height="16"></canvas><div class="cn">あばれトナカイ</div></td>
+            <td class="cell"><canvas class="spr" data-mon="bat" width="16" height="16"></canvas><div class="cn">おおコウモリ</div></td>
+          </tr>
+          <tr>
+            <th class="rowhead"><span class="chip el-light"><i class="dot"></i>光</span></th>
+            <td class="cell"><canvas class="spr" data-mon="dragonkid" width="16" height="16"></canvas><div class="cn">ドラゴンぼうや</div></td>
+            <td class="cell"><canvas class="spr" data-mon="snowman" width="16" height="16"></canvas><div class="cn">ゆきだるまん</div></td>
+            <td class="cell"><canvas class="spr" data-mon="fairy" width="16" height="16"></canvas><div class="cn">もりのせい</div></td>
+            <td class="cell"><canvas class="spr" data-mon="knight" width="16" height="16"></canvas><div class="cn">ホーリーナイト</div></td>
+            <td class="cell"><canvas class="spr" data-mon="reindeer" width="16" height="16"></canvas><div class="cn">あばれトナカイ</div></td>
+            <td class="cell"><canvas class="spr" data-mon="knight" width="16" height="16"></canvas><div class="cn">ホーリーナイト</div></td>
+            <td class="cell"><canvas class="spr" data-mon="mudman" width="16" height="16"></canvas><div class="cn">どろにんぎょう</div></td>
+          </tr>
+          <tr>
+            <th class="rowhead"><span class="chip el-dark"><i class="dot"></i>闇</span></th>
+            <td class="cell"><canvas class="spr" data-mon="shadowbeast" width="16" height="16"></canvas><div class="cn">やみけもの</div></td>
+            <td class="cell"><canvas class="spr" data-mon="bat" width="16" height="16"></canvas><div class="cn">おおコウモリ</div></td>
+            <td class="cell"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><div class="cn">わるキノコ</div></td>
+            <td class="cell"><canvas class="spr" data-mon="tinsoldier" width="16" height="16"></canvas><div class="cn">ブリキへい</div></td>
+            <td class="cell"><canvas class="spr" data-mon="bat" width="16" height="16"></canvas><div class="cn">おおコウモリ</div></td>
+            <td class="cell"><canvas class="spr" data-mon="mudman" width="16" height="16"></canvas><div class="cn">どろにんぎょう</div></td>
+            <td class="cell"><canvas class="spr" data-mon="shadowbeast" width="16" height="16"></canvas><div class="cn">やみけもの</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:.95rem; margin:26px 0 4px; color:var(--frost-dim)">特別レシピ（種族が優先される組み合わせ）</h3>
+    <ul class="recipe-list">
+      <li><span class="combo"><canvas class="spr" data-mon="slime" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>スライム × スライム</span><span class="result">→ キングスライム</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="kingslime" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>キングスライム × ホーリーナイト</span><span class="result">→ サンタさま</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="knight" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ホーリーナイト × あばれトナカイ</span><span class="result">→ サンタさま</span></li>
+      <li><span class="combo">17系統の「進化ライン」（08章参照）</span><span class="result">→ 各系統の上位種</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="golem" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>いわゴーレム × ブリキへい</span><span class="result">→ はがねのゴーレム</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="knight" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ホーリーナイト × やみけもの</span><span class="result">→ だらくのきし</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="reindeer" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>あばれトナカイ × ゆきだるまん</span><span class="result">→ そりびきトナカイ</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="elderdragon" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>こりゅう × あくむのおう</span><span class="result">→ こんとんのりゅう <span class="tag lock">POSTGAME</span></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="blacksanta" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ブラックサンタ × サンタさま</span><span class="result">→ イヴ <span class="tag lock">POSTGAME</span></span></li>
+    </ul>
+    <p class="prose" style="font-size:12.5px; color:var(--frost-dim); margin-top:12px">
+      <span class="tag lock">POSTGAME</span> の2レシピは、どうくつ最深部のボスを倒すまで「ふしぎなちからで ふうじられて」おり選べません。
+    </p>
+  </section>
+
+  <!-- 広告スロット3: 最後のチャプターの手前 -->
+  <div class="ad-slot" data-ad-slot="wiki-mid-3">
+    <span class="ad-slot-label">Advertisement</span>
+    <!-- ここに広告ネットワークのタグを貼る -->
+  </div>
+
+  <section id="tips">
+    <div class="chapter-head">
+      <div class="eyebrow">10 / Strategy</div>
+      <h2>せんりゃくのコツ</h2>
+      <div class="rule"></div>
+      <p class="lede">遊びながら見えてきた、覚えておくと得するポイント。</p>
+    </div>
+    <div class="tips">
+      <div class="tip"><div class="n">01</div><div class="prose">同じ種族を2ひき、Lv10まで育てるだけで確実に上位種へ進化できます。合成は運試しではなく、
+      どの系統を伸ばすか決める育成プランです。ねらいの属性を1本決めてから野生で仲間を集めましょう。</div></div>
+      <div class="tip"><div class="n">02</div><div class="prose">とくぎの消費MPは全体的に低め（基本技は2〜5MP）なので、序盤から遠慮なく撃って大丈夫です。
+      MPが尽きたときの保険に「まほうのみず」を1〜2個持っておくと安心。</div></div>
+      <div class="tip"><div class="n">03</div><div class="prose">「いろいろやろう」の回復役は<strong>じんけい</strong>で後列（右寄りの列）に置くと、
+      敵の初撃を受けにくくなります。前衛はDEFの高いゴーレム系・タイタン系がおすすめ。</div></div>
+      <div class="tip"><div class="n">04</div><div class="prose">どうくつは入口付近で足踏みしても敵は弱いまま。序盤の資金稼ぎ・とくぎのレベル上げは
+      入口寄りで、装備とパーティが整ってから奥へ踏み込むのが安全です。</div></div>
+      <div class="tip"><div class="n">05</div><div class="prose">ブラックサンタ戦は闇属性。<strong>光属性の技（シャインフラッシュ／ホーリーレイ）</strong>
+      なら1.5倍のダメージが狙えます。ホーリーナイトやほしのこ系統を1体編成に入れておきましょう。</div></div>
+      <div class="tip"><div class="n">06</div><div class="prose">クリア後は必ずどうくつ最深部でブラックサンタに再戦を。勝つと仲間にでき、
+      さらに「サンタさま × ブラックサンタ → イヴ」の最終合成ルートが開きます。</div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="snow">❄ · ❄ · ❄</div>
+    <p>本ページはファンによる非公式の攻略まとめです。ゲーム内のスプライトはローカルのタイル生成ロジックを
+    再現してその場で描画しています。データは <code>js/data.js</code> を基準に作成しました（誤り等あれば都度更新してください）。</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  // ---- モンスターのドット絵を再現して描画する ----
+  // ゲーム本体 (js/gfx.js) と同じテンプレート+パレット方式。文字: '.'=透明 k=黒 w=白 1-4=パレット色
+  var TEMPLATES = {
+    hero_d:[
+    "................","......3333......",".....333333.....","....33333333w...",
+    "....44444444....","....4k4444k4....","....44444444....",".....444444.....",
+    "....11111111....","...1111111111...","...4111111114...","....11111111....",
+    "....222..222....","....22....22....","....kk....kk....","................"],
+    blob:[
+    "................","................","................","......1111......",
+    "....11111111....","...1111111111...","..111111111111..","..11k11111k111..",
+    "..111121121111..","..111112211111..","..111111111111..","...1111111111...",
+    "....11111111....",".....111111.....","................","................"],
+    kingblob:[
+    "................","....3..33..3....","....33333333....","......1111......",
+    "....11111111....","...1111111111...","..111111111111..","..11k11111k111..",
+    "..111121121111..","..111112211111..","..111111111111..","...1111111111...",
+    "....11111111....",".....111111.....","................","................"],
+    bat:[
+    "................","................","................","..1..........1..",
+    ".111...11...111.",".1111.1111.1111.",".11111111111111.","..111111111111..",
+    "...11w1111w11...","....11111111....",".....1.11.1.....","................",
+    "................","................","................","................"],
+    mushroom:[
+    "................","................",".....111111.....","...1112111211...",
+    "..111111111111..","..112111121111..","..111111111111..","...1111111111...",
+    ".....444444.....",".....4k44k4.....",".....444444.....","......4444......",
+    "......4444......","................","................","................"],
+    golem:[
+    "................","................","....111111......","...11111111.....",
+    "...1k1111k1.....","...11111111.....",".111.111111.111.",".111.111111.111.",
+    ".111.111111.111.",".11...1111...11.","......1111......","....111..111....",
+    "....111..111....","....11....11....","................","................"],
+    dragon:[
+    "................","................",".....111........","....11k11.......",
+    "....111111......",".....11111.222..","....11111112222.","...111111111222.",
+    "...1111111111...","...4444111111...","....441111111...",".....111111.....",
+    "....11...11.....","....kk...kk.....","................","................"],
+    beast:[
+    "................","................","................","................",
+    "...3.......3....","..11.......11...","..111111111112..","..1k1111111122..",
+    "..111111111112..","...1111111111...","...11..11..11...","...11..11..11...",
+    "...kk..kk..kk...","................","................","................"],
+    fairy:[
+    "................","................","......1111......","..2..111111..2..",
+    ".222.1k11k1.222.",".2221111111222..","..22111111122...","....11111111....",
+    ".....111111.....","......1111......",".....11..11.....","................",
+    "................","................","................","................"],
+    star:[
+    "................",".......11.......",".......11.......","......1111......",
+    "..111111111111..","...1111111111...","....11111111....","....1k1111k1....",
+    "....11122111....","...1111111111...","...1111..1111...","..111......111..",
+    "................","................","................","................"],
+    snowman:[
+    "................","................","......1111......",".....111111.....",
+    ".....1k11k1.....",".....111111.....","....33333333....","....11111111....",
+    "...1111211111...","...1111111111...","...1111211111...","....11111111....",
+    ".....111111.....","................","................","................"],
+    bee:[
+    "................","................","...2......2.....","....2....2......",
+    "..w.111111.w....",".ww11221122ww...",".w111221122ww...","..111111111w....",
+    "...11221122.....","....111111......",".....1111.......","......11........",
+    "................","................","................","................"],
+    humanoid:[
+    "................","......3333......",".....333333.....","....44444444....",
+    "....4k4444k4....","....44444444....",".....444444.....",".....111111.....",
+    "....11111111....","...4111111114...","....11111111....","....22222222....",
+    "....22....22....","....22....22....","....kk....kk....","................"],
+    wizard:[
+    ".......33.......","......3333......",".....333333.....","...3333333333...",
+    "....44444444....","....4k4444k4....","....4w4444w4....",".....111111.....",
+    "....11111111....","...4111111114...","....11111111....","....11111111....",
+    "....11....11....","....11....11....","....kk....kk....","................"]
+  };
+
+  var SPR = {
+    hero:{tpl:'hero_d', pal:{'1':'#3a6ec2','2':'#2f4a96','3':'#c2453a','4':'#f2d2ac'}},
+    slime:{tpl:'blob', pal:{'1':'#4aa3e8','2':'#dff4ff'}},
+    kingslime:{tpl:'kingblob', pal:{'1':'#3a7be5','2':'#dff4ff','3':'#e8c84a'}},
+    goblin:{tpl:'humanoid', pal:{'1':'#7a5a2a','2':'#5a4a2a','3':'#4aa54c','4':'#8ac25a'}},
+    bat:{tpl:'bat', pal:{'1':'#6a4ac2','2':'#4a3a8a'}},
+    mushroom:{tpl:'mushroom', pal:{'1':'#c2453a','2':'#f2e8d8','4':'#f2e0c2'}},
+    lizard:{tpl:'dragon', pal:{'1':'#e87a3a','2':'#c25a2a','4':'#f2d28a'}},
+    golem:{tpl:'golem', pal:{'1':'#9a8a72'}},
+    tinsoldier:{tpl:'humanoid', pal:{'1':'#c2453a','2':'#3a5ab0','3':'#2a2a30','4':'#e8c88a'}},
+    snowman:{tpl:'snowman', pal:{'1':'#f2f2f2','2':'#2a2a30','3':'#c2453a'}},
+    fairy:{tpl:'fairy', pal:{'1':'#8ac25a','2':'#c2f2aa'}},
+    starkid:{tpl:'star', pal:{'1':'#e8d84a','2':'#e89a3a'}},
+    shadowbeast:{tpl:'beast', pal:{'1':'#4a3a5a','2':'#7a5ae8','3':'#3a2a4a'}},
+    dragonkid:{tpl:'dragon', pal:{'1':'#c23a3a','2':'#8a2a2a','4':'#e8c85a'}},
+    metalbee:{tpl:'bee', pal:{'1':'#c8c8d8','2':'#8a8a9a'}},
+    mudman:{tpl:'blob', pal:{'1':'#8a6a3a','2':'#6a5230'}},
+    reindeer:{tpl:'beast', pal:{'1':'#a5703a','2':'#c2453a','3':'#6e4a22'}},
+    knight:{tpl:'humanoid', pal:{'1':'#e8e8f2','2':'#c8a23a','3':'#e8cc5a','4':'#f2d2ac'}},
+    santa:{tpl:'wizard', pal:{'1':'#c2453a','2':'#98302a','3':'#c2453a','4':'#f2d2ac'}},
+    blacksanta:{tpl:'wizard', pal:{'1':'#3a2a3a','2':'#2a1a2a','3':'#6a1a2a','4':'#c2a2a2'}},
+    scrapbot:{tpl:'golem', pal:{'1':'#9a9aa8','2':'#7a5a3a'}},
+    glowmoth:{tpl:'bee', pal:{'1':'#f2eeb8','2':'#e8d84a'}},
+    emberwolf:{tpl:'beast', pal:{'1':'#d85a2a','2':'#ffb43a','3':'#a83a1a'}},
+    nightmarehound:{tpl:'beast', pal:{'1':'#3a2a4a','2':'#8a3ae5','3':'#2a1a3a'}},
+    goblinking:{tpl:'humanoid', pal:{'1':'#7a5a2a','2':'#5a4a2a','3':'#e8c84a','4':'#8ac25a'}},
+    vampirelord:{tpl:'bat', pal:{'1':'#8a1a2a','2':'#4a0a1a'}},
+    eldershroom:{tpl:'mushroom', pal:{'1':'#8a3ae5','2':'#f2e8d8','4':'#d8c8f2'}},
+    salamander:{tpl:'dragon', pal:{'1':'#c22a1a','2':'#ff8a3a','4':'#f2d28a'}},
+    clockworktitan:{tpl:'golem', pal:{'1':'#c8a23a','2':'#8a6a2a'}},
+    lunamoth:{tpl:'bee', pal:{'1':'#b8e8f2','2':'#5ab8e8'}},
+    claycolossus:{tpl:'golem', pal:{'1':'#8a6a3a','2':'#6a5230'}},
+    titangolem:{tpl:'golem', pal:{'1':'#5a5a52','2':'#3aa54c'}},
+    warmachine:{tpl:'humanoid', pal:{'1':'#6a6a7a','2':'#c2453a','3':'#3a3a44','4':'#9a9aa8'}},
+    yukionna:{tpl:'humanoid', pal:{'1':'#e8f2f8','2':'#b8d8e8','3':'#2a3a5a','4':'#f2ede8'}},
+    elderent:{tpl:'golem', pal:{'1':'#5b3a1e','2':'#2e7a3c'}},
+    cometkid:{tpl:'star', pal:{'1':'#8ae8f2','2':'#3a7be5'}},
+    nightmarelord:{tpl:'beast', pal:{'1':'#1a1a2a','2':'#c2453a','3':'#4a1a5a'}},
+    steelhornetqueen:{tpl:'bee', pal:{'1':'#d8d8e8','2':'#c8a23a'}},
+    auroradeer:{tpl:'beast', pal:{'1':'#f2f2f8','2':'#8ae8c8','3':'#e87a9a'}},
+    elderdragon:{tpl:'dragon', pal:{'1':'#6a1a1a','2':'#c8a23a','4':'#e8c85a'}},
+    irongolem:{tpl:'golem', pal:{'1':'#7a7a8a','2':'#4a4a5a'}},
+    fallenknight:{tpl:'humanoid', pal:{'1':'#2a2a3a','2':'#5a1a6a','3':'#4a4a5a','4':'#c2a2b2'}},
+    sleighdeer:{tpl:'beast', pal:{'1':'#a5703a','2':'#e8c84a','3':'#c2453a'}},
+    chaosdragon:{tpl:'dragon', pal:{'1':'#2a1a3a','2':'#8a3ae5','4':'#c2453a'}},
+    eve:{tpl:'humanoid', pal:{'1':'#f8f8f2','2':'#c8a23a','3':'#e8e8c8','4':'#f2d2ac'}}
+  };
+  var COMMON = {k:'#1a1a1a', w:'#ffffff'};
+
+  function drawMon(canvas, id){
+    var def = SPR[id];
+    if(!def) return;
+    var rows = TEMPLATES[def.tpl];
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect(0,0,16,16);
+    for(var y=0;y<16;y++){
+      var row = rows[y];
+      for(var x=0;x<16;x++){
+        var ch = row[x];
+        if(ch==='.') continue;
+        ctx.fillStyle = def.pal[ch] || COMMON[ch] || '#ff00ff';
+        ctx.fillRect(x,y,1,1);
+      }
+    }
+  }
+  document.querySelectorAll('canvas.spr').forEach(function(cv){
+    drawMon(cv, cv.getAttribute('data-mon'));
+  });
+
+  // ---- hero snowfall (respects prefers-reduced-motion) ----
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cv = document.getElementById('snowcv');
+  if(cv){
+    var ctx2 = cv.getContext('2d');
+    var flakes = [];
+    function resize(){
+      var host = cv.parentElement;
+      cv.width = host.clientWidth;
+      cv.height = host.clientHeight;
+      var n = Math.max(24, Math.floor(cv.width/22));
+      flakes = [];
+      for(var i=0;i<n;i++){
+        flakes.push({
+          x: Math.random()*cv.width,
+          y: Math.random()*cv.height,
+          r: 1 + Math.random()*2,
+          s: 6 + Math.random()*18
+        });
+      }
+    }
+    function draw(dt){
+      ctx2.clearRect(0,0,cv.width,cv.height);
+      ctx2.fillStyle = 'rgba(238,241,251,0.85)';
+      for(var i=0;i<flakes.length;i++){
+        var f = flakes[i];
+        if(!reduce){
+          f.y += f.s*dt; f.x += Math.sin(f.y*0.02)*0.15;
+          if(f.y > cv.height){ f.y = -4; f.x = Math.random()*cv.width; }
+        }
+        ctx2.beginPath();
+        ctx2.arc(f.x, f.y, f.r, 0, Math.PI*2);
+        ctx2.fill();
+      }
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    if(reduce){
+      draw(0);
+    }else{
+      var last = performance.now();
+      requestAnimationFrame(function loop(now){
+        draw(Math.min(0.05, (now-last)/1000));
+        last = now;
+        requestAnimationFrame(loop);
+      });
+    }
+  }
+
+  // ---- toc active-section highlight ----
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc-row a'));
+  var map = {};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)] = a; });
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main > section[id]'));
+  if('IntersectionObserver' in window && sections.length){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var link = map[en.target.id];
+        if(!link) return;
+        if(en.isIntersecting) link.classList.add('active');
+        else link.classList.remove('active');
+      });
+    }, {rootMargin:'-40% 0px -55% 0px'});
+    sections.forEach(function(s){ io.observe(s); });
+  }
+})();
+</script>
