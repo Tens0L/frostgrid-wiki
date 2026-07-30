@@ -31,6 +31,10 @@
     --el-earth:#a5703a;
     --el-light:#d8bc2e;
     --el-dark:#8a3ae5;
+    --el-wind:#8ab52a;
+    --el-thunder:#e8c81e;
+    --el-forest:#228b22;
+    --el-ice:#87ceeb;
     --shadow:0 10px 30px rgba(0,0,0,0.35);
     --serif:Georgia,"Iowan Old Style","Hiragino Mincho ProN","Yu Mincho",serif;
     --sans:-apple-system,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic","Helvetica Neue",Arial,sans-serif;
@@ -177,6 +181,8 @@
   .el-wood .dot{ background:var(--el-wood); } .el-metal .dot{ background:var(--el-metal); }
   .el-earth .dot{ background:var(--el-earth); } .el-light .dot{ background:var(--el-light); }
   .el-dark .dot{ background:var(--el-dark); }
+  .el-wind .dot{ background:var(--el-wind); } .el-thunder .dot{ background:var(--el-thunder); }
+  .el-forest .dot{ background:var(--el-forest); } .el-ice .dot{ background:var(--el-ice); }
 
   .tag{
     font-family:var(--mono); font-size:11px; letter-spacing:0.04em; text-transform:uppercase;
@@ -281,6 +287,16 @@
   .line-card.single{ justify-content:center; }
   .line-note{ font-size:11.5px; color:var(--frost-dim); margin-top:6px; text-align:center; }
 
+  .chain-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px;
+    padding:14px; display:flex; align-items:center; gap:4px; flex-wrap:wrap; margin-bottom:10px;
+  }
+  .chain-card .arrow-mid{ font-size:13px; }
+  .mon .tier-tag{ font-family:var(--mono); font-size:9px; padding:1px 5px; border-radius:8px; margin-top:1px; white-space:nowrap; }
+  .mon .tier-tag.wild{ color:var(--holly); border:1px solid color-mix(in srgb, var(--holly) 40%, var(--line)); }
+  .mon .tier-tag.fuse{ color:var(--candle); border:1px solid color-mix(in srgb, var(--candle) 40%, var(--line)); }
+
+
   .special-grid{ display:grid; gap:10px; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); margin-top:14px; }
   .special-card{
     background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px;
@@ -346,19 +362,19 @@
       This is a strategy guide for <strong>Frostgrid: Christmas Creature Tactics</strong>
       (フロストグリッド 〜クリスマス・クリーチャー・タクティクス〜), a 2D monster-collecting RPG
       that runs entirely in the browser. It covers controls, the story walkthrough, town facilities,
-      the battle system, a bestiary of all 44 monsters, the fusion chart, and postgame content —
+      the battle system, a bestiary of all 100 monsters, the fusion chart, and postgame content —
       all pulled straight from the game's own data.
     </p>
     <div class="facts">
-      <div class="fact"><b>7</b><span>Elements</span></div>
-      <div class="fact"><b>44</b><span>Monsters</span></div>
-      <div class="fact"><b>27</b><span>Skills</span></div>
+      <div class="fact"><b>10</b><span>Elements</span></div>
+      <div class="fact"><b>100</b><span>Monsters</span></div>
+      <div class="fact"><b>39</b><span>Skills</span></div>
       <div class="fact"><b>3</b><span>Tactics</span></div>
     </div>
     <div class="vignette">
       <canvas class="spr" data-mon="slime" width="16" height="16" title="Slime"></canvas>
       <canvas class="spr" data-mon="hero" width="16" height="16" title="The Hero"></canvas>
-      <canvas class="spr" data-mon="dragonkid" width="16" height="16" title="Dragon Kid"></canvas>
+      <canvas class="spr" data-mon="blacksanta" width="16" height="16" title="Nightmare King"></canvas>
     </div>
   </div>
 </div>
@@ -474,21 +490,24 @@
         their level climbs. Grind a bit near the entrance before pushing further in.</p>
       </div>
       <div class="step" data-n="5">
-        <h3>Black Santa at the depths</h3>
-        <p class="prose">The ruler of the cave, <strong>Black Santa</strong>, and his minions bar
-        your way — a being who steals the dreams of good children. Bring a party that can exploit
-        his elemental weakness.</p>
+        <h3>The Nightmare King at the depths</h3>
+        <p class="prose">The ruler of the cave, <strong>the Nightmare King</strong>, and his minions
+        (Big Bat, Shadow Beast) bar your way — a being who slips into people's hearts and shows them
+        bad dreams. He's Dark-element, so bring a party with Light-element attacks.</p>
       </div>
       <div class="step" data-n="6">
         <h3>The King's reward</h3>
         <p class="prose">After the fight you're warped before the King, who thanks you and gives you
-        the legendary <strong>Holy Knight (Lv12)</strong> as a new party member.</p>
+        the legendary <strong>Holy Knight (Lv12)</strong> as a new party member. The castle's west
+        gate also opens, leading out to the monster-filled "Wildlands Plains."</p>
       </div>
       <div class="step" data-n="7">
         <h3 style="display:flex; align-items:center; gap:8px">Postgame <span class="tag lock">POSTGAME</span></h3>
-        <p class="prose">A reformed Black Santa now waits at the depths — beat him in a rematch and
-        he'll finally join your party for real. Postgame also unlocks two true final fusion
-        monsters, <strong>Chaos Dragon</strong> and <strong>Eve</strong> (see chapter 09).</p>
+        <p class="prose">A reformed Nightmare King now waits at the depths — beat him in a rematch and
+        he'll finally join your party for real. The Wildlands Plains let you fight Tier 4-strength
+        monsters, though you can't catch them there — fusion is the only way to obtain Tier 4+.
+        Head to the Wizard's House "Magic Cauldron" to chase true Tier 10 power (see chapter 09).
+        The "King's Chamber" behind the castle's east door might also hold a small discovery if you look around.</p>
       </div>
     </div>
   </section>
@@ -603,39 +622,34 @@
   <section id="elements">
     <div class="chapter-head">
       <div class="eyebrow">06 / Elements</div>
-      <h2>Elements</h2>
+      <h2>Element Chart</h2>
       <div class="rule"></div>
-      <p class="lede">Seven elements — Fire, Water, Wood, Metal, Earth, Light, Dark. Damage shifts with the attacker/defender match-up.</p>
+      <p class="lede">All 10 elements have individually tuned matchups against each other — 100 total pairs. It's not a simple five-way cycle; each element has its own specific strengths and weaknesses.</p>
     </div>
-    <div class="card">
-      <p class="prose" style="margin-bottom:20px">Following the classic five-element cycle,
-      <strong>Fire beats Metal, Metal beats Wood, Wood beats Earth, Earth beats Water, and Water
-      beats Fire</strong>. On top of that, <strong>Light and Dark are each strong against the
-      other</strong>. Attacking with a favorable element deals <strong>1.5× damage</strong>;
-      attacking into an unfavorable one deals <strong>0.65×</strong>.</p>
-      <div class="cycle">
-        <div class="node"><i style="background:var(--el-fire)"></i><b>Fire</b></div>
-        <div class="arrow">→</div>
-        <div class="node"><i style="background:var(--el-metal)"></i><b>Metal</b></div>
-        <div class="arrow">→</div>
-        <div class="node"><i style="background:var(--el-wood)"></i><b>Wood</b></div>
-        <div class="arrow">→</div>
-        <div class="node"><i style="background:var(--el-earth)"></i><b>Earth</b></div>
-        <div class="arrow">→</div>
-        <div class="node"><i style="background:var(--el-water)"></i><b>Water</b></div>
-        <div class="arrow">→</div>
-        <div class="node" style="opacity:0.45"><i style="background:var(--el-fire)"></i><b>Fire</b></div>
-      </div>
-      <div class="duo">
-        <div class="node"><i style="background:var(--el-light)"></i><b>Light</b></div>
-        <div class="vs">⇄ mutually strong ⇄</div>
-        <div class="node"><i style="background:var(--el-dark)"></i><b>Dark</b></div>
-      </div>
+    <div class="matrix-wrap">
+      <table class="matrix">
+        <thead>
+          <tr><th class="corner"></th><th><span class="chip el-fire"><i class="dot"></i>Fire</span></th><th><span class="chip el-water"><i class="dot"></i>Water</span></th><th><span class="chip el-wind"><i class="dot"></i>Wind</span></th><th><span class="chip el-thunder"><i class="dot"></i>Thunder</span></th><th><span class="chip el-forest"><i class="dot"></i>Forest</span></th><th><span class="chip el-ice"><i class="dot"></i>Ice</span></th><th><span class="chip el-earth"><i class="dot"></i>Earth</span></th><th><span class="chip el-metal"><i class="dot"></i>Metal</span></th><th><span class="chip el-dark"><i class="dot"></i>Dark</span></th><th><span class="chip el-light"><i class="dot"></i>Light</span></th></tr>
+        </thead>
+        <tbody>
+<tr><th class="rowhead"><span class="chip el-fire"><i class="dot"></i>Fire</span></th><td class="num">—</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td><td class="num">1.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td></tr>
+<tr><th class="rowhead"><span class="chip el-water"><i class="dot"></i>Water</span></th><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num">—</td><td class="num">1.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td></tr>
+<tr><th class="rowhead"><span class="chip el-wind"><i class="dot"></i>Wind</span></th><td class="num">1.0</td><td class="num">1.0</td><td class="num">—</td><td class="num">1.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td></tr>
+<tr><th class="rowhead"><span class="chip el-thunder"><i class="dot"></i>Thunder</span></th><td class="num">1.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num">1.0</td><td class="num">—</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td></tr>
+<tr><th class="rowhead"><span class="chip el-forest"><i class="dot"></i>Forest</span></th><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td><td class="num">—</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td></tr>
+<tr><th class="rowhead"><span class="chip el-ice"><i class="dot"></i>Ice</span></th><td class="num">1.0</td><td class="num">1.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num">1.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num">—</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td></tr>
+<tr><th class="rowhead"><span class="chip el-earth"><i class="dot"></i>Earth</span></th><td class="num">1.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num">—</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td></tr>
+<tr><th class="rowhead"><span class="chip el-metal"><i class="dot"></i>Metal</span></th><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">—</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td></tr>
+<tr><th class="rowhead"><span class="chip el-dark"><i class="dot"></i>Dark</span></th><td class="num">1.0</td><td class="num">1.0</td><td class="num">1.0</td><td class="num">1.0</td><td class="num">1.0</td><td class="num">1.0</td><td class="num">1.0</td><td class="num">1.0</td><td class="num">—</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td></tr>
+<tr><th class="rowhead"><span class="chip el-light"><i class="dot"></i>Light</span></th><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num">—</td></tr>
+        </tbody>
+      </table>
     </div>
-    <div class="formula" style="margin-top:16px">Physical attack = (ATK x 1.6 - target DEF x 0.8) x element multiplier x 0.9-1.1
-Attack skill    = (power + MAG x 1.2 - target DEF x 0.4) x element multiplier x 0.9-1.1
-Heal amount     = power + MAG
-Poison          = hit-chance roll / while in battle, deals max HP x 8% every round</div>
+    <p class="prose" style="font-size:12.5px; color:var(--frost-dim); margin-top:10px">Table reads "attacker (row) into defender (column)". 2.0 = super effective, 0.5 = not very effective.</p>
+    <div class="formula" style="margin-top:16px">Physical   = (ATK*1.6 - targetDEF*0.8) * elementMultiplier * (0.9-1.1)
+Attack spell = (power + MAG*1.2 - targetDEF*0.4) * elementMultiplier * (0.9-1.1)
+Heal amount = power + MAG
+Poison     = hit-chance roll; deals 8% max HP per round in battle</div>
   </section>
 
   <section id="spells">
@@ -643,50 +657,51 @@ Poison          = hit-chance roll / while in battle, deals max HP x 8% every rou
       <div class="eyebrow">07 / Spellbook</div>
       <h2>Spellbook</h2>
       <div class="rule"></div>
-      <p class="lede">All 27 skills and spells. Range is measured in grid squares on the battle field.</p>
+      <p class="lede">All 39 skills and spells. Range is grid-cell distance on the battle board.</p>
     </div>
-
-    <h3 style="font-size:.95rem; margin:0 0 10px; color:var(--frost-dim)">Single-target Attacks</h3>
     <div class="tbl-wrap">
       <table>
-        <thead><tr><th>Skill</th><th>Element</th><th class="num">MP</th><th class="num">Power</th><th class="num">Range</th><th>Learned by</th></tr></thead>
+        <thead><tr><th>Skill</th><th>Element</th><th>Effect</th><th class="num">MP</th><th class="num">Power</th><th class="num">Range</th><th>Learned by</th></tr></thead>
         <tbody>
-          <tr><td><span class="name-ja">ファイア</span><br><span class="name-en">Fire</span></td><td><span class="chip el-fire"><i class="dot"></i>Fire</span></td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td>Flame Lizard@3, Dragon Kid@1, Ember Wolf@3, Salamander@1, Elder Dragon@1</td></tr>
-          <tr><td><span class="name-ja">アクアショット</span><br><span class="name-en">Aqua Shot</span></td><td><span class="chip el-water"><i class="dot"></i>Water</span></td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td>Slime@6, Snowman@2, King Slime@1</td></tr>
-          <tr><td><span class="name-ja">リーフカッター</span><br><span class="name-en">Leaf Cutter</span></td><td><span class="chip el-wood"><i class="dot"></i>Wood</span></td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td>Bad Shroom@7, Forest Sprite@4, Elder Shroom@7, Elder Ent@5</td></tr>
-          <tr><td><span class="name-ja">メタルエッジ</span><br><span class="name-en">Metal Edge</span></td><td><span class="chip el-metal"><i class="dot"></i>Metal</span></td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td>Tin Soldier@6, Metal Bee@9, Scrap Bot@5, Clockwork Titan@1, War Machine@1, Steel Hornet Queen@1, Iron Golem@1</td></tr>
-          <tr><td><span class="name-ja">ロックスロー</span><br><span class="name-en">Rock Throw</span></td><td><span class="chip el-earth"><i class="dot"></i>Earth</span></td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td>Rock Golem@8, Mud Doll@6, Goblin King@1, Clay Colossus@8, Titan Golem@1</td></tr>
-          <tr><td><span class="name-ja">シャインフラッシュ</span><br><span class="name-en">Shine Flash</span></td><td><span class="chip el-light"><i class="dot"></i>Light</span></td><td class="num">2</td><td class="num">14</td><td class="num">3</td><td>Star Kid@2, Wild Reindeer@5, Holy Knight@1, Glow Moth@4, Luna Moth@1, Comet Kid@1, Aurora Reindeer@1, Fallen Knight@1, Sleigh Reindeer@1</td></tr>
-          <tr><td><span class="name-ja">ダークボール</span><br><span class="name-en">Dark Ball</span></td><td><span class="chip el-dark"><i class="dot"></i>Dark</span></td><td class="num">2</td><td class="num">14</td><td class="num">3</td><td>Big Bat@5, Shadow Beast@4, Black Santa@1, Nightmare Hound@4, Vampire Lord@1, Nightmare Lord@1, Fallen Knight@1</td></tr>
-          <tr><td><span class="name-ja">ファイアストーム</span><br><span class="name-en">Fire Storm</span></td><td><span class="chip el-fire"><i class="dot"></i>Fire</span></td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td>Dragon Kid@12, Elder Dragon@1, Chaos Dragon@1</td></tr>
-          <tr><td><span class="name-ja">タイダルウェイブ</span><br><span class="name-en">Tidal Wave</span></td><td><span class="chip el-water"><i class="dot"></i>Water</span></td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td>Slime@14, Snowman@13, King Slime@11, Yuki-onna@1, Sleigh Reindeer@8</td></tr>
-          <tr><td><span class="name-ja">ホーリーレイ</span><br><span class="name-en">Holy Ray</span></td><td><span class="chip el-light"><i class="dot"></i>Light</span></td><td class="num">5</td><td class="num">32</td><td class="num">3</td><td>Holy Knight@13, Santa@1, Eve@1</td></tr>
-          <tr><td><span class="name-ja">ダークネビュラ</span><br><span class="name-en">Dark Nebula</span></td><td><span class="chip el-dark"><i class="dot"></i>Dark</span></td><td class="num">5</td><td class="num">32</td><td class="num">3</td><td>Black Santa@1, Fallen Knight@12, Chaos Dragon@1, Eve@1</td></tr>
-          <tr><td><span class="name-ja">フレイムクロー</span><br><span class="name-en">Flame Claw</span></td><td><span class="chip el-fire"><i class="dot"></i>Fire</span></td><td class="num">2</td><td class="num">18</td><td class="num">1</td><td>Ember Wolf@9, Salamander@9</td></tr>
-          <tr><td><span class="name-ja">ムーンビーム</span><br><span class="name-en">Moonbeam</span></td><td><span class="chip el-light"><i class="dot"></i>Light</span></td><td class="num">3</td><td class="num">22</td><td class="num">3</td><td>Luna Moth@8, Aurora Reindeer@9</td></tr>
-          <tr><td><span class="name-ja">インフェルノ</span><br><span class="name-en">Inferno</span></td><td><span class="chip el-fire"><i class="dot"></i>Fire</span></td><td class="num">7</td><td class="num">40</td><td class="num">3</td><td>Elder Dragon@15</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3 style="font-size:.95rem; margin:26px 0 10px; color:var(--frost-dim)">AoE, Status Effects &amp; Special Skills</h3>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>Skill</th><th>Element</th><th>Effect</th><th class="num">MP</th><th class="num">Power</th><th>Learned by</th></tr></thead>
-        <tbody>
-          <tr><td><span class="name-ja">クエイク</span><br><span class="name-en">Quake</span></td><td><span class="chip el-earth"><i class="dot"></i>Earth</span></td><td>Hits all foes</td><td class="num">6</td><td class="num">18</td><td>Titan Golem@12</td></tr>
-          <tr><td><span class="name-ja">スターシャワー</span><br><span class="name-en">Star Shower</span></td><td><span class="chip el-light"><i class="dot"></i>Light</span></td><td>Hits all foes</td><td class="num">6</td><td class="num">16</td><td>Comet Kid@8</td></tr>
-          <tr><td><span class="name-ja">ニードルストーム</span><br><span class="name-en">Needle Storm</span></td><td><span class="chip el-metal"><i class="dot"></i>Metal</span></td><td>Hits all foes</td><td class="num">6</td><td class="num">16</td><td>Steel Hornet Queen@10</td></tr>
-          <tr><td><span class="name-ja">オブリビオン</span><br><span class="name-en">Oblivion</span></td><td><span class="chip el-dark"><i class="dot"></i>Dark</span></td><td>Hits all foes</td><td class="num">8</td><td class="num">26</td><td>Chaos Dragon@16</td></tr>
-          <tr><td><span class="name-ja">ルートバインド</span><br><span class="name-en">Root Bind</span></td><td><span class="chip el-wood"><i class="dot"></i>Wood</span></td><td>50% chance to bind</td><td class="num">3</td><td class="num">14</td><td>Elder Shroom@13, Elder Ent@12</td></tr>
-          <tr><td><span class="name-ja">フロストキス</span><br><span class="name-en">Frost Kiss</span></td><td><span class="chip el-water"><i class="dot"></i>Water</span></td><td>40% chance to bind</td><td class="num">4</td><td class="num">24</td><td>Yuki-onna@9</td></tr>
-          <tr><td><span class="name-ja">ナイトメア</span><br><span class="name-en">Nightmare</span></td><td><span class="chip el-dark"><i class="dot"></i>Dark</span></td><td>40% chance to bind</td><td class="num">4</td><td class="num">24</td><td>Nightmare Lord@11</td></tr>
-          <tr><td><span class="name-ja">ブラッドドレイン</span><br><span class="name-en">Blood Drain</span></td><td><span class="chip el-dark"><i class="dot"></i>Dark</span></td><td>Drains 50% of damage dealt as HP</td><td class="num">3</td><td class="num">16</td><td>Vampire Lord@8</td></tr>
-          <tr><td><span class="name-ja">アイアンウォール</span><br><span class="name-en">Iron Wall</span></td><td><span class="chip el-metal"><i class="dot"></i>Metal</span></td><td>Own DEF x1.5 (3 rounds)</td><td class="num">2</td><td class="num">—</td><td>Clockwork Titan@9, War Machine@11, Iron Golem@10</td></tr>
-          <tr><td><span class="name-ja">ポイズン</span><br><span class="name-en">Poison</span></td><td><span class="chip el-wood"><i class="dot"></i>Wood</span></td><td>70% chance to poison</td><td class="num">2</td><td class="num">—</td><td>Bad Shroom@1, Mud Doll@3, Elder Shroom@1, Clay Colossus@1</td></tr>
-          <tr><td><span class="name-ja">ヒール</span><br><span class="name-en">Heal</span></td><td><span class="chip el-light"><i class="dot"></i>Light</span></td><td>Heals one ally</td><td class="num">2</td><td class="num">26</td><td>Slime@1, Forest Sprite@1, King Slime@1, Holy Knight@6, Elder Ent@1</td></tr>
-          <tr><td><span class="name-ja">ハイヒール</span><br><span class="name-en">High Heal</span></td><td><span class="chip el-light"><i class="dot"></i>Light</span></td><td>Heals one ally</td><td class="num">5</td><td class="num">60</td><td>Forest Sprite@15, Santa@1</td></tr>
-          <tr><td><span class="name-ja">ジェネシス</span><br><span class="name-en">Genesis</span></td><td><span class="chip el-light"><i class="dot"></i>Light</span></td><td>Heals the whole party</td><td class="num">8</td><td class="num">45</td><td>Eve@16</td></tr>
+          <tr><td><span class="name-ja">ファイア</span><br><span class="name-en">Fire</span></td><td><span class="chip el-fire"><i class="dot"></i>Fire</span></td><td>Attack</td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td style="font-size:12px">Fireball@1, Red Lizard@1, Flame Wolf@1, Magma Golem@1, Flame Knight@1, Salamander@1</td></tr>
+          <tr><td><span class="name-ja">アクアショット</span><br><span class="name-en">Aqua Shot</span></td><td><span class="chip el-water"><i class="dot"></i>Water</span></td><td>Attack</td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td style="font-size:12px">Slime@6, Sea Serpent@1, Merman@1, Aqua Golem@1, Leviathan Spawn@1, Kraken@1</td></tr>
+          <tr><td><span class="name-ja">リーフカッター</span><br><span class="name-en">Leaf Cutter</span></td><td><span class="chip el-forest"><i class="dot"></i>Forest</span></td><td>Attack</td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td style="font-size:12px">Kodama@1, Mandrake@1, Leaf Rabbit@1, Treant@1, Forest Wolf@1, Dryad@1</td></tr>
+          <tr><td><span class="name-ja">メタルエッジ</span><br><span class="name-en">Metal Edge</span></td><td><span class="chip el-metal"><i class="dot"></i>Metal</span></td><td>Attack</td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td style="font-size:12px">Scrap Iron@1, Metal Slime@1, Tin Soldier@1, Metal Dog@1, Iron Knight@1, Metal Dragon@1</td></tr>
+          <tr><td><span class="name-ja">ロックスロー</span><br><span class="name-en">Rock Throw</span></td><td><span class="chip el-earth"><i class="dot"></i>Earth</span></td><td>Attack</td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td style="font-size:12px">Tsuchinoko@1, Molerat@1, Rock Lizard@1, Stone Golem@1, Earthworm@1, Mud Man@1</td></tr>
+          <tr><td><span class="name-ja">シャインフラッシュ</span><br><span class="name-en">Shine Flash</span></td><td><span class="chip el-light"><i class="dot"></i>Light</span></td><td>Attack</td><td class="num">2</td><td class="num">14</td><td class="num">3</td><td style="font-size:12px">Holy Knight@1, Light Mote@1, Angel Baby@1, Holy Rabbit@1, Cleric@1, Seraph@1</td></tr>
+          <tr><td><span class="name-ja">ダークボール</span><br><span class="name-en">Dark Ball</span></td><td><span class="chip el-dark"><i class="dot"></i>Dark</span></td><td>Attack</td><td class="num">2</td><td class="num">14</td><td class="num">3</td><td style="font-size:12px">Big Bat@1, Shadow Beast@1, Shadow Child@1, Nightmare@1, Demon@1, Shadow Knight@1</td></tr>
+          <tr><td><span class="name-ja">ファイアストーム</span><br><span class="name-en">Fire Storm</span></td><td><span class="chip el-fire"><i class="dot"></i>Fire</span></td><td>Attack</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">Flame Wolf@8, Magma Golem@8, Flame Knight@7, Salamander@7, Hellhound@1, Phoenix@1, Inferno Dragon@1, Agni Lord@1</td></tr>
+          <tr><td><span class="name-ja">タイダルウェイブ</span><br><span class="name-en">Tidal Wave</span></td><td><span class="chip el-water"><i class="dot"></i>Water</span></td><td>Attack</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">Slime@14, Merman@8, Aqua Golem@8, Leviathan Spawn@7, Kraken@7, Merman Knight@1, Undine@1, Tidal Dragon@1, Leviathan@1</td></tr>
+          <tr><td><span class="name-ja">ホーリーレイ</span><br><span class="name-en">Holy Ray</span></td><td><span class="chip el-light"><i class="dot"></i>Light</span></td><td>Attack</td><td class="num">5</td><td class="num">32</td><td class="num">3</td><td style="font-size:12px">Holy Knight@7, Holy Rabbit@8, Cleric@8, Seraph@7, Angel Knight@1, Archangel@1, Holy Dragon@1, Saint Lord@1</td></tr>
+          <tr><td><span class="name-ja">ダークネビュラ</span><br><span class="name-en">Dark Nebula</span></td><td><span class="chip el-dark"><i class="dot"></i>Dark</span></td><td>Attack</td><td class="num">5</td><td class="num">32</td><td class="num">3</td><td style="font-size:12px">Shadow Beast@8, Nightmare King@1, Nightmare@8, Demon@7, Shadow Knight@7, Death Knight@1, Nightmare Lord@1, Arch Demon@1</td></tr>
+          <tr><td><span class="name-ja">ヒール</span><br><span class="name-en">Heal</span></td><td><span class="chip el-light"><i class="dot"></i>Light</span></td><td>Heal</td><td class="num">2</td><td class="num">26</td><td class="num">4</td><td style="font-size:12px">Slime@1</td></tr>
+          <tr><td><span class="name-ja">ハイヒール</span><br><span class="name-en">High Heal</span></td><td><span class="chip el-light"><i class="dot"></i>Light</span></td><td>Heal</td><td class="num">5</td><td class="num">60</td><td class="num">4</td><td style="font-size:12px">-</td></tr>
+          <tr><td><span class="name-ja">ポイズン</span><br><span class="name-en">Poison</span></td><td><span class="chip el-forest"><i class="dot"></i>Forest</span></td><td>Poison (hit 70%)</td><td class="num">2</td><td class="num">—</td><td class="num">3</td><td style="font-size:12px">-</td></tr>
+          <tr><td><span class="name-ja">ブラッドドレイン</span><br><span class="name-en">Blood Drain</span></td><td><span class="chip el-dark"><i class="dot"></i>Dark</span></td><td>Attack (drains 50%)</td><td class="num">3</td><td class="num">16</td><td class="num">1</td><td style="font-size:12px">-</td></tr>
+          <tr><td><span class="name-ja">ルートバインド</span><br><span class="name-en">Root Bind</span></td><td><span class="chip el-forest"><i class="dot"></i>Forest</span></td><td>Attack (bind 50%)</td><td class="num">3</td><td class="num">14</td><td class="num">3</td><td style="font-size:12px">Forest Wolf@12, Dryad@12, Elder Treant@9, Forest Dragon@9, Great Dryad@1, World Tree Guardian@1</td></tr>
+          <tr><td><span class="name-ja">フレイムクロー</span><br><span class="name-en">Flame Claw</span></td><td><span class="chip el-fire"><i class="dot"></i>Fire</span></td><td>Attack</td><td class="num">2</td><td class="num">18</td><td class="num">1</td><td style="font-size:12px">-</td></tr>
+          <tr><td><span class="name-ja">アイアンウォール</span><br><span class="name-en">Iron Wall</span></td><td><span class="chip el-metal"><i class="dot"></i>Metal</span></td><td>Buff (self DEFx1.5, 3R)</td><td class="num">2</td><td class="num">—</td><td class="num">0</td><td style="font-size:12px">Iron Knight@12, Metal Dragon@12, Mithril Golem@9, Orichalcum Knight@9, Metal King@1, Adamantite@1</td></tr>
+          <tr><td><span class="name-ja">ムーンビーム</span><br><span class="name-en">Moonbeam</span></td><td><span class="chip el-light"><i class="dot"></i>Light</span></td><td>Attack</td><td class="num">3</td><td class="num">22</td><td class="num">3</td><td style="font-size:12px">-</td></tr>
+          <tr><td><span class="name-ja">クエイク</span><br><span class="name-en">Quake</span></td><td><span class="chip el-earth"><i class="dot"></i>Earth</span></td><td>Attack (AoE)</td><td class="num">6</td><td class="num">18</td><td class="num">3</td><td style="font-size:12px">Earthworm@12, Mud Man@12, Iron Golem@9, Earth Dragon@9, Titan@1, Gaia Lord@1</td></tr>
+          <tr><td><span class="name-ja">フロストキス</span><br><span class="name-en">Frost Kiss</span></td><td><span class="chip el-water"><i class="dot"></i>Water</span></td><td>Attack (bind 40%)</td><td class="num">4</td><td class="num">24</td><td class="num">2</td><td style="font-size:12px">Leviathan Spawn@12, Kraken@12, Merman Knight@9, Undine@9, Tidal Dragon@1, Leviathan@1</td></tr>
+          <tr><td><span class="name-ja">スターシャワー</span><br><span class="name-en">Star Shower</span></td><td><span class="chip el-light"><i class="dot"></i>Light</span></td><td>Attack (AoE)</td><td class="num">6</td><td class="num">16</td><td class="num">3</td><td style="font-size:12px">Holy Knight@12, Seraph@12, Angel Knight@9, Archangel@9, Holy Dragon@1, Saint Lord@1</td></tr>
+          <tr><td><span class="name-ja">ナイトメア</span><br><span class="name-en">Nightmare</span></td><td><span class="chip el-dark"><i class="dot"></i>Dark</span></td><td>Attack (bind 40%)</td><td class="num">4</td><td class="num">24</td><td class="num">3</td><td style="font-size:12px">Nightmare King@1, Demon@12, Shadow Knight@12, Death Knight@9, Nightmare Lord@9, Arch Demon@1</td></tr>
+          <tr><td><span class="name-ja">ニードルストーム</span><br><span class="name-en">Needle Storm</span></td><td><span class="chip el-metal"><i class="dot"></i>Metal</span></td><td>Attack (AoE)</td><td class="num">6</td><td class="num">16</td><td class="num">3</td><td style="font-size:12px">-</td></tr>
+          <tr><td><span class="name-ja">インフェルノ</span><br><span class="name-en">Inferno</span></td><td><span class="chip el-fire"><i class="dot"></i>Fire</span></td><td>Attack</td><td class="num">7</td><td class="num">40</td><td class="num">3</td><td style="font-size:12px">Flame Knight@12, Salamander@12, Hellhound@9, Phoenix@9, Inferno Dragon@1, Agni Lord@1</td></tr>
+          <tr><td><span class="name-ja">オブリビオン</span><br><span class="name-en">Oblivion</span></td><td><span class="chip el-dark"><i class="dot"></i>Dark</span></td><td>Attack (AoE)</td><td class="num">8</td><td class="num">26</td><td class="num">3</td><td style="font-size:12px">-</td></tr>
+          <tr><td><span class="name-ja">ジェネシス</span><br><span class="name-en">Genesis</span></td><td><span class="chip el-light"><i class="dot"></i>Light</span></td><td>Heal All</td><td class="num">8</td><td class="num">45</td><td class="num">0</td><td style="font-size:12px">-</td></tr>
+          <tr><td><span class="name-ja">リーフストーム</span><br><span class="name-en">Leaf Storm</span></td><td><span class="chip el-forest"><i class="dot"></i>Forest</span></td><td>Attack</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">Leaf Rabbit@8, Treant@8, Forest Wolf@7, Dryad@7, Elder Treant@1, Forest Dragon@1, Great Dryad@1, World Tree Guardian@1</td></tr>
+          <tr><td><span class="name-ja">スチールランス</span><br><span class="name-en">Steel Lance</span></td><td><span class="chip el-metal"><i class="dot"></i>Metal</span></td><td>Attack</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">Tin Soldier@8, Metal Dog@8, Iron Knight@7, Metal Dragon@7, Mithril Golem@1, Orichalcum Knight@1, Metal King@1, Adamantite@1</td></tr>
+          <tr><td><span class="name-ja">グランドクラッシュ</span><br><span class="name-en">Ground Crush</span></td><td><span class="chip el-earth"><i class="dot"></i>Earth</span></td><td>Attack</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">Rock Lizard@8, Stone Golem@8, Earthworm@7, Mud Man@7, Iron Golem@1, Earth Dragon@1, Titan@1, Gaia Lord@1</td></tr>
+          <tr><td><span class="name-ja">エアカッター</span><br><span class="name-en">Air Cutter</span></td><td><span class="chip el-wind"><i class="dot"></i>Wind</span></td><td>Attack</td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td style="font-size:12px">Chill Gust@1, Windfoot Rabbit@1, Cloud Puff@1, Harpy@1, Wing Tiger@1, Storm Hawk@1</td></tr>
+          <tr><td><span class="name-ja">サイクロン</span><br><span class="name-en">Cyclone</span></td><td><span class="chip el-wind"><i class="dot"></i>Wind</span></td><td>Attack</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">Cloud Puff@8, Harpy@8, Wing Tiger@7, Storm Hawk@7, Jet Dragon@1, Tempest Lord@1, Garuda@1, Sylph Queen@1</td></tr>
+          <tr><td><span class="name-ja">ゲイルダッシュ</span><br><span class="name-en">Gale Dash</span></td><td><span class="chip el-wind"><i class="dot"></i>Wind</span></td><td>Buff (self AGIx1.5, 3R)</td><td class="num">2</td><td class="num">—</td><td class="num">0</td><td style="font-size:12px">Wing Tiger@12, Storm Hawk@12, Jet Dragon@9, Tempest Lord@9, Garuda@1, Sylph Queen@1</td></tr>
+          <tr><td><span class="name-ja">でんげき</span><br><span class="name-en">Electric Shock</span></td><td><span class="chip el-thunder"><i class="dot"></i>Thunder</span></td><td>Attack</td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td style="font-size:12px">Spark@1, Electric Mouse@1, Thunderbird@1, Lightning Wolf@1, Thunder Golem@1, Thunder Man@1</td></tr>
+          <tr><td><span class="name-ja">サンダーボルト</span><br><span class="name-en">Thunderbolt</span></td><td><span class="chip el-thunder"><i class="dot"></i>Thunder</span></td><td>Attack</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">Thunderbird@8, Lightning Wolf@8, Thunder Golem@7, Thunder Man@7, Thunder Dragon@1, Raiden Knight@1, Thunder Lord@1, Raijin King@1</td></tr>
+          <tr><td><span class="name-ja">パラライズボルト</span><br><span class="name-en">Paralyzing Bolt</span></td><td><span class="chip el-thunder"><i class="dot"></i>Thunder</span></td><td>Attack (bind 40%)</td><td class="num">3</td><td class="num">18</td><td class="num">3</td><td style="font-size:12px">Thunder Golem@12, Thunder Man@12, Thunder Dragon@9, Raiden Knight@9, Thunder Lord@1, Raijin King@1</td></tr>
+          <tr><td><span class="name-ja">アイスニードル</span><br><span class="name-en">Ice Needle</span></td><td><span class="chip el-ice"><i class="dot"></i>Ice</span></td><td>Attack</td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td style="font-size:12px">Snowball@1, Pengit@1, Ice Rabbit@1, Snowman@1, Frost Wolf@1, Ice Golem@1</td></tr>
+          <tr><td><span class="name-ja">フリーズランス</span><br><span class="name-en">Freeze Lance</span></td><td><span class="chip el-ice"><i class="dot"></i>Ice</span></td><td>Attack</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">Ice Rabbit@8, Snowman@8, Frost Wolf@7, Ice Golem@7, Blizzard Dragon@1, Frost Knight@1, Ice Queen@1, Absolute Zero@1</td></tr>
+          <tr><td><span class="name-ja">ブリザード</span><br><span class="name-en">Blizzard</span></td><td><span class="chip el-ice"><i class="dot"></i>Ice</span></td><td>Attack (AoE)</td><td class="num">6</td><td class="num">16</td><td class="num">3</td><td style="font-size:12px">Frost Wolf@12, Ice Golem@12, Blizzard Dragon@9, Frost Knight@9, Ice Queen@1, Absolute Zero@1</td></tr>
         </tbody>
       </table>
     </div>
@@ -701,287 +716,263 @@ Poison          = hit-chance roll / while in battle, deals max HP x 8% every rou
   <section id="bestiary">
     <div class="chapter-head">
       <div class="eyebrow">08 / Bestiary</div>
-      <h2>Bestiary</h2>
+      <h2>Monster Bestiary</h2>
       <div class="rule"></div>
-      <p class="lede">Organized into "evolution lines" by element. → shows where fusing two of the same species (Lv10+) leads.</p>
+      <p class="lede">Each element has one straight Tier 1-10 line. Tier 1-3 appear wild and can be caught (% = catch rate); Tier 4 and up are fusion-only (they can show up in wild battles on the post-game plains, but cannot be caught there).</p>
     </div>
 
-    <div class="fam-head"><span class="chip el-fire"><i class="dot"></i>Fire Family</span></div>
-    <div class="fam-grid">
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="lizard" width="16" height="16"></canvas><span class="n-ja">ほのおトカゲ</span><span class="n-en">Flame Lizard</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="salamander" width="16" height="16"></canvas><span class="n-ja">サラマンダー</span><span class="n-en">Salamander</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="dragonkid" width="16" height="16"></canvas><span class="n-ja">ドラゴンぼうや</span><span class="n-en">Dragon Kid</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="elderdragon" width="16" height="16"></canvas><span class="n-ja">こりゅう</span><span class="n-en">Elder Dragon</span></div>
-      </div>
-      <div class="line-card single">
-        <div class="mon"><canvas class="spr" data-mon="emberwolf" width="16" height="16"></canvas><span class="n-ja">えんおおかみ</span><span class="n-en">Ember Wolf</span><span class="line-note">No evolution &middot; wild only</span></div>
-      </div>
+    <div class="fam-head"><span class="chip el-fire"><i class="dot"></i>Fire family</span></div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="fire_1" width="16" height="16"></canvas><span class="n-ja">ひのたま</span><span class="n-en">Fireball</span><span class="tier-tag wild">T1 ・ 25%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="fire_2" width="16" height="16"></canvas><span class="n-ja">あかいトカゲ</span><span class="n-en">Red Lizard</span><span class="tier-tag wild">T2 ・ 18%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="fire_3" width="16" height="16"></canvas><span class="n-ja">ほのおのオオカミ</span><span class="n-en">Flame Wolf</span><span class="tier-tag wild">T3 ・ 12%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="fire_4" width="16" height="16"></canvas><span class="n-ja">マグマゴーレム</span><span class="n-en">Magma Golem</span><span class="tier-tag fuse">T4 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="fire_5" width="16" height="16"></canvas><span class="n-ja">フレイムナイト</span><span class="n-en">Flame Knight</span><span class="tier-tag fuse">T5 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="fire_6" width="16" height="16"></canvas><span class="n-ja">サラマンダー</span><span class="n-en">Salamander</span><span class="tier-tag fuse">T6 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="fire_7" width="16" height="16"></canvas><span class="n-ja">ヘルハウンド</span><span class="n-en">Hellhound</span><span class="tier-tag fuse">T7 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="fire_8" width="16" height="16"></canvas><span class="n-ja">フェニックス</span><span class="n-en">Phoenix</span><span class="tier-tag fuse">T8 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="fire_9" width="16" height="16"></canvas><span class="n-ja">インフェルノドラゴン</span><span class="n-en">Inferno Dragon</span><span class="tier-tag fuse">T9 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="fire_10" width="16" height="16"></canvas><span class="n-ja">アグニロード</span><span class="n-en">Agni Lord</span><span class="tier-tag fuse">T10 ・ Fusion only</span></div>
     </div>
 
-    <div class="fam-head"><span class="chip el-water"><i class="dot"></i>Water Family</span></div>
-    <div class="fam-grid">
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><span class="n-en">Slime<br>(starting monster)</span><span class="n-ja">スライム</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="kingslime" width="16" height="16"></canvas><span class="n-ja">キングスライム</span><span class="n-en">King Slime</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="snowman" width="16" height="16"></canvas><span class="n-ja">ゆきだるまん</span><span class="n-en">Snowman</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="yukionna" width="16" height="16"></canvas><span class="n-ja">ゆきおんな</span><span class="n-en">Yuki-onna</span></div>
-      </div>
+    <div class="fam-head"><span class="chip el-water"><i class="dot"></i>Water family</span></div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><span class="n-ja">スライム</span><span class="n-en">Slime</span><span class="tier-tag wild">T1 ・ 28%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="water_2" width="16" height="16"></canvas><span class="n-ja">うみへび</span><span class="n-en">Sea Serpent</span><span class="tier-tag wild">T2 ・ 18%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="water_3" width="16" height="16"></canvas><span class="n-ja">マーマン</span><span class="n-en">Merman</span><span class="tier-tag wild">T3 ・ 12%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="water_4" width="16" height="16"></canvas><span class="n-ja">アクアゴーレム</span><span class="n-en">Aqua Golem</span><span class="tier-tag fuse">T4 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="water_5" width="16" height="16"></canvas><span class="n-ja">リヴァイアサンのこ</span><span class="n-en">Leviathan Spawn</span><span class="tier-tag fuse">T5 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="water_6" width="16" height="16"></canvas><span class="n-ja">クラーケン</span><span class="n-en">Kraken</span><span class="tier-tag fuse">T6 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="water_7" width="16" height="16"></canvas><span class="n-ja">マーマンナイト</span><span class="n-en">Merman Knight</span><span class="tier-tag fuse">T7 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="water_8" width="16" height="16"></canvas><span class="n-ja">ウンディーネ</span><span class="n-en">Undine</span><span class="tier-tag fuse">T8 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="water_9" width="16" height="16"></canvas><span class="n-ja">タイダルドラゴン</span><span class="n-en">Tidal Dragon</span><span class="tier-tag fuse">T9 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="water_10" width="16" height="16"></canvas><span class="n-ja">リヴァイアサン</span><span class="n-en">Leviathan</span><span class="tier-tag fuse">T10 ・ Fusion only</span></div>
     </div>
 
-    <div class="fam-head"><span class="chip el-wood"><i class="dot"></i>Wood Family</span></div>
-    <div class="fam-grid">
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><span class="n-ja">わるキノコ</span><span class="n-en">Bad Shroom</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="eldershroom" width="16" height="16"></canvas><span class="n-ja">おおおにキノコ</span><span class="n-en">Elder Shroom</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="fairy" width="16" height="16"></canvas><span class="n-ja">もりのせい</span><span class="n-en">Forest Sprite</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="elderent" width="16" height="16"></canvas><span class="n-ja">たいじゅのせいれい</span><span class="n-en">Elder Ent</span></div>
-      </div>
+    <div class="fam-head"><span class="chip el-wind"><i class="dot"></i>Wind family</span></div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="wind_1" width="16" height="16"></canvas><span class="n-ja">こがらし</span><span class="n-en">Chill Gust</span><span class="tier-tag wild">T1 ・ 25%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="wind_2" width="16" height="16"></canvas><span class="n-ja">はねうさぎ</span><span class="n-en">Windfoot Rabbit</span><span class="tier-tag wild">T2 ・ 18%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="wind_3" width="16" height="16"></canvas><span class="n-ja">わたぐも</span><span class="n-en">Cloud Puff</span><span class="tier-tag wild">T3 ・ 12%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="wind_4" width="16" height="16"></canvas><span class="n-ja">ハーピー</span><span class="n-en">Harpy</span><span class="tier-tag fuse">T4 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="wind_5" width="16" height="16"></canvas><span class="n-ja">ウィングタイガー</span><span class="n-en">Wing Tiger</span><span class="tier-tag fuse">T5 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="wind_6" width="16" height="16"></canvas><span class="n-ja">ストームホーク</span><span class="n-en">Storm Hawk</span><span class="tier-tag fuse">T6 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="wind_7" width="16" height="16"></canvas><span class="n-ja">ジェットドラゴン</span><span class="n-en">Jet Dragon</span><span class="tier-tag fuse">T7 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="wind_8" width="16" height="16"></canvas><span class="n-ja">テンペストロード</span><span class="n-en">Tempest Lord</span><span class="tier-tag fuse">T8 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="wind_9" width="16" height="16"></canvas><span class="n-ja">ガルーダ</span><span class="n-en">Garuda</span><span class="tier-tag fuse">T9 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="wind_10" width="16" height="16"></canvas><span class="n-ja">シルフクイーン</span><span class="n-en">Sylph Queen</span><span class="tier-tag fuse">T10 ・ Fusion only</span></div>
     </div>
 
-    <div class="fam-head"><span class="chip el-metal"><i class="dot"></i>Metal Family</span></div>
-    <div class="fam-grid">
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="scrapbot" width="16" height="16"></canvas><span class="n-ja">くずてつロボ</span><span class="n-en">Scrap Bot</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="clockworktitan" width="16" height="16"></canvas><span class="n-ja">ぜんまいタイタン</span><span class="n-en">Clockwork Titan</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="tinsoldier" width="16" height="16"></canvas><span class="n-ja">ブリキへい</span><span class="n-en">Tin Soldier</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="warmachine" width="16" height="16"></canvas><span class="n-ja">せんとうロボ</span><span class="n-en">War Machine</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="metalbee" width="16" height="16"></canvas><span class="n-ja">メタルビー</span><span class="n-en">Metal Bee</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="steelhornetqueen" width="16" height="16"></canvas><span class="n-ja">メタルクイーン</span><span class="n-en">Steel Hornet Queen</span></div>
-      </div>
+    <div class="fam-head"><span class="chip el-thunder"><i class="dot"></i>Thunder family</span></div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="thunder_1" width="16" height="16"></canvas><span class="n-ja">スパーク</span><span class="n-en">Spark</span><span class="tier-tag wild">T1 ・ 25%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="thunder_2" width="16" height="16"></canvas><span class="n-ja">でんきねずみ</span><span class="n-en">Electric Mouse</span><span class="tier-tag wild">T2 ・ 18%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="thunder_3" width="16" height="16"></canvas><span class="n-ja">サンダーバード</span><span class="n-en">Thunderbird</span><span class="tier-tag wild">T3 ・ 12%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="thunder_4" width="16" height="16"></canvas><span class="n-ja">ライトニングウルフ</span><span class="n-en">Lightning Wolf</span><span class="tier-tag fuse">T4 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="thunder_5" width="16" height="16"></canvas><span class="n-ja">サンダーゴーレム</span><span class="n-en">Thunder Golem</span><span class="tier-tag fuse">T5 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="thunder_6" width="16" height="16"></canvas><span class="n-ja">カミナリおとこ</span><span class="n-en">Thunder Man</span><span class="tier-tag fuse">T6 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="thunder_7" width="16" height="16"></canvas><span class="n-ja">サンダードラゴン</span><span class="n-en">Thunder Dragon</span><span class="tier-tag fuse">T7 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="thunder_8" width="16" height="16"></canvas><span class="n-ja">ライデンナイト</span><span class="n-en">Raiden Knight</span><span class="tier-tag fuse">T8 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="thunder_9" width="16" height="16"></canvas><span class="n-ja">サンダーロード</span><span class="n-en">Thunder Lord</span><span class="tier-tag fuse">T9 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="thunder_10" width="16" height="16"></canvas><span class="n-ja">ライジンオー</span><span class="n-en">Raijin King</span><span class="tier-tag fuse">T10 ・ Fusion only</span></div>
     </div>
 
-    <div class="fam-head"><span class="chip el-earth"><i class="dot"></i>Earth Family</span></div>
-    <div class="fam-grid">
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="goblin" width="16" height="16"></canvas><span class="n-ja">いたずらゴブリン</span><span class="n-en">Prank Goblin</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="goblinking" width="16" height="16"></canvas><span class="n-ja">ゴブリンキング</span><span class="n-en">Goblin King</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="golem" width="16" height="16"></canvas><span class="n-ja">いわゴーレム</span><span class="n-en">Rock Golem</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="titangolem" width="16" height="16"></canvas><span class="n-ja">だいちのタイタン</span><span class="n-en">Titan Golem</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="mudman" width="16" height="16"></canvas><span class="n-ja">どろにんぎょう</span><span class="n-en">Mud Doll</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="claycolossus" width="16" height="16"></canvas><span class="n-ja">どろのきょじん</span><span class="n-en">Clay Colossus</span></div>
-      </div>
+    <div class="fam-head"><span class="chip el-forest"><i class="dot"></i>Forest family</span></div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="forest_1" width="16" height="16"></canvas><span class="n-ja">こだま</span><span class="n-en">Kodama</span><span class="tier-tag wild">T1 ・ 25%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="forest_2" width="16" height="16"></canvas><span class="n-ja">マンドレイク</span><span class="n-en">Mandrake</span><span class="tier-tag wild">T2 ・ 18%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="forest_3" width="16" height="16"></canvas><span class="n-ja">リーフラビット</span><span class="n-en">Leaf Rabbit</span><span class="tier-tag wild">T3 ・ 12%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="forest_4" width="16" height="16"></canvas><span class="n-ja">トレント</span><span class="n-en">Treant</span><span class="tier-tag fuse">T4 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="forest_5" width="16" height="16"></canvas><span class="n-ja">フォレストウルフ</span><span class="n-en">Forest Wolf</span><span class="tier-tag fuse">T5 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="forest_6" width="16" height="16"></canvas><span class="n-ja">ドリアード</span><span class="n-en">Dryad</span><span class="tier-tag fuse">T6 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="forest_7" width="16" height="16"></canvas><span class="n-ja">エルダートレント</span><span class="n-en">Elder Treant</span><span class="tier-tag fuse">T7 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="forest_8" width="16" height="16"></canvas><span class="n-ja">フォレストドラゴン</span><span class="n-en">Forest Dragon</span><span class="tier-tag fuse">T8 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="forest_9" width="16" height="16"></canvas><span class="n-ja">グレートドリアード</span><span class="n-en">Great Dryad</span><span class="tier-tag fuse">T9 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="forest_10" width="16" height="16"></canvas><span class="n-ja">せかいじゅのぬし</span><span class="n-en">World Tree Guardian</span><span class="tier-tag fuse">T10 ・ Fusion only</span></div>
     </div>
 
-    <div class="fam-head"><span class="chip el-light"><i class="dot"></i>Light Family</span></div>
-    <div class="fam-grid">
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="glowmoth" width="16" height="16"></canvas><span class="n-ja">ひかりが</span><span class="n-en">Glow Moth</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="lunamoth" width="16" height="16"></canvas><span class="n-ja">るなが</span><span class="n-en">Luna Moth</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="starkid" width="16" height="16"></canvas><span class="n-ja">ほしのこ</span><span class="n-en">Star Kid</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="cometkid" width="16" height="16"></canvas><span class="n-ja">りゅうせいのこ</span><span class="n-en">Comet Kid</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="reindeer" width="16" height="16"></canvas><span class="n-ja">あばれトナカイ</span><span class="n-en">Wild Reindeer</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="auroradeer" width="16" height="16"></canvas><span class="n-ja">オーロラトナカイ</span><span class="n-en">Aurora Reindeer</span></div>
-      </div>
-      <div class="line-card single">
-        <div class="mon"><canvas class="spr" data-mon="knight" width="16" height="16"></canvas><span class="n-ja">ホーリーナイト</span><span class="n-en">Holy Knight</span><span class="line-note">King&#39;s reward (Lv12)</span></div>
-      </div>
-      <div class="line-card single">
-        <div class="mon"><canvas class="spr" data-mon="santa" width="16" height="16"></canvas><span class="n-ja">サンタさま</span><span class="n-en">Santa</span><span class="line-note">Special fusion only &middot; Ch.09</span></div>
-      </div>
+    <div class="fam-head"><span class="chip el-ice"><i class="dot"></i>Ice family</span></div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="ice_1" width="16" height="16"></canvas><span class="n-ja">ゆきだま</span><span class="n-en">Snowball</span><span class="tier-tag wild">T1 ・ 25%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="ice_2" width="16" height="16"></canvas><span class="n-ja">ペンギット</span><span class="n-en">Pengit</span><span class="tier-tag wild">T2 ・ 18%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="ice_3" width="16" height="16"></canvas><span class="n-ja">アイスラビット</span><span class="n-en">Ice Rabbit</span><span class="tier-tag wild">T3 ・ 12%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="ice_4" width="16" height="16"></canvas><span class="n-ja">スノーマン</span><span class="n-en">Snowman</span><span class="tier-tag fuse">T4 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="ice_5" width="16" height="16"></canvas><span class="n-ja">フロストウルフ</span><span class="n-en">Frost Wolf</span><span class="tier-tag fuse">T5 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="ice_6" width="16" height="16"></canvas><span class="n-ja">アイスゴーレム</span><span class="n-en">Ice Golem</span><span class="tier-tag fuse">T6 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="ice_7" width="16" height="16"></canvas><span class="n-ja">ブリザードドラゴン</span><span class="n-en">Blizzard Dragon</span><span class="tier-tag fuse">T7 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="ice_8" width="16" height="16"></canvas><span class="n-ja">フロストナイト</span><span class="n-en">Frost Knight</span><span class="tier-tag fuse">T8 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="ice_9" width="16" height="16"></canvas><span class="n-ja">アイスクイーン</span><span class="n-en">Ice Queen</span><span class="tier-tag fuse">T9 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="ice_10" width="16" height="16"></canvas><span class="n-ja">アブソリュートゼロ</span><span class="n-en">Absolute Zero</span><span class="tier-tag fuse">T10 ・ Fusion only</span></div>
     </div>
 
-    <div class="fam-head"><span class="chip el-dark"><i class="dot"></i>Dark Family</span></div>
-    <div class="fam-grid">
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="bat" width="16" height="16"></canvas><span class="n-ja">おおコウモリ</span><span class="n-en">Big Bat</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="vampirelord" width="16" height="16"></canvas><span class="n-ja">きゅうけつコウモリおう</span><span class="n-en">Vampire Lord</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="shadowbeast" width="16" height="16"></canvas><span class="n-ja">やみけもの</span><span class="n-en">Shadow Beast</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="nightmarelord" width="16" height="16"></canvas><span class="n-ja">あくむのおう</span><span class="n-en">Nightmare Lord</span></div>
-      </div>
-      <div class="line-card single">
-        <div class="mon"><canvas class="spr" data-mon="nightmarehound" width="16" height="16"></canvas><span class="n-ja">あくむいぬ</span><span class="n-en">Nightmare Hound</span><span class="line-note">No evolution &middot; wild only</span></div>
-      </div>
-      <div class="line-card single">
-        <div class="mon"><canvas class="spr" data-mon="blacksanta" width="16" height="16"></canvas><span class="n-ja">ブラックサンタ</span><span class="n-en">Black Santa</span><span class="tag boss" style="margin-top:4px">BOSS</span></div>
-      </div>
+    <div class="fam-head"><span class="chip el-earth"><i class="dot"></i>Earth family</span></div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="earth_1" width="16" height="16"></canvas><span class="n-ja">つちんこ</span><span class="n-en">Tsuchinoko</span><span class="tier-tag wild">T1 ・ 25%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="earth_2" width="16" height="16"></canvas><span class="n-ja">モグラット</span><span class="n-en">Molerat</span><span class="tier-tag wild">T2 ・ 18%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="earth_3" width="16" height="16"></canvas><span class="n-ja">ロックリザード</span><span class="n-en">Rock Lizard</span><span class="tier-tag wild">T3 ・ 12%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="earth_4" width="16" height="16"></canvas><span class="n-ja">ストーンゴーレム</span><span class="n-en">Stone Golem</span><span class="tier-tag fuse">T4 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="earth_5" width="16" height="16"></canvas><span class="n-ja">アースワーム</span><span class="n-en">Earthworm</span><span class="tier-tag fuse">T5 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="earth_6" width="16" height="16"></canvas><span class="n-ja">マッドマン</span><span class="n-en">Mud Man</span><span class="tier-tag fuse">T6 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="earth_7" width="16" height="16"></canvas><span class="n-ja">アイアンゴーレム</span><span class="n-en">Iron Golem</span><span class="tier-tag fuse">T7 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="earth_8" width="16" height="16"></canvas><span class="n-ja">アースドラゴン</span><span class="n-en">Earth Dragon</span><span class="tier-tag fuse">T8 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="earth_9" width="16" height="16"></canvas><span class="n-ja">タイタン</span><span class="n-en">Titan</span><span class="tier-tag fuse">T9 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="earth_10" width="16" height="16"></canvas><span class="n-ja">ガイアロード</span><span class="n-en">Gaia Lord</span><span class="tier-tag fuse">T10 ・ Fusion only</span></div>
     </div>
 
-    <div class="fam-head" style="margin-top:40px"><span class="chip"><i class="dot" style="background:var(--candle)"></i>Cross-Fusion &amp; Special Monsters</span></div>
-    <p class="prose" style="font-size:13.5px; color:var(--frost-dim); margin-bottom:6px">
-      Born by crossing two different families — these don't belong to any single evolution line.
-    </p>
-    <div class="special-grid">
-      <div class="special-card">
-        <div class="mon"><canvas class="spr" data-mon="irongolem" width="16" height="16"></canvas></div>
-        <div class="txt"><b>Iron Golem</b>Rock Golem &times; Tin Soldier</div>
-      </div>
-      <div class="special-card">
-        <div class="mon"><canvas class="spr" data-mon="fallenknight" width="16" height="16"></canvas></div>
-        <div class="txt"><b>Fallen Knight</b>Holy Knight &times; Shadow Beast</div>
-      </div>
-      <div class="special-card">
-        <div class="mon"><canvas class="spr" data-mon="sleighdeer" width="16" height="16"></canvas></div>
-        <div class="txt"><b>Sleigh Reindeer</b>Wild Reindeer &times; Snowman</div>
-      </div>
-      <div class="special-card">
-        <div class="mon"><canvas class="spr" data-mon="chaosdragon" width="16" height="16"></canvas></div>
-        <div class="txt"><b>Chaos Dragon</b><span class="tag lock">POSTGAME</span><br>Elder Dragon &times; Nightmare Lord</div>
-      </div>
-      <div class="special-card">
-        <div class="mon"><canvas class="spr" data-mon="eve" width="16" height="16"></canvas></div>
-        <div class="txt"><b>Eve</b><span class="tag lock">POSTGAME</span><br>Black Santa &times; Santa</div>
-      </div>
+    <div class="fam-head"><span class="chip el-metal"><i class="dot"></i>Metal family</span></div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="metal_1" width="16" height="16"></canvas><span class="n-ja">くずてつ</span><span class="n-en">Scrap Iron</span><span class="tier-tag wild">T1 ・ 25%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="metal_2" width="16" height="16"></canvas><span class="n-ja">メタルスライム</span><span class="n-en">Metal Slime</span><span class="tier-tag wild">T2 ・ 18%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="metal_3" width="16" height="16"></canvas><span class="n-ja">ブリキへい</span><span class="n-en">Tin Soldier</span><span class="tier-tag wild">T3 ・ 12%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="metal_4" width="16" height="16"></canvas><span class="n-ja">メタルドッグ</span><span class="n-en">Metal Dog</span><span class="tier-tag fuse">T4 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="metal_5" width="16" height="16"></canvas><span class="n-ja">アイアンナイト</span><span class="n-en">Iron Knight</span><span class="tier-tag fuse">T5 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="metal_6" width="16" height="16"></canvas><span class="n-ja">メタルドラゴン</span><span class="n-en">Metal Dragon</span><span class="tier-tag fuse">T6 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="metal_7" width="16" height="16"></canvas><span class="n-ja">ミスリルゴーレム</span><span class="n-en">Mithril Golem</span><span class="tier-tag fuse">T7 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="metal_8" width="16" height="16"></canvas><span class="n-ja">オリハルコンナイト</span><span class="n-en">Orichalcum Knight</span><span class="tier-tag fuse">T8 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="metal_9" width="16" height="16"></canvas><span class="n-ja">メタルキング</span><span class="n-en">Metal King</span><span class="tier-tag fuse">T9 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="metal_10" width="16" height="16"></canvas><span class="n-ja">アダマンタイト</span><span class="n-en">Adamantite</span><span class="tier-tag fuse">T10 ・ Fusion only</span></div>
     </div>
+
+    <div class="fam-head"><span class="chip el-dark"><i class="dot"></i>Dark family</span></div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><span class="n-ja">やみのわらべ</span><span class="n-en">Shadow Child</span><span class="tier-tag wild">T1 ・ 25%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="bat" width="16" height="16"></canvas><span class="n-ja">おおコウモリ</span><span class="n-en">Big Bat</span><span class="tier-tag wild">T2 ・ 20%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="shadowbeast" width="16" height="16"></canvas><span class="n-ja">やみけもの</span><span class="n-en">Shadow Beast</span><span class="tier-tag wild">T3 ・ 8%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="dark_4" width="16" height="16"></canvas><span class="n-ja">ナイトメア</span><span class="n-en">Nightmare</span><span class="tier-tag fuse">T4 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="dark_5" width="16" height="16"></canvas><span class="n-ja">デーモン</span><span class="n-en">Demon</span><span class="tier-tag fuse">T5 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="dark_6" width="16" height="16"></canvas><span class="n-ja">シャドウナイト</span><span class="n-en">Shadow Knight</span><span class="tier-tag fuse">T6 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="dark_7" width="16" height="16"></canvas><span class="n-ja">デスナイト</span><span class="n-en">Death Knight</span><span class="tier-tag fuse">T7 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="dark_8" width="16" height="16"></canvas><span class="n-ja">ナイトメアロード</span><span class="n-en">Nightmare Lord</span><span class="tier-tag fuse">T8 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="dark_9" width="16" height="16"></canvas><span class="n-ja">アークデーモン</span><span class="n-en">Arch Demon</span><span class="tier-tag fuse">T9 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="blacksanta" width="16" height="16"></canvas><span class="n-ja">あくむのおう</span><span class="n-en">Nightmare King</span><span class="tag boss" style="margin-top:2px">BOSS</span></div>
+    </div>
+
+    <div class="fam-head"><span class="chip el-light"><i class="dot"></i>Light family</span></div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><span class="n-ja">ひかりのつぶ</span><span class="n-en">Light Mote</span><span class="tier-tag wild">T1 ・ 25%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="light_2" width="16" height="16"></canvas><span class="n-ja">エンジェルベビー</span><span class="n-en">Angel Baby</span><span class="tier-tag wild">T2 ・ 18%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="light_3" width="16" height="16"></canvas><span class="n-ja">ホーリーラビット</span><span class="n-en">Holy Rabbit</span><span class="tier-tag wild">T3 ・ 12%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="light_4" width="16" height="16"></canvas><span class="n-ja">クレリック</span><span class="n-en">Cleric</span><span class="tier-tag fuse">T4 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="knight" width="16" height="16"></canvas><span class="n-ja">ホーリーナイト</span><span class="n-en">Holy Knight</span><span class="tier-tag" style="color:var(--candle);border:1px solid color-mix(in srgb, var(--candle) 40%, var(--line))">King's reward / Fusion</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="light_6" width="16" height="16"></canvas><span class="n-ja">セラフ</span><span class="n-en">Seraph</span><span class="tier-tag fuse">T6 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="light_7" width="16" height="16"></canvas><span class="n-ja">エンジェルナイト</span><span class="n-en">Angel Knight</span><span class="tier-tag fuse">T7 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="light_8" width="16" height="16"></canvas><span class="n-ja">アークエンジェル</span><span class="n-en">Archangel</span><span class="tier-tag fuse">T8 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="light_9" width="16" height="16"></canvas><span class="n-ja">ホーリードラゴン</span><span class="n-en">Holy Dragon</span><span class="tier-tag fuse">T9 ・ Fusion only</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="light_10" width="16" height="16"></canvas><span class="n-ja">セイントロード</span><span class="n-en">Saint Lord</span><span class="tier-tag fuse">T10 ・ Fusion only</span></div>
+    </div>
+
   </section>
 
   <section id="fusion">
     <div class="chapter-head">
       <div class="eyebrow">09 / Fusion Lab</div>
-      <h2>Fusion Chart</h2>
+      <h2>Monster Fusion Guide</h2>
       <div class="rule"></div>
-      <p class="lede">Your quick reference for the Wizard's House's magic pot. Every newborn monster always starts at <strong>Lv1</strong>.</p>
+      <p class="lede">The reference for the "Magic Cauldron" at the Wizard's House. Whatever hatches always starts at <strong>Lv1</strong>.</p>
     </div>
     <div class="prose">
-      <p>
-        Fusion requires <strong>both monsters to be level 10 or higher</strong>. Resolution has a
-        priority order: <strong>1) same species</strong> uses the evolution-line special recipes
-        from chapter 08; <strong>2) different species</strong> falls back to the
-        <strong>combination of their elements</strong>, looked up in the table below.
-      </p>
+      <p>Fusion needs <strong>both monsters at Lv10+</strong>. The result is decided in this order:
+      <strong>① a specific recipe</strong> (the Special Recipes table below) always wins if the pair matches one.
+      <strong>② same element</strong> with no recipe reverts to that element's <strong>Tier 1 (baby form)</strong>.
+      <strong>③ different elements</strong> with no recipe hatch Tier 1 of whichever element the fallback chart below points to.</p>
     </div>
 
-    <h3 style="font-size:.95rem; margin:24px 0 10px; color:var(--frost-dim)">Element Fusion Chart (different species)</h3>
+    <h3 style="font-size:.95rem; margin:24px 0 10px; color:var(--frost-dim)">Element Fallback (no recipe, cross-element)</h3>
     <div class="matrix-wrap">
       <table class="matrix">
         <thead>
-          <tr>
-            <th class="corner"></th>
-            <th><span class="chip el-fire"><i class="dot"></i>Fire</span></th>
-            <th><span class="chip el-water"><i class="dot"></i>Water</span></th>
-            <th><span class="chip el-wood"><i class="dot"></i>Wood</span></th>
-            <th><span class="chip el-metal"><i class="dot"></i>Metal</span></th>
-            <th><span class="chip el-earth"><i class="dot"></i>Earth</span></th>
-            <th><span class="chip el-light"><i class="dot"></i>Light</span></th>
-            <th><span class="chip el-dark"><i class="dot"></i>Dark</span></th>
-          </tr>
+          <tr><th class="corner"></th><th><span class="chip el-fire"><i class="dot"></i>Fire</span></th><th><span class="chip el-water"><i class="dot"></i>Water</span></th><th><span class="chip el-wind"><i class="dot"></i>Wind</span></th><th><span class="chip el-thunder"><i class="dot"></i>Thunder</span></th><th><span class="chip el-forest"><i class="dot"></i>Forest</span></th><th><span class="chip el-ice"><i class="dot"></i>Ice</span></th><th><span class="chip el-earth"><i class="dot"></i>Earth</span></th><th><span class="chip el-metal"><i class="dot"></i>Metal</span></th><th><span class="chip el-dark"><i class="dot"></i>Dark</span></th><th><span class="chip el-light"><i class="dot"></i>Light</span></th></tr>
         </thead>
         <tbody>
-          <tr>
-            <th class="rowhead"><span class="chip el-fire"><i class="dot"></i>Fire</span></th>
-            <td class="cell"><canvas class="spr" data-mon="dragonkid" width="16" height="16"></canvas><div class="cn">Dragon Kid</div></td>
-            <td class="cell"><canvas class="spr" data-mon="lizard" width="16" height="16"></canvas><div class="cn">Flame Lizard</div></td>
-            <td class="cell"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><div class="cn">Bad Shroom</div></td>
-            <td class="cell"><canvas class="spr" data-mon="metalbee" width="16" height="16"></canvas><div class="cn">Metal Bee</div></td>
-            <td class="cell"><canvas class="spr" data-mon="lizard" width="16" height="16"></canvas><div class="cn">Flame Lizard</div></td>
-            <td class="cell"><canvas class="spr" data-mon="dragonkid" width="16" height="16"></canvas><div class="cn">Dragon Kid</div></td>
-            <td class="cell"><canvas class="spr" data-mon="shadowbeast" width="16" height="16"></canvas><div class="cn">Shadow Beast</div></td>
-          </tr>
-          <tr>
-            <th class="rowhead"><span class="chip el-water"><i class="dot"></i>Water</span></th>
-            <td class="cell"><canvas class="spr" data-mon="lizard" width="16" height="16"></canvas><div class="cn">Flame Lizard</div></td>
-            <td class="cell"><canvas class="spr" data-mon="snowman" width="16" height="16"></canvas><div class="cn">Snowman</div></td>
-            <td class="cell"><canvas class="spr" data-mon="fairy" width="16" height="16"></canvas><div class="cn">Forest Sprite</div></td>
-            <td class="cell"><canvas class="spr" data-mon="tinsoldier" width="16" height="16"></canvas><div class="cn">Tin Soldier</div></td>
-            <td class="cell"><canvas class="spr" data-mon="mudman" width="16" height="16"></canvas><div class="cn">Mud Doll</div></td>
-            <td class="cell"><canvas class="spr" data-mon="snowman" width="16" height="16"></canvas><div class="cn">Snowman</div></td>
-            <td class="cell"><canvas class="spr" data-mon="bat" width="16" height="16"></canvas><div class="cn">Big Bat</div></td>
-          </tr>
-          <tr>
-            <th class="rowhead"><span class="chip el-wood"><i class="dot"></i>Wood</span></th>
-            <td class="cell"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><div class="cn">Bad Shroom</div></td>
-            <td class="cell"><canvas class="spr" data-mon="fairy" width="16" height="16"></canvas><div class="cn">Forest Sprite</div></td>
-            <td class="cell"><canvas class="spr" data-mon="fairy" width="16" height="16"></canvas><div class="cn">Forest Sprite</div></td>
-            <td class="cell"><canvas class="spr" data-mon="metalbee" width="16" height="16"></canvas><div class="cn">Metal Bee</div></td>
-            <td class="cell"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><div class="cn">Bad Shroom</div></td>
-            <td class="cell"><canvas class="spr" data-mon="fairy" width="16" height="16"></canvas><div class="cn">Forest Sprite</div></td>
-            <td class="cell"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><div class="cn">Bad Shroom</div></td>
-          </tr>
-          <tr>
-            <th class="rowhead"><span class="chip el-metal"><i class="dot"></i>Metal</span></th>
-            <td class="cell"><canvas class="spr" data-mon="metalbee" width="16" height="16"></canvas><div class="cn">Metal Bee</div></td>
-            <td class="cell"><canvas class="spr" data-mon="tinsoldier" width="16" height="16"></canvas><div class="cn">Tin Soldier</div></td>
-            <td class="cell"><canvas class="spr" data-mon="metalbee" width="16" height="16"></canvas><div class="cn">Metal Bee</div></td>
-            <td class="cell"><canvas class="spr" data-mon="metalbee" width="16" height="16"></canvas><div class="cn">Metal Bee</div></td>
-            <td class="cell"><canvas class="spr" data-mon="golem" width="16" height="16"></canvas><div class="cn">Rock Golem</div></td>
-            <td class="cell"><canvas class="spr" data-mon="knight" width="16" height="16"></canvas><div class="cn">Holy Knight</div></td>
-            <td class="cell"><canvas class="spr" data-mon="tinsoldier" width="16" height="16"></canvas><div class="cn">Tin Soldier</div></td>
-          </tr>
-          <tr>
-            <th class="rowhead"><span class="chip el-earth"><i class="dot"></i>Earth</span></th>
-            <td class="cell"><canvas class="spr" data-mon="lizard" width="16" height="16"></canvas><div class="cn">Flame Lizard</div></td>
-            <td class="cell"><canvas class="spr" data-mon="mudman" width="16" height="16"></canvas><div class="cn">Mud Doll</div></td>
-            <td class="cell"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><div class="cn">Bad Shroom</div></td>
-            <td class="cell"><canvas class="spr" data-mon="golem" width="16" height="16"></canvas><div class="cn">Rock Golem</div></td>
-            <td class="cell"><canvas class="spr" data-mon="golem" width="16" height="16"></canvas><div class="cn">Rock Golem</div></td>
-            <td class="cell"><canvas class="spr" data-mon="reindeer" width="16" height="16"></canvas><div class="cn">Wild Reindeer</div></td>
-            <td class="cell"><canvas class="spr" data-mon="bat" width="16" height="16"></canvas><div class="cn">Big Bat</div></td>
-          </tr>
-          <tr>
-            <th class="rowhead"><span class="chip el-light"><i class="dot"></i>Light</span></th>
-            <td class="cell"><canvas class="spr" data-mon="dragonkid" width="16" height="16"></canvas><div class="cn">Dragon Kid</div></td>
-            <td class="cell"><canvas class="spr" data-mon="snowman" width="16" height="16"></canvas><div class="cn">Snowman</div></td>
-            <td class="cell"><canvas class="spr" data-mon="fairy" width="16" height="16"></canvas><div class="cn">Forest Sprite</div></td>
-            <td class="cell"><canvas class="spr" data-mon="knight" width="16" height="16"></canvas><div class="cn">Holy Knight</div></td>
-            <td class="cell"><canvas class="spr" data-mon="reindeer" width="16" height="16"></canvas><div class="cn">Wild Reindeer</div></td>
-            <td class="cell"><canvas class="spr" data-mon="knight" width="16" height="16"></canvas><div class="cn">Holy Knight</div></td>
-            <td class="cell"><canvas class="spr" data-mon="mudman" width="16" height="16"></canvas><div class="cn">Mud Doll</div></td>
-          </tr>
-          <tr>
-            <th class="rowhead"><span class="chip el-dark"><i class="dot"></i>Dark</span></th>
-            <td class="cell"><canvas class="spr" data-mon="shadowbeast" width="16" height="16"></canvas><div class="cn">Shadow Beast</div></td>
-            <td class="cell"><canvas class="spr" data-mon="bat" width="16" height="16"></canvas><div class="cn">Big Bat</div></td>
-            <td class="cell"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><div class="cn">Bad Shroom</div></td>
-            <td class="cell"><canvas class="spr" data-mon="tinsoldier" width="16" height="16"></canvas><div class="cn">Tin Soldier</div></td>
-            <td class="cell"><canvas class="spr" data-mon="bat" width="16" height="16"></canvas><div class="cn">Big Bat</div></td>
-            <td class="cell"><canvas class="spr" data-mon="mudman" width="16" height="16"></canvas><div class="cn">Mud Doll</div></td>
-            <td class="cell"><canvas class="spr" data-mon="shadowbeast" width="16" height="16"></canvas><div class="cn">Shadow Beast</div></td>
-          </tr>
+          <tr><th class="rowhead"><span class="chip el-fire"><i class="dot"></i>Fire</span></th><td class="cell" style="font-size:11px;color:var(--frost-dim)">(same→T1)</td><td class="cell"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><div class="cn">Slime</div></td><td class="cell"><canvas class="spr" data-mon="wind_1" width="16" height="16"></canvas><div class="cn">Chill Gust</div></td><td class="cell"><canvas class="spr" data-mon="thunder_1" width="16" height="16"></canvas><div class="cn">Spark</div></td><td class="cell"><canvas class="spr" data-mon="forest_1" width="16" height="16"></canvas><div class="cn">Kodama</div></td><td class="cell"><canvas class="spr" data-mon="ice_1" width="16" height="16"></canvas><div class="cn">Snowball</div></td><td class="cell"><canvas class="spr" data-mon="earth_1" width="16" height="16"></canvas><div class="cn">Tsuchinoko</div></td><td class="cell"><canvas class="spr" data-mon="metal_1" width="16" height="16"></canvas><div class="cn">Scrap Iron</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">Shadow Child</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">Light Mote</div></td></tr>
+          <tr><th class="rowhead"><span class="chip el-water"><i class="dot"></i>Water</span></th><td class="cell"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><div class="cn">Slime</div></td><td class="cell" style="font-size:11px;color:var(--frost-dim)">(same→T1)</td><td class="cell"><canvas class="spr" data-mon="thunder_1" width="16" height="16"></canvas><div class="cn">Spark</div></td><td class="cell"><canvas class="spr" data-mon="forest_1" width="16" height="16"></canvas><div class="cn">Kodama</div></td><td class="cell"><canvas class="spr" data-mon="ice_1" width="16" height="16"></canvas><div class="cn">Snowball</div></td><td class="cell"><canvas class="spr" data-mon="earth_1" width="16" height="16"></canvas><div class="cn">Tsuchinoko</div></td><td class="cell"><canvas class="spr" data-mon="metal_1" width="16" height="16"></canvas><div class="cn">Scrap Iron</div></td><td class="cell"><canvas class="spr" data-mon="fire_1" width="16" height="16"></canvas><div class="cn">Fireball</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">Shadow Child</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">Light Mote</div></td></tr>
+          <tr><th class="rowhead"><span class="chip el-wind"><i class="dot"></i>Wind</span></th><td class="cell"><canvas class="spr" data-mon="wind_1" width="16" height="16"></canvas><div class="cn">Chill Gust</div></td><td class="cell"><canvas class="spr" data-mon="thunder_1" width="16" height="16"></canvas><div class="cn">Spark</div></td><td class="cell" style="font-size:11px;color:var(--frost-dim)">(same→T1)</td><td class="cell"><canvas class="spr" data-mon="ice_1" width="16" height="16"></canvas><div class="cn">Snowball</div></td><td class="cell"><canvas class="spr" data-mon="earth_1" width="16" height="16"></canvas><div class="cn">Tsuchinoko</div></td><td class="cell"><canvas class="spr" data-mon="metal_1" width="16" height="16"></canvas><div class="cn">Scrap Iron</div></td><td class="cell"><canvas class="spr" data-mon="fire_1" width="16" height="16"></canvas><div class="cn">Fireball</div></td><td class="cell"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><div class="cn">Slime</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">Shadow Child</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">Light Mote</div></td></tr>
+          <tr><th class="rowhead"><span class="chip el-thunder"><i class="dot"></i>Thunder</span></th><td class="cell"><canvas class="spr" data-mon="thunder_1" width="16" height="16"></canvas><div class="cn">Spark</div></td><td class="cell"><canvas class="spr" data-mon="forest_1" width="16" height="16"></canvas><div class="cn">Kodama</div></td><td class="cell"><canvas class="spr" data-mon="ice_1" width="16" height="16"></canvas><div class="cn">Snowball</div></td><td class="cell" style="font-size:11px;color:var(--frost-dim)">(same→T1)</td><td class="cell"><canvas class="spr" data-mon="metal_1" width="16" height="16"></canvas><div class="cn">Scrap Iron</div></td><td class="cell"><canvas class="spr" data-mon="fire_1" width="16" height="16"></canvas><div class="cn">Fireball</div></td><td class="cell"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><div class="cn">Slime</div></td><td class="cell"><canvas class="spr" data-mon="wind_1" width="16" height="16"></canvas><div class="cn">Chill Gust</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">Shadow Child</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">Light Mote</div></td></tr>
+          <tr><th class="rowhead"><span class="chip el-forest"><i class="dot"></i>Forest</span></th><td class="cell"><canvas class="spr" data-mon="forest_1" width="16" height="16"></canvas><div class="cn">Kodama</div></td><td class="cell"><canvas class="spr" data-mon="ice_1" width="16" height="16"></canvas><div class="cn">Snowball</div></td><td class="cell"><canvas class="spr" data-mon="earth_1" width="16" height="16"></canvas><div class="cn">Tsuchinoko</div></td><td class="cell"><canvas class="spr" data-mon="metal_1" width="16" height="16"></canvas><div class="cn">Scrap Iron</div></td><td class="cell" style="font-size:11px;color:var(--frost-dim)">(same→T1)</td><td class="cell"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><div class="cn">Slime</div></td><td class="cell"><canvas class="spr" data-mon="wind_1" width="16" height="16"></canvas><div class="cn">Chill Gust</div></td><td class="cell"><canvas class="spr" data-mon="thunder_1" width="16" height="16"></canvas><div class="cn">Spark</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">Shadow Child</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">Light Mote</div></td></tr>
+          <tr><th class="rowhead"><span class="chip el-ice"><i class="dot"></i>Ice</span></th><td class="cell"><canvas class="spr" data-mon="ice_1" width="16" height="16"></canvas><div class="cn">Snowball</div></td><td class="cell"><canvas class="spr" data-mon="earth_1" width="16" height="16"></canvas><div class="cn">Tsuchinoko</div></td><td class="cell"><canvas class="spr" data-mon="metal_1" width="16" height="16"></canvas><div class="cn">Scrap Iron</div></td><td class="cell"><canvas class="spr" data-mon="fire_1" width="16" height="16"></canvas><div class="cn">Fireball</div></td><td class="cell"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><div class="cn">Slime</div></td><td class="cell" style="font-size:11px;color:var(--frost-dim)">(same→T1)</td><td class="cell"><canvas class="spr" data-mon="thunder_1" width="16" height="16"></canvas><div class="cn">Spark</div></td><td class="cell"><canvas class="spr" data-mon="forest_1" width="16" height="16"></canvas><div class="cn">Kodama</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">Shadow Child</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">Light Mote</div></td></tr>
+          <tr><th class="rowhead"><span class="chip el-earth"><i class="dot"></i>Earth</span></th><td class="cell"><canvas class="spr" data-mon="earth_1" width="16" height="16"></canvas><div class="cn">Tsuchinoko</div></td><td class="cell"><canvas class="spr" data-mon="metal_1" width="16" height="16"></canvas><div class="cn">Scrap Iron</div></td><td class="cell"><canvas class="spr" data-mon="fire_1" width="16" height="16"></canvas><div class="cn">Fireball</div></td><td class="cell"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><div class="cn">Slime</div></td><td class="cell"><canvas class="spr" data-mon="wind_1" width="16" height="16"></canvas><div class="cn">Chill Gust</div></td><td class="cell"><canvas class="spr" data-mon="thunder_1" width="16" height="16"></canvas><div class="cn">Spark</div></td><td class="cell" style="font-size:11px;color:var(--frost-dim)">(same→T1)</td><td class="cell"><canvas class="spr" data-mon="ice_1" width="16" height="16"></canvas><div class="cn">Snowball</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">Shadow Child</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">Light Mote</div></td></tr>
+          <tr><th class="rowhead"><span class="chip el-metal"><i class="dot"></i>Metal</span></th><td class="cell"><canvas class="spr" data-mon="metal_1" width="16" height="16"></canvas><div class="cn">Scrap Iron</div></td><td class="cell"><canvas class="spr" data-mon="fire_1" width="16" height="16"></canvas><div class="cn">Fireball</div></td><td class="cell"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><div class="cn">Slime</div></td><td class="cell"><canvas class="spr" data-mon="wind_1" width="16" height="16"></canvas><div class="cn">Chill Gust</div></td><td class="cell"><canvas class="spr" data-mon="thunder_1" width="16" height="16"></canvas><div class="cn">Spark</div></td><td class="cell"><canvas class="spr" data-mon="forest_1" width="16" height="16"></canvas><div class="cn">Kodama</div></td><td class="cell"><canvas class="spr" data-mon="ice_1" width="16" height="16"></canvas><div class="cn">Snowball</div></td><td class="cell" style="font-size:11px;color:var(--frost-dim)">(same→T1)</td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">Shadow Child</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">Light Mote</div></td></tr>
+          <tr><th class="rowhead"><span class="chip el-dark"><i class="dot"></i>Dark</span></th><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">Shadow Child</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">Shadow Child</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">Shadow Child</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">Shadow Child</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">Shadow Child</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">Shadow Child</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">Shadow Child</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">Shadow Child</div></td><td class="cell" style="font-size:11px;color:var(--frost-dim)">(same→T1)</td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">Light Mote</div></td></tr>
+          <tr><th class="rowhead"><span class="chip el-light"><i class="dot"></i>Light</span></th><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">Light Mote</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">Light Mote</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">Light Mote</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">Light Mote</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">Light Mote</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">Light Mote</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">Light Mote</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">Light Mote</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">Light Mote</div></td><td class="cell" style="font-size:11px;color:var(--frost-dim)">(same→T1)</td></tr>
         </tbody>
       </table>
     </div>
 
-    <h3 style="font-size:.95rem; margin:26px 0 4px; color:var(--frost-dim)">Special Recipes (species take priority)</h3>
+    <h3 style="font-size:.95rem; margin:26px 0 4px; color:var(--frost-dim)">Special Recipes (70 total, take priority)</h3>
     <ul class="recipe-list">
-      <li><span class="combo"><canvas class="spr" data-mon="slime" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Slime &times; Slime</span><span class="result">&rarr; King Slime</span></li>
-      <li><span class="combo"><canvas class="spr" data-mon="kingslime" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>King Slime &times; Holy Knight</span><span class="result">&rarr; Santa</span></li>
-      <li><span class="combo"><canvas class="spr" data-mon="knight" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Holy Knight &times; Wild Reindeer</span><span class="result">&rarr; Santa</span></li>
-      <li><span class="combo">All 17 "evolution line" pairs (see chapter 08)</span><span class="result">&rarr; each line's advanced form</span></li>
-      <li><span class="combo"><canvas class="spr" data-mon="golem" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Rock Golem &times; Tin Soldier</span><span class="result">&rarr; Iron Golem</span></li>
-      <li><span class="combo"><canvas class="spr" data-mon="knight" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Holy Knight &times; Shadow Beast</span><span class="result">&rarr; Fallen Knight</span></li>
-      <li><span class="combo"><canvas class="spr" data-mon="reindeer" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Wild Reindeer &times; Snowman</span><span class="result">&rarr; Sleigh Reindeer</span></li>
-      <li><span class="combo"><canvas class="spr" data-mon="elderdragon" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Elder Dragon &times; Nightmare Lord</span><span class="result">&rarr; Chaos Dragon <span class="tag lock">POSTGAME</span></span></li>
-      <li><span class="combo"><canvas class="spr" data-mon="blacksanta" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Black Santa &times; Santa</span><span class="result">&rarr; Eve <span class="tag lock">POSTGAME</span></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Red Lizard &times; Ice Rabbit</span><span class="result">&rarr; Magma Golem</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="bat" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Big Bat &times; Sea Serpent</span><span class="result">&rarr; Flame Knight</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="water_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Sea Serpent &times; Merman</span><span class="result">&rarr; Aqua Golem</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_1" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Shadow Child &times; Electric Mouse</span><span class="result">&rarr; Leviathan Spawn</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Leaf Rabbit &times; Ice Rabbit</span><span class="result">&rarr; Harpy</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="wind_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Windfoot Rabbit &times; Cloud Puff</span><span class="result">&rarr; Wing Tiger</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="bat" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Big Bat &times; Merman</span><span class="result">&rarr; Lightning Wolf</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Pengit &times; Angel Baby</span><span class="result">&rarr; Thunder Golem</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Leaf Rabbit &times; Sea Serpent</span><span class="result">&rarr; Treant</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Leaf Rabbit &times; Leaf Rabbit</span><span class="result">&rarr; Forest Wolf</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Angel Baby &times; Cloud Puff</span><span class="result">&rarr; Snowman</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Ice Rabbit &times; Ice Rabbit</span><span class="result">&rarr; Frost Wolf</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Red Lizard &times; Mandrake</span><span class="result">&rarr; Stone Golem</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Rock Lizard &times; Rock Lizard</span><span class="result">&rarr; Earthworm</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="metal_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Metal Slime &times; Metal Slime</span><span class="result">&rarr; Metal Dog</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="metal_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Metal Slime &times; Tin Soldier</span><span class="result">&rarr; Iron Knight</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Molerat &times; Pengit</span><span class="result">&rarr; Nightmare</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="thunder_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Thunderbird &times; Merman</span><span class="result">&rarr; Demon</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Angel Baby &times; Holy Rabbit</span><span class="result">&rarr; Cleric</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Holy Rabbit &times; Merman</span><span class="result">&rarr; Holy Knight</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Red Lizard &times; Tin Soldier</span><span class="result">&rarr; Salamander</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Snowman &times; Leviathan Spawn</span><span class="result">&rarr; Hellhound</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="water_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Aqua Golem &times; Leviathan Spawn</span><span class="result">&rarr; Kraken</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="water_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Merman &times; Aqua Golem</span><span class="result">&rarr; Merman Knight</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="slime" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Slime &times; Wing Tiger</span><span class="result">&rarr; Storm Hawk</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_5" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Demon &times; Windfoot Rabbit</span><span class="result">&rarr; Jet Dragon</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Nightmare &times; Thunderbird</span><span class="result">&rarr; Thunder Man</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Nightmare &times; Metal Dog</span><span class="result">&rarr; Thunder Dragon</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Treant &times; Lightning Wolf</span><span class="result">&rarr; Dryad</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Cleric &times; Leviathan Spawn</span><span class="result">&rarr; Elder Treant</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="knight" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Holy Knight &times; Metal Slime</span><span class="result">&rarr; Ice Golem</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_5" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Frost Wolf &times; Frost Wolf</span><span class="result">&rarr; Blizzard Dragon</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_5" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Flame Knight &times; Chill Gust</span><span class="result">&rarr; Mud Man</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Stone Golem &times; Earthworm</span><span class="result">&rarr; Iron Golem</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="metal_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Metal Dog &times; Metal Dog</span><span class="result">&rarr; Metal Dragon</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="metal_1" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Scrap Iron &times; Metal Slime</span><span class="result">&rarr; Mithril Golem</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_1" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Shadow Child &times; Nightmare</span><span class="result">&rarr; Shadow Knight</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_5" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Demon &times; Demon</span><span class="result">&rarr; Death Knight</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="knight" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Holy Knight &times; Holy Knight</span><span class="result">&rarr; Seraph</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_1" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Light Mote &times; Cleric</span><span class="result">&rarr; Angel Knight</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Salamander &times; Salamander</span><span class="result">&rarr; Phoenix</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="water_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Kraken &times; Storm Hawk</span><span class="result">&rarr; Inferno Dragon</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Hellhound &times; Windfoot Rabbit</span><span class="result">&rarr; Undine</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Ice Golem &times; Thunder Dragon</span><span class="result">&rarr; Tidal Dragon</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Salamander &times; Kraken</span><span class="result">&rarr; Tempest Lord</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Mud Man &times; Windfoot Rabbit</span><span class="result">&rarr; Garuda</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Shadow Knight &times; Elder Treant</span><span class="result">&rarr; Raiden Knight</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="thunder_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Electric Mouse &times; Kraken</span><span class="result">&rarr; Thunder Lord</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Elder Treant &times; Elder Treant</span><span class="result">&rarr; Forest Dragon</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_1" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Fireball &times; Elder Treant</span><span class="result">&rarr; Great Dryad</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Pengit &times; Ice Golem</span><span class="result">&rarr; Frost Knight</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Shadow Knight &times; Mud Man</span><span class="result">&rarr; Ice Queen</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Ice Golem &times; Angel Knight</span><span class="result">&rarr; Earth Dragon</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Iron Golem &times; Salamander</span><span class="result">&rarr; Titan</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Molerat &times; Jet Dragon</span><span class="result">&rarr; Orichalcum Knight</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Iron Golem &times; Magma Golem</span><span class="result">&rarr; Metal King</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Ice Golem &times; Thunder Man</span><span class="result">&rarr; Nightmare Lord</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Dryad &times; Lightning Wolf</span><span class="result">&rarr; Arch Demon</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Seraph &times; Angel Knight</span><span class="result">&rarr; Archangel</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Iron Golem &times; Elder Treant</span><span class="result">&rarr; Holy Dragon</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_9" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Ice Queen &times; Tidal Dragon</span><span class="result">&rarr; Agni Lord</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="water_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Merman Knight &times; Undine</span><span class="result">&rarr; Leviathan</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="wind_9" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Garuda &times; Garuda</span><span class="result">&rarr; Sylph Queen</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="thunder_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Raiden Knight &times; Thunder Lord</span><span class="result">&rarr; Raijin King</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Forest Dragon &times; Great Dryad</span><span class="result">&rarr; World Tree Guardian</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_9" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Great Dryad &times; Holy Dragon</span><span class="result">&rarr; Absolute Zero</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="metal_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Orichalcum Knight &times; Thunder Lord</span><span class="result">&rarr; Gaia Lord</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Forest Dragon &times; Orichalcum Knight</span><span class="result">&rarr; Adamantite</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_9" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Ice Queen &times; Holy Dragon</span><span class="result">&rarr; Nightmare King <span class="tag boss">BOSS</span></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="water_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>Undine &times; Garuda</span><span class="result">&rarr; Saint Lord</span></li>
     </ul>
     <p class="prose" style="font-size:12.5px; color:var(--frost-dim); margin-top:12px">
-      The 2 <span class="tag lock">POSTGAME</span> recipes stay "sealed by a mysterious power" until you defeat the boss at the bottom of the cave.
+      Most special recipes exist to reach Tier 4+ (fusion-only power). Fusing two same-element Tier 1-3 monsters without a matching recipe just falls back to rule ② above and resets to Tier 1.
     </p>
   </section>
 
@@ -999,18 +990,20 @@ Poison          = hit-chance roll / while in battle, deals max HP x 8% every rou
       <p class="lede">Things worth knowing that we picked up along the way.</p>
     </div>
     <div class="tips">
-      <div class="tip"><div class="n">01</div><div class="prose">Raising two of the same species to Lv10 guarantees an evolution into the advanced form.
-      Fusion isn't a gamble — it's a breeding plan for deciding which line to invest in. Pick a target element first, then farm the wilds for matching monsters.</div></div>
+      <div class="tip"><div class="n">01</div><div class="prose">Fusing two monsters of the <strong>same element</strong> with no matching recipe just
+      <strong>resets the result to Tier 1 (baby form)</strong> — all those levels are wasted. Before fusing for Tier 4+,
+      always check the Special Recipes table in chapter 09 for the exact pair you need.</div></div>
       <div class="tip"><div class="n">02</div><div class="prose">Skill MP costs are low across the board (basic skills run 2-5 MP), so feel free to cast
       freely from the very start. Carrying 1-2 Magic Water as a safety net for when you run dry is a good habit.</div></div>
       <div class="tip"><div class="n">03</div><div class="prose">Put your "Mix it up" healer in the back (right-leaning columns) via <strong>Formation</strong>
       so it's less likely to eat the enemy's opening attack. High-DEF Golem- and Titan-line monsters make good front-liners.</div></div>
       <div class="tip"><div class="n">04</div><div class="prose">Lingering near the cave entrance keeps enemies weak. Do your early gold-farming and skill
       leveling near the entrance, and only push deeper once your gear and party are ready.</div></div>
-      <div class="tip"><div class="n">05</div><div class="prose">Black Santa is a Dark-element boss. <strong>Light-element skills (Shine Flash / Holy Ray)</strong>
-      land 1.5x damage on him. Keep a Holy Knight or a Star Kid-line monster in your lineup.</div></div>
-      <div class="tip"><div class="n">06</div><div class="prose">After the credits, always head back to the cave depths for a rematch with Black Santa. Beat
-      him and he joins your party — which also unlocks the final fusion route, "Santa &times; Black Santa &rarr; Eve."</div></div>
+      <div class="tip"><div class="n">05</div><div class="prose">The Nightmare King is a Dark-element boss. <strong>Light-element skills (Shine Flash / Holy Ray)</strong>
+      land 2x damage on him (Light and Dark are mutually weak to each other). Keep a Holy Knight or another Light-element monster in your lineup.</div></div>
+      <div class="tip"><div class="n">06</div><div class="prose">After the credits, always head back to the cave depths for a rematch with the Nightmare King —
+      beat him and he joins your party. The Wildlands Plains then let you fight Tier 4 monsters, though catching them there is impossible;
+      Tier 5-10 only hatch by working through the Special Recipes chain in chapter 09, so plan your fusion route early.</div></div>
     </div>
   </section>
 
@@ -1105,6 +1098,101 @@ Poison          = hit-chance roll / while in battle, deals max HP x 8% every rou
   };
 
   var SPR = {
+    fire_1:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    fire_2:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    fire_3:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    fire_4:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    fire_5:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    fire_6:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    fire_7:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    fire_8:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    fire_9:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    fire_10:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    water_2:{tpl:'blob', pal:{'1':'#1e50dc', '2':'#87ceeb'}},
+    water_3:{tpl:'blob', pal:{'1':'#1e50dc', '2':'#87ceeb'}},
+    water_4:{tpl:'blob', pal:{'1':'#1e50dc', '2':'#87ceeb'}},
+    water_5:{tpl:'blob', pal:{'1':'#1e50dc', '2':'#87ceeb'}},
+    water_6:{tpl:'blob', pal:{'1':'#1e50dc', '2':'#87ceeb'}},
+    water_7:{tpl:'blob', pal:{'1':'#1e50dc', '2':'#87ceeb'}},
+    water_8:{tpl:'blob', pal:{'1':'#1e50dc', '2':'#87ceeb'}},
+    water_9:{tpl:'blob', pal:{'1':'#1e50dc', '2':'#87ceeb'}},
+    water_10:{tpl:'blob', pal:{'1':'#1e50dc', '2':'#87ceeb'}},
+    wind_1:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    wind_2:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    wind_3:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    wind_4:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    wind_5:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    wind_6:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    wind_7:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    wind_8:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    wind_9:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    wind_10:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    thunder_1:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    thunder_2:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    thunder_3:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    thunder_4:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    thunder_5:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    thunder_6:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    thunder_7:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    thunder_8:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    thunder_9:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    thunder_10:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    forest_1:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    forest_2:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    forest_3:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    forest_4:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    forest_5:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    forest_6:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    forest_7:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    forest_8:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    forest_9:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    forest_10:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    ice_1:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    ice_2:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    ice_3:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    ice_4:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    ice_5:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    ice_6:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    ice_7:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    ice_8:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    ice_9:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    ice_10:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    earth_1:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    earth_2:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    earth_3:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    earth_4:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    earth_5:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    earth_6:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    earth_7:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    earth_8:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    earth_9:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    earth_10:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    metal_1:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    metal_2:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    metal_3:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    metal_4:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    metal_5:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    metal_6:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    metal_7:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    metal_8:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    metal_9:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    metal_10:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    dark_1:{tpl:'beast', pal:{'1':'#3a2a4a', '2':'#8000c8', '3':'#1a1424'}},
+    dark_4:{tpl:'beast', pal:{'1':'#3a2a4a', '2':'#8000c8', '3':'#1a1424'}},
+    dark_5:{tpl:'beast', pal:{'1':'#3a2a4a', '2':'#8000c8', '3':'#1a1424'}},
+    dark_6:{tpl:'beast', pal:{'1':'#3a2a4a', '2':'#8000c8', '3':'#1a1424'}},
+    dark_7:{tpl:'beast', pal:{'1':'#3a2a4a', '2':'#8000c8', '3':'#1a1424'}},
+    dark_8:{tpl:'beast', pal:{'1':'#3a2a4a', '2':'#8000c8', '3':'#1a1424'}},
+    dark_9:{tpl:'beast', pal:{'1':'#3a2a4a', '2':'#8000c8', '3':'#1a1424'}},
+    light_1:{tpl:'humanoid', pal:{'1':'#f2f2ec', '2':'#ffd700', '3':'#c8a23a', '4':'#f2d2ac'}},
+    light_2:{tpl:'humanoid', pal:{'1':'#f2f2ec', '2':'#ffd700', '3':'#c8a23a', '4':'#f2d2ac'}},
+    light_3:{tpl:'humanoid', pal:{'1':'#f2f2ec', '2':'#ffd700', '3':'#c8a23a', '4':'#f2d2ac'}},
+    light_4:{tpl:'humanoid', pal:{'1':'#f2f2ec', '2':'#ffd700', '3':'#c8a23a', '4':'#f2d2ac'}},
+    light_6:{tpl:'humanoid', pal:{'1':'#f2f2ec', '2':'#ffd700', '3':'#c8a23a', '4':'#f2d2ac'}},
+    light_7:{tpl:'humanoid', pal:{'1':'#f2f2ec', '2':'#ffd700', '3':'#c8a23a', '4':'#f2d2ac'}},
+    light_8:{tpl:'humanoid', pal:{'1':'#f2f2ec', '2':'#ffd700', '3':'#c8a23a', '4':'#f2d2ac'}},
+    light_9:{tpl:'humanoid', pal:{'1':'#f2f2ec', '2':'#ffd700', '3':'#c8a23a', '4':'#f2d2ac'}},
+    light_10:{tpl:'humanoid', pal:{'1':'#f2f2ec', '2':'#ffd700', '3':'#c8a23a', '4':'#f2d2ac'}},
     hero:{tpl:'hero_d', pal:{'1':'#3a6ec2','2':'#2f4a96','3':'#c2453a','4':'#f2d2ac'}},
     slime:{tpl:'blob', pal:{'1':'#4aa3e8','2':'#dff4ff'}},
     kingslime:{tpl:'kingblob', pal:{'1':'#3a7be5','2':'#dff4ff','3':'#e8c84a'}},

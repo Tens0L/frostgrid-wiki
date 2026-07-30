@@ -31,6 +31,10 @@
     --el-earth:#a5703a;
     --el-light:#d8bc2e;
     --el-dark:#8a3ae5;
+    --el-wind:#8ab52a;
+    --el-thunder:#e8c81e;
+    --el-forest:#228b22;
+    --el-ice:#87ceeb;
     --shadow:0 10px 30px rgba(0,0,0,0.35);
     --serif:Georgia,"Iowan Old Style","Hiragino Mincho ProN","Yu Mincho",serif;
     --sans:-apple-system,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic","Helvetica Neue",Arial,sans-serif;
@@ -177,6 +181,8 @@
   .el-wood .dot{ background:var(--el-wood); } .el-metal .dot{ background:var(--el-metal); }
   .el-earth .dot{ background:var(--el-earth); } .el-light .dot{ background:var(--el-light); }
   .el-dark .dot{ background:var(--el-dark); }
+  .el-wind .dot{ background:var(--el-wind); } .el-thunder .dot{ background:var(--el-thunder); }
+  .el-forest .dot{ background:var(--el-forest); } .el-ice .dot{ background:var(--el-ice); }
 
   .tag{
     font-family:var(--mono); font-size:11px; letter-spacing:0.04em; text-transform:uppercase;
@@ -281,6 +287,16 @@
   .line-card.single{ justify-content:center; }
   .line-note{ font-size:11.5px; color:var(--frost-dim); margin-top:6px; text-align:center; }
 
+  .chain-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px;
+    padding:14px; display:flex; align-items:center; gap:4px; flex-wrap:wrap; margin-bottom:10px;
+  }
+  .chain-card .arrow-mid{ font-size:13px; }
+  .mon .tier-tag{ font-family:var(--mono); font-size:9px; padding:1px 5px; border-radius:8px; margin-top:1px; white-space:nowrap; }
+  .mon .tier-tag.wild{ color:var(--holly); border:1px solid color-mix(in srgb, var(--holly) 40%, var(--line)); }
+  .mon .tier-tag.fuse{ color:var(--candle); border:1px solid color-mix(in srgb, var(--candle) 40%, var(--line)); }
+
+
   .special-grid{ display:grid; gap:10px; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); margin-top:14px; }
   .special-card{
     background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px;
@@ -345,19 +361,19 @@
     <p class="pitch">
       このページは、ブラウザだけで遊べる2Dモンスター育成RPG「フロストグリッド 〜クリスマス・クリーチャー・タクティクス〜」
       （Frostgrid: Christmas Creature Tactics）の攻略ノートです。
-      操作方法からストーリーの進め方、街の施設、バトルの仕組み、全44種のモンスター図鑑、
+      操作方法からストーリーの進め方、街の施設、バトルの仕組み、全100種のモンスター図鑑、
       合成表、そしてクリア後のやり込みまで、実際のゲームデータをもとにまとめました。
     </p>
     <div class="facts">
-      <div class="fact"><b>7</b><span>ぞくせい</span></div>
-      <div class="fact"><b>44</b><span>モンスター</span></div>
-      <div class="fact"><b>27</b><span>とくぎ</span></div>
+      <div class="fact"><b>10</b><span>ぞくせい</span></div>
+      <div class="fact"><b>100</b><span>モンスター</span></div>
+      <div class="fact"><b>39</b><span>とくぎ</span></div>
       <div class="fact"><b>3</b><span>さくせん</span></div>
     </div>
     <div class="vignette">
       <canvas class="spr" data-mon="slime" width="16" height="16" title="スライム"></canvas>
       <canvas class="spr" data-mon="hero" width="16" height="16" title="ゆうしゃ"></canvas>
-      <canvas class="spr" data-mon="dragonkid" width="16" height="16" title="ドラゴンぼうや"></canvas>
+      <canvas class="spr" data-mon="blacksanta" width="16" height="16" title="あくむのおう"></canvas>
     </div>
   </div>
 </div>
@@ -467,20 +483,23 @@
         レベルを整えてから奥を目指すのがコツです。</p>
       </div>
       <div class="step" data-n="5">
-        <h3>最深部でブラックサンタ戦</h3>
-        <p class="prose">どうくつの主、<strong>ブラックサンタ</strong>とその手下との戦い。
-        よい子の夢を奪う存在として立ちはだかります。属性の弱点を突けるパーティで挑みましょう。</p>
+        <h3>最深部であくむのおう戦</h3>
+        <p class="prose">どうくつの主、<strong>あくむのおう</strong>とその手下（おおコウモリ・やみけもの）との戦い。
+        人々の心に入りこみ、悪い夢を見せる存在として立ちはだかります。闇属性は光属性に弱いので、
+        光属性の技を持つパーティで挑みましょう。</p>
       </div>
       <div class="step" data-n="6">
         <h3>王様からのほうび</h3>
         <p class="prose">討伐後、王様の前にワープしてお礼を言われ、伝説のモンスター
-        <strong>ホーリーナイト（Lv12）</strong>が仲間になります。</p>
+        <strong>ホーリーナイト（Lv12）</strong>が仲間になります。城の西の扉も開放され、
+        モンスターがあふれる「まものの平原」に出られるようになります。</p>
       </div>
       <div class="step" data-n="7">
         <h3 style="display:flex; align-items:center; gap:8px">クリア後 <span class="tag lock">POSTGAME</span></h3>
-        <p class="prose">改心したブラックサンタが最深部に居座っており、再戦を挑んで勝つと今度こそ仲間にできます。
-        さらにクリア後限定で、<strong>こんとんのりゅう</strong>と<strong>イヴ</strong>という2体の
-        真の最終合成モンスターが解禁されます（09章）。</p>
+        <p class="prose">改心したあくむのおうがどうくつ最深部に居座っており、再戦を挑んで勝つと今度こそ仲間にできます。
+        「まものの平原」ではTier4級の強いモンスターと戦えますが、捕獲はできず<strong>合成でのみ</strong>入手可能。
+        まほうつかいの家の「まほうのなべ」で、Tier10級の真の最強モンスターを目指しましょう（09章）。
+        城の東の扉から入れる「おうさまのしんしつ」も、覗いてみると小さな発見があるかもしれません。</p>
       </div>
     </div>
   </section>
@@ -588,31 +607,28 @@
       <div class="eyebrow">06 / Elements</div>
       <h2>ぞくせい相性</h2>
       <div class="rule"></div>
-      <p class="lede">火・水・木・金・土・光・闇の7属性。攻撃側と防御側の相性でダメージが変わります。</p>
+      <p class="lede">10属性・全100通りの相性がそれぞれ個別に設定されています。単純な五角形の相剋ではなく、属性ごとに得意・不得意が細かく決まっています。</p>
     </div>
-    <div class="card">
-      <p class="prose" style="margin-bottom:20px">五行の相剋にならい、<strong>火は金を、金は木を、木は土を、土は水を、水は火を</strong>それぞれ打ち破ります。
-      加えて<strong>光と闇はおたがいに</strong>強く効きます。得意な属性で攻めると<strong>ダメージ1.5倍</strong>、
-      不利な属性を受けると<strong>0.65倍</strong>です。</p>
-      <div class="cycle">
-        <div class="node"><i style="background:var(--el-fire)"></i><b>火</b></div>
-        <div class="arrow">→</div>
-        <div class="node"><i style="background:var(--el-metal)"></i><b>金</b></div>
-        <div class="arrow">→</div>
-        <div class="node"><i style="background:var(--el-wood)"></i><b>木</b></div>
-        <div class="arrow">→</div>
-        <div class="node"><i style="background:var(--el-earth)"></i><b>土</b></div>
-        <div class="arrow">→</div>
-        <div class="node"><i style="background:var(--el-water)"></i><b>水</b></div>
-        <div class="arrow">→</div>
-        <div class="node" style="opacity:0.45"><i style="background:var(--el-fire)"></i><b>火</b></div>
-      </div>
-      <div class="duo">
-        <div class="node"><i style="background:var(--el-light)"></i><b>光</b></div>
-        <div class="vs">⇄ おたがいに強い ⇄</div>
-        <div class="node"><i style="background:var(--el-dark)"></i><b>闇</b></div>
-      </div>
+    <div class="matrix-wrap">
+      <table class="matrix">
+        <thead>
+          <tr><th class="corner"></th><th><span class="chip el-fire"><i class="dot"></i>火</span></th><th><span class="chip el-water"><i class="dot"></i>水</span></th><th><span class="chip el-wind"><i class="dot"></i>風</span></th><th><span class="chip el-thunder"><i class="dot"></i>雷</span></th><th><span class="chip el-forest"><i class="dot"></i>森</span></th><th><span class="chip el-ice"><i class="dot"></i>氷</span></th><th><span class="chip el-earth"><i class="dot"></i>土</span></th><th><span class="chip el-metal"><i class="dot"></i>メタル</span></th><th><span class="chip el-dark"><i class="dot"></i>闇</span></th><th><span class="chip el-light"><i class="dot"></i>光</span></th></tr>
+        </thead>
+        <tbody>
+<tr><th class="rowhead"><span class="chip el-fire"><i class="dot"></i>火</span></th><td class="num">—</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td><td class="num">1.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td></tr>
+<tr><th class="rowhead"><span class="chip el-water"><i class="dot"></i>水</span></th><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num">—</td><td class="num">1.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td></tr>
+<tr><th class="rowhead"><span class="chip el-wind"><i class="dot"></i>風</span></th><td class="num">1.0</td><td class="num">1.0</td><td class="num">—</td><td class="num">1.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td></tr>
+<tr><th class="rowhead"><span class="chip el-thunder"><i class="dot"></i>雷</span></th><td class="num">1.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num">1.0</td><td class="num">—</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td></tr>
+<tr><th class="rowhead"><span class="chip el-forest"><i class="dot"></i>森</span></th><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td><td class="num">—</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td></tr>
+<tr><th class="rowhead"><span class="chip el-ice"><i class="dot"></i>氷</span></th><td class="num">1.0</td><td class="num">1.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num">1.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num">—</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td></tr>
+<tr><th class="rowhead"><span class="chip el-earth"><i class="dot"></i>土</span></th><td class="num">1.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num">—</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td></tr>
+<tr><th class="rowhead"><span class="chip el-metal"><i class="dot"></i>メタル</span></th><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">—</td><td class="num" style="color:var(--frost-dim)">0.5</td><td class="num">1.0</td></tr>
+<tr><th class="rowhead"><span class="chip el-dark"><i class="dot"></i>闇</span></th><td class="num">1.0</td><td class="num">1.0</td><td class="num">1.0</td><td class="num">1.0</td><td class="num">1.0</td><td class="num">1.0</td><td class="num">1.0</td><td class="num">1.0</td><td class="num">—</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td></tr>
+<tr><th class="rowhead"><span class="chip el-light"><i class="dot"></i>光</span></th><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num" style="color:var(--holly);font-weight:700">2.0</td><td class="num">—</td></tr>
+        </tbody>
+      </table>
     </div>
+    <p class="prose" style="font-size:12.5px; color:var(--frost-dim); margin-top:10px">表は「攻撃側(行) → 防御側(列)」。2.0=効果抜群、0.5=いまひとつ</p>
     <div class="formula" style="margin-top:16px">物理攻撃　= (ATK×1.6 − 相手DEF×0.8) × 属性倍率 × 0.9〜1.1
 攻撃とくぎ = (威力 + MAG×1.2 − 相手DEF×0.4) × 属性倍率 × 0.9〜1.1
 回復量　  = 威力 + MAG
@@ -624,50 +640,51 @@
       <div class="eyebrow">07 / Spellbook</div>
       <h2>とくぎ図鑑</h2>
       <div class="rule"></div>
-      <p class="lede">全27の技・魔法。射程はバトルグリッド上のマス距離です。</p>
+      <p class="lede">全39の技・魔法。射程はバトルグリッド上のマス距離です。</p>
     </div>
-
-    <h3 style="font-size:.95rem; margin:0 0 10px; color:var(--frost-dim)">単体こうげき</h3>
     <div class="tbl-wrap">
       <table>
-        <thead><tr><th>とくぎ</th><th>ぞくせい</th><th class="num">MP</th><th class="num">威力</th><th class="num">射程</th><th>おぼえるモンスター</th></tr></thead>
+        <thead><tr><th>とくぎ</th><th>ぞくせい</th><th>効果</th><th class="num">MP</th><th class="num">威力</th><th class="num">射程</th><th>おぼえるモンスター</th></tr></thead>
         <tbody>
-          <tr><td><span class="name-ja">ファイア</span><br><span class="name-en">Fire</span></td><td><span class="chip el-fire"><i class="dot"></i>火</span></td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td>ほのおトカゲ@3・ドラゴンぼうや@1・えんおおかみ@3・サラマンダー@1・こりゅう@1</td></tr>
-          <tr><td><span class="name-ja">アクアショット</span><br><span class="name-en">Aqua Shot</span></td><td><span class="chip el-water"><i class="dot"></i>水</span></td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td>スライム@6・ゆきだるまん@2・キングスライム@1</td></tr>
-          <tr><td><span class="name-ja">リーフカッター</span><br><span class="name-en">Leaf Cutter</span></td><td><span class="chip el-wood"><i class="dot"></i>木</span></td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td>わるキノコ@7・もりのせい@4・おおおにキノコ@7・たいじゅのせいれい@5</td></tr>
-          <tr><td><span class="name-ja">メタルエッジ</span><br><span class="name-en">Metal Edge</span></td><td><span class="chip el-metal"><i class="dot"></i>金</span></td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td>ブリキへい@6・メタルビー@9・くずてつロボ@5・ぜんまいタイタン@1・せんとうロボ@1・メタルクイーン@1・はがねのゴーレム@1</td></tr>
-          <tr><td><span class="name-ja">ロックスロー</span><br><span class="name-en">Rock Throw</span></td><td><span class="chip el-earth"><i class="dot"></i>土</span></td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td>いわゴーレム@8・どろにんぎょう@6・ゴブリンキング@1・どろのきょじん@8・だいちのタイタン@1</td></tr>
-          <tr><td><span class="name-ja">シャインフラッシュ</span><br><span class="name-en">Shine Flash</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td class="num">2</td><td class="num">14</td><td class="num">3</td><td>ほしのこ@2・あばれトナカイ@5・ホーリーナイト@1・ひかりが@4・るなが@1・りゅうせいのこ@1・オーロラトナカイ@1・だらくのきし@1・そりびきトナカイ@1</td></tr>
-          <tr><td><span class="name-ja">ダークボール</span><br><span class="name-en">Dark Ball</span></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td class="num">2</td><td class="num">14</td><td class="num">3</td><td>おおコウモリ@5・やみけもの@4・ブラックサンタ@1・あくむいぬ@4・きゅうけつコウモリおう@1・あくむのおう@1・だらくのきし@1</td></tr>
-          <tr><td><span class="name-ja">ファイアストーム</span><br><span class="name-en">Fire Storm</span></td><td><span class="chip el-fire"><i class="dot"></i>火</span></td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td>ドラゴンぼうや@12・こりゅう@1・こんとんのりゅう@1</td></tr>
-          <tr><td><span class="name-ja">タイダルウェイブ</span><br><span class="name-en">Tidal Wave</span></td><td><span class="chip el-water"><i class="dot"></i>水</span></td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td>スライム@14・ゆきだるまん@13・キングスライム@11・ゆきおんな@1・そりびきトナカイ@8</td></tr>
-          <tr><td><span class="name-ja">ホーリーレイ</span><br><span class="name-en">Holy Ray</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td class="num">5</td><td class="num">32</td><td class="num">3</td><td>ホーリーナイト@13・サンタさま@1・イヴ@1</td></tr>
-          <tr><td><span class="name-ja">ダークネビュラ</span><br><span class="name-en">Dark Nebula</span></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td class="num">5</td><td class="num">32</td><td class="num">3</td><td>ブラックサンタ@1・だらくのきし@12・こんとんのりゅう@1・イヴ@1</td></tr>
-          <tr><td><span class="name-ja">フレイムクロー</span><br><span class="name-en">Flame Claw</span></td><td><span class="chip el-fire"><i class="dot"></i>火</span></td><td class="num">2</td><td class="num">18</td><td class="num">1</td><td>えんおおかみ@9・サラマンダー@9</td></tr>
-          <tr><td><span class="name-ja">ムーンビーム</span><br><span class="name-en">Moonbeam</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td class="num">3</td><td class="num">22</td><td class="num">3</td><td>るなが@8・オーロラトナカイ@9</td></tr>
-          <tr><td><span class="name-ja">インフェルノ</span><br><span class="name-en">Inferno</span></td><td><span class="chip el-fire"><i class="dot"></i>火</span></td><td class="num">7</td><td class="num">40</td><td class="num">3</td><td>こりゅう@15</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3 style="font-size:.95rem; margin:26px 0 10px; color:var(--frost-dim)">全体こうげき・状態異常・特殊効果</h3>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>とくぎ</th><th>ぞくせい</th><th>効果</th><th class="num">MP</th><th class="num">威力</th><th>おぼえるモンスター</th></tr></thead>
-        <tbody>
-          <tr><td><span class="name-ja">クエイク</span><br><span class="name-en">Quake</span></td><td><span class="chip el-earth"><i class="dot"></i>土</span></td><td>敵全体に攻撃</td><td class="num">6</td><td class="num">18</td><td>だいちのタイタン@12</td></tr>
-          <tr><td><span class="name-ja">スターシャワー</span><br><span class="name-en">Star Shower</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>敵全体に攻撃</td><td class="num">6</td><td class="num">16</td><td>りゅうせいのこ@8</td></tr>
-          <tr><td><span class="name-ja">ニードルストーム</span><br><span class="name-en">Needle Storm</span></td><td><span class="chip el-metal"><i class="dot"></i>金</span></td><td>敵全体に攻撃</td><td class="num">6</td><td class="num">16</td><td>メタルクイーン@10</td></tr>
-          <tr><td><span class="name-ja">オブリビオン</span><br><span class="name-en">Oblivion</span></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td>敵全体に攻撃</td><td class="num">8</td><td class="num">26</td><td>こんとんのりゅう@16</td></tr>
-          <tr><td><span class="name-ja">ルートバインド</span><br><span class="name-en">Root Bind</span></td><td><span class="chip el-wood"><i class="dot"></i>木</span></td><td>50%でしばり</td><td class="num">3</td><td class="num">14</td><td>おおおにキノコ@13・たいじゅのせいれい@12</td></tr>
-          <tr><td><span class="name-ja">フロストキス</span><br><span class="name-en">Frost Kiss</span></td><td><span class="chip el-water"><i class="dot"></i>水</span></td><td>40%でしばり</td><td class="num">4</td><td class="num">24</td><td>ゆきおんな@9</td></tr>
-          <tr><td><span class="name-ja">ナイトメア</span><br><span class="name-en">Nightmare</span></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td>40%でしばり</td><td class="num">4</td><td class="num">24</td><td>あくむのおう@11</td></tr>
-          <tr><td><span class="name-ja">ブラッドドレイン</span><br><span class="name-en">Blood Drain</span></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td>与ダメージの50%を吸収</td><td class="num">3</td><td class="num">16</td><td>きゅうけつコウモリおう@8</td></tr>
-          <tr><td><span class="name-ja">アイアンウォール</span><br><span class="name-en">Iron Wall</span></td><td><span class="chip el-metal"><i class="dot"></i>金</span></td><td>自分のDEF×1.5（3ラウンド）</td><td class="num">2</td><td class="num">—</td><td>ぜんまいタイタン@9・せんとうロボ@11・はがねのゴーレム@10</td></tr>
-          <tr><td><span class="name-ja">ポイズン</span><br><span class="name-en">Poison</span></td><td><span class="chip el-wood"><i class="dot"></i>木</span></td><td>70%でどく</td><td class="num">2</td><td class="num">—</td><td>わるキノコ@1・どろにんぎょう@3・おおおにキノコ@1・どろのきょじん@1</td></tr>
-          <tr><td><span class="name-ja">ヒール</span><br><span class="name-en">Heal</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>単体回復</td><td class="num">2</td><td class="num">26</td><td>スライム@1・もりのせい@1・キングスライム@1・ホーリーナイト@6・たいじゅのせいれい@1</td></tr>
-          <tr><td><span class="name-ja">ハイヒール</span><br><span class="name-en">High Heal</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>単体回復</td><td class="num">5</td><td class="num">60</td><td>もりのせい@15・サンタさま@1</td></tr>
-          <tr><td><span class="name-ja">ジェネシス</span><br><span class="name-en">Genesis</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>味方全体を回復</td><td class="num">8</td><td class="num">45</td><td>イヴ@16</td></tr>
+          <tr><td><span class="name-ja">ファイア</span><br><span class="name-en">Fire</span></td><td><span class="chip el-fire"><i class="dot"></i>火</span></td><td>こうげき</td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td style="font-size:12px">ひのたま@1・あかいトカゲ@1・ほのおのオオカミ@1・マグマゴーレム@1・フレイムナイト@1・サラマンダー@1</td></tr>
+          <tr><td><span class="name-ja">アクアショット</span><br><span class="name-en">Aqua Shot</span></td><td><span class="chip el-water"><i class="dot"></i>水</span></td><td>こうげき</td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td style="font-size:12px">スライム@6・うみへび@1・マーマン@1・アクアゴーレム@1・リヴァイアサンのこ@1・クラーケン@1</td></tr>
+          <tr><td><span class="name-ja">リーフカッター</span><br><span class="name-en">Leaf Cutter</span></td><td><span class="chip el-forest"><i class="dot"></i>森</span></td><td>こうげき</td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td style="font-size:12px">こだま@1・マンドレイク@1・リーフラビット@1・トレント@1・フォレストウルフ@1・ドリアード@1</td></tr>
+          <tr><td><span class="name-ja">メタルエッジ</span><br><span class="name-en">Metal Edge</span></td><td><span class="chip el-metal"><i class="dot"></i>メタル</span></td><td>こうげき</td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td style="font-size:12px">くずてつ@1・メタルスライム@1・ブリキへい@1・メタルドッグ@1・アイアンナイト@1・メタルドラゴン@1</td></tr>
+          <tr><td><span class="name-ja">ロックスロー</span><br><span class="name-en">Rock Throw</span></td><td><span class="chip el-earth"><i class="dot"></i>土</span></td><td>こうげき</td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td style="font-size:12px">つちんこ@1・モグラット@1・ロックリザード@1・ストーンゴーレム@1・アースワーム@1・マッドマン@1</td></tr>
+          <tr><td><span class="name-ja">シャインフラッシュ</span><br><span class="name-en">Shine Flash</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>こうげき</td><td class="num">2</td><td class="num">14</td><td class="num">3</td><td style="font-size:12px">ホーリーナイト@1・ひかりのつぶ@1・エンジェルベビー@1・ホーリーラビット@1・クレリック@1・セラフ@1</td></tr>
+          <tr><td><span class="name-ja">ダークボール</span><br><span class="name-en">Dark Ball</span></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td>こうげき</td><td class="num">2</td><td class="num">14</td><td class="num">3</td><td style="font-size:12px">おおコウモリ@1・やみけもの@1・やみのわらべ@1・ナイトメア@1・デーモン@1・シャドウナイト@1</td></tr>
+          <tr><td><span class="name-ja">ファイアストーム</span><br><span class="name-en">Fire Storm</span></td><td><span class="chip el-fire"><i class="dot"></i>火</span></td><td>こうげき</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">ほのおのオオカミ@8・マグマゴーレム@8・フレイムナイト@7・サラマンダー@7・ヘルハウンド@1・フェニックス@1・インフェルノドラゴン@1・アグニロード@1</td></tr>
+          <tr><td><span class="name-ja">タイダルウェイブ</span><br><span class="name-en">Tidal Wave</span></td><td><span class="chip el-water"><i class="dot"></i>水</span></td><td>こうげき</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">スライム@14・マーマン@8・アクアゴーレム@8・リヴァイアサンのこ@7・クラーケン@7・マーマンナイト@1・ウンディーネ@1・タイダルドラゴン@1・リヴァイアサン@1</td></tr>
+          <tr><td><span class="name-ja">ホーリーレイ</span><br><span class="name-en">Holy Ray</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>こうげき</td><td class="num">5</td><td class="num">32</td><td class="num">3</td><td style="font-size:12px">ホーリーナイト@7・ホーリーラビット@8・クレリック@8・セラフ@7・エンジェルナイト@1・アークエンジェル@1・ホーリードラゴン@1・セイントロード@1</td></tr>
+          <tr><td><span class="name-ja">ダークネビュラ</span><br><span class="name-en">Dark Nebula</span></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td>こうげき</td><td class="num">5</td><td class="num">32</td><td class="num">3</td><td style="font-size:12px">やみけもの@8・あくむのおう@1・ナイトメア@8・デーモン@7・シャドウナイト@7・デスナイト@1・ナイトメアロード@1・アークデーモン@1</td></tr>
+          <tr><td><span class="name-ja">ヒール</span><br><span class="name-en">Heal</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>回復</td><td class="num">2</td><td class="num">26</td><td class="num">4</td><td style="font-size:12px">スライム@1</td></tr>
+          <tr><td><span class="name-ja">ハイヒール</span><br><span class="name-en">High Heal</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>回復</td><td class="num">5</td><td class="num">60</td><td class="num">4</td><td style="font-size:12px">-</td></tr>
+          <tr><td><span class="name-ja">ポイズン</span><br><span class="name-en">Poison</span></td><td><span class="chip el-forest"><i class="dot"></i>森</span></td><td>どく (命中 70%)</td><td class="num">2</td><td class="num">—</td><td class="num">3</td><td style="font-size:12px">-</td></tr>
+          <tr><td><span class="name-ja">ブラッドドレイン</span><br><span class="name-en">Blood Drain</span></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td>こうげき (50%吸収)</td><td class="num">3</td><td class="num">16</td><td class="num">1</td><td style="font-size:12px">-</td></tr>
+          <tr><td><span class="name-ja">ルートバインド</span><br><span class="name-en">Root Bind</span></td><td><span class="chip el-forest"><i class="dot"></i>森</span></td><td>こうげき (しばり 50%)</td><td class="num">3</td><td class="num">14</td><td class="num">3</td><td style="font-size:12px">フォレストウルフ@12・ドリアード@12・エルダートレント@9・フォレストドラゴン@9・グレートドリアード@1・せかいじゅのぬし@1</td></tr>
+          <tr><td><span class="name-ja">フレイムクロー</span><br><span class="name-en">Flame Claw</span></td><td><span class="chip el-fire"><i class="dot"></i>火</span></td><td>こうげき</td><td class="num">2</td><td class="num">18</td><td class="num">1</td><td style="font-size:12px">-</td></tr>
+          <tr><td><span class="name-ja">アイアンウォール</span><br><span class="name-en">Iron Wall</span></td><td><span class="chip el-metal"><i class="dot"></i>メタル</span></td><td>バフ (自分DEF×1.5, 3R)</td><td class="num">2</td><td class="num">—</td><td class="num">0</td><td style="font-size:12px">アイアンナイト@12・メタルドラゴン@12・ミスリルゴーレム@9・オリハルコンナイト@9・メタルキング@1・アダマンタイト@1</td></tr>
+          <tr><td><span class="name-ja">ムーンビーム</span><br><span class="name-en">Moonbeam</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>こうげき</td><td class="num">3</td><td class="num">22</td><td class="num">3</td><td style="font-size:12px">-</td></tr>
+          <tr><td><span class="name-ja">クエイク</span><br><span class="name-en">Quake</span></td><td><span class="chip el-earth"><i class="dot"></i>土</span></td><td>こうげき (敵全体)</td><td class="num">6</td><td class="num">18</td><td class="num">3</td><td style="font-size:12px">アースワーム@12・マッドマン@12・アイアンゴーレム@9・アースドラゴン@9・タイタン@1・ガイアロード@1</td></tr>
+          <tr><td><span class="name-ja">フロストキス</span><br><span class="name-en">Frost Kiss</span></td><td><span class="chip el-water"><i class="dot"></i>水</span></td><td>こうげき (しばり 40%)</td><td class="num">4</td><td class="num">24</td><td class="num">2</td><td style="font-size:12px">リヴァイアサンのこ@12・クラーケン@12・マーマンナイト@9・ウンディーネ@9・タイダルドラゴン@1・リヴァイアサン@1</td></tr>
+          <tr><td><span class="name-ja">スターシャワー</span><br><span class="name-en">Star Shower</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>こうげき (敵全体)</td><td class="num">6</td><td class="num">16</td><td class="num">3</td><td style="font-size:12px">ホーリーナイト@12・セラフ@12・エンジェルナイト@9・アークエンジェル@9・ホーリードラゴン@1・セイントロード@1</td></tr>
+          <tr><td><span class="name-ja">ナイトメア</span><br><span class="name-en">Nightmare</span></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td>こうげき (しばり 40%)</td><td class="num">4</td><td class="num">24</td><td class="num">3</td><td style="font-size:12px">あくむのおう@1・デーモン@12・シャドウナイト@12・デスナイト@9・ナイトメアロード@9・アークデーモン@1</td></tr>
+          <tr><td><span class="name-ja">ニードルストーム</span><br><span class="name-en">Needle Storm</span></td><td><span class="chip el-metal"><i class="dot"></i>メタル</span></td><td>こうげき (敵全体)</td><td class="num">6</td><td class="num">16</td><td class="num">3</td><td style="font-size:12px">-</td></tr>
+          <tr><td><span class="name-ja">インフェルノ</span><br><span class="name-en">Inferno</span></td><td><span class="chip el-fire"><i class="dot"></i>火</span></td><td>こうげき</td><td class="num">7</td><td class="num">40</td><td class="num">3</td><td style="font-size:12px">フレイムナイト@12・サラマンダー@12・ヘルハウンド@9・フェニックス@9・インフェルノドラゴン@1・アグニロード@1</td></tr>
+          <tr><td><span class="name-ja">オブリビオン</span><br><span class="name-en">Oblivion</span></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td>こうげき (敵全体)</td><td class="num">8</td><td class="num">26</td><td class="num">3</td><td style="font-size:12px">-</td></tr>
+          <tr><td><span class="name-ja">ジェネシス</span><br><span class="name-en">Genesis</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>全体回復</td><td class="num">8</td><td class="num">45</td><td class="num">0</td><td style="font-size:12px">-</td></tr>
+          <tr><td><span class="name-ja">リーフストーム</span><br><span class="name-en">Leaf Storm</span></td><td><span class="chip el-forest"><i class="dot"></i>森</span></td><td>こうげき</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">リーフラビット@8・トレント@8・フォレストウルフ@7・ドリアード@7・エルダートレント@1・フォレストドラゴン@1・グレートドリアード@1・せかいじゅのぬし@1</td></tr>
+          <tr><td><span class="name-ja">スチールランス</span><br><span class="name-en">Steel Lance</span></td><td><span class="chip el-metal"><i class="dot"></i>メタル</span></td><td>こうげき</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">ブリキへい@8・メタルドッグ@8・アイアンナイト@7・メタルドラゴン@7・ミスリルゴーレム@1・オリハルコンナイト@1・メタルキング@1・アダマンタイト@1</td></tr>
+          <tr><td><span class="name-ja">グランドクラッシュ</span><br><span class="name-en">Ground Crush</span></td><td><span class="chip el-earth"><i class="dot"></i>土</span></td><td>こうげき</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">ロックリザード@8・ストーンゴーレム@8・アースワーム@7・マッドマン@7・アイアンゴーレム@1・アースドラゴン@1・タイタン@1・ガイアロード@1</td></tr>
+          <tr><td><span class="name-ja">エアカッター</span><br><span class="name-en">Air Cutter</span></td><td><span class="chip el-wind"><i class="dot"></i>風</span></td><td>こうげき</td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td style="font-size:12px">こがらし@1・はねうさぎ@1・わたぐも@1・ハーピー@1・ウィングタイガー@1・ストームホーク@1</td></tr>
+          <tr><td><span class="name-ja">サイクロン</span><br><span class="name-en">Cyclone</span></td><td><span class="chip el-wind"><i class="dot"></i>風</span></td><td>こうげき</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">わたぐも@8・ハーピー@8・ウィングタイガー@7・ストームホーク@7・ジェットドラゴン@1・テンペストロード@1・ガルーダ@1・シルフクイーン@1</td></tr>
+          <tr><td><span class="name-ja">ゲイルダッシュ</span><br><span class="name-en">Gale Dash</span></td><td><span class="chip el-wind"><i class="dot"></i>風</span></td><td>バフ (自分AGI×1.5, 3R)</td><td class="num">2</td><td class="num">—</td><td class="num">0</td><td style="font-size:12px">ウィングタイガー@12・ストームホーク@12・ジェットドラゴン@9・テンペストロード@9・ガルーダ@1・シルフクイーン@1</td></tr>
+          <tr><td><span class="name-ja">でんげき</span><br><span class="name-en">Electric Shock</span></td><td><span class="chip el-thunder"><i class="dot"></i>雷</span></td><td>こうげき</td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td style="font-size:12px">スパーク@1・でんきねずみ@1・サンダーバード@1・ライトニングウルフ@1・サンダーゴーレム@1・カミナリおとこ@1</td></tr>
+          <tr><td><span class="name-ja">サンダーボルト</span><br><span class="name-en">Thunderbolt</span></td><td><span class="chip el-thunder"><i class="dot"></i>雷</span></td><td>こうげき</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">サンダーバード@8・ライトニングウルフ@8・サンダーゴーレム@7・カミナリおとこ@7・サンダードラゴン@1・ライデンナイト@1・サンダーロード@1・ライジンオー@1</td></tr>
+          <tr><td><span class="name-ja">パラライズボルト</span><br><span class="name-en">Paralyzing Bolt</span></td><td><span class="chip el-thunder"><i class="dot"></i>雷</span></td><td>こうげき (しばり 40%)</td><td class="num">3</td><td class="num">18</td><td class="num">3</td><td style="font-size:12px">サンダーゴーレム@12・カミナリおとこ@12・サンダードラゴン@9・ライデンナイト@9・サンダーロード@1・ライジンオー@1</td></tr>
+          <tr><td><span class="name-ja">アイスニードル</span><br><span class="name-en">Ice Needle</span></td><td><span class="chip el-ice"><i class="dot"></i>氷</span></td><td>こうげき</td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td style="font-size:12px">ゆきだま@1・ペンギット@1・アイスラビット@1・スノーマン@1・フロストウルフ@1・アイスゴーレム@1</td></tr>
+          <tr><td><span class="name-ja">フリーズランス</span><br><span class="name-en">Freeze Lance</span></td><td><span class="chip el-ice"><i class="dot"></i>氷</span></td><td>こうげき</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">アイスラビット@8・スノーマン@8・フロストウルフ@7・アイスゴーレム@7・ブリザードドラゴン@1・フロストナイト@1・アイスクイーン@1・アブソリュートゼロ@1</td></tr>
+          <tr><td><span class="name-ja">ブリザード</span><br><span class="name-en">Blizzard</span></td><td><span class="chip el-ice"><i class="dot"></i>氷</span></td><td>こうげき (敵全体)</td><td class="num">6</td><td class="num">16</td><td class="num">3</td><td style="font-size:12px">フロストウルフ@12・アイスゴーレム@12・ブリザードドラゴン@9・フロストナイト@9・アイスクイーン@1・アブソリュートゼロ@1</td></tr>
         </tbody>
       </table>
     </div>
@@ -684,163 +701,149 @@
       <div class="eyebrow">08 / Bestiary</div>
       <h2>モンスター図鑑</h2>
       <div class="rule"></div>
-      <p class="lede">属性ごとの「進化ライン」で整理しました。→ は同じ種族どうしをLv10以上で合成したときの行き先です。</p>
+      <p class="lede">属性ごとに Tier1〜10 の一本道で強くなります。Tier1〜3は野生でも出現・捕獲可（%は捕獲率）、Tier4以降は合成でしか手に入りません（平原で戦闘に出てくることはあっても捕獲は不可）。</p>
     </div>
 
     <div class="fam-head"><span class="chip el-fire"><i class="dot"></i>火のなかま</span></div>
-    <div class="fam-grid">
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="lizard" width="16" height="16"></canvas><span class="n-ja">ほのおトカゲ</span><span class="n-en">Flame Lizard</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="salamander" width="16" height="16"></canvas><span class="n-ja">サラマンダー</span><span class="n-en">Salamander</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="dragonkid" width="16" height="16"></canvas><span class="n-ja">ドラゴンぼうや</span><span class="n-en">Dragon Kid</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="elderdragon" width="16" height="16"></canvas><span class="n-ja">こりゅう</span><span class="n-en">Elder Dragon</span></div>
-      </div>
-      <div class="line-card single">
-        <div class="mon"><canvas class="spr" data-mon="emberwolf" width="16" height="16"></canvas><span class="n-ja">えんおおかみ</span><span class="n-en">Ember Wolf</span><span class="line-note">進化なし・野生のみ</span></div>
-      </div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="fire_1" width="16" height="16"></canvas><span class="n-ja">ひのたま</span><span class="n-en">Fireball</span><span class="tier-tag wild">T1 ・ 25%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="fire_2" width="16" height="16"></canvas><span class="n-ja">あかいトカゲ</span><span class="n-en">Red Lizard</span><span class="tier-tag wild">T2 ・ 18%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="fire_3" width="16" height="16"></canvas><span class="n-ja">ほのおのオオカミ</span><span class="n-en">Flame Wolf</span><span class="tier-tag wild">T3 ・ 12%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="fire_4" width="16" height="16"></canvas><span class="n-ja">マグマゴーレム</span><span class="n-en">Magma Golem</span><span class="tier-tag fuse">T4 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="fire_5" width="16" height="16"></canvas><span class="n-ja">フレイムナイト</span><span class="n-en">Flame Knight</span><span class="tier-tag fuse">T5 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="fire_6" width="16" height="16"></canvas><span class="n-ja">サラマンダー</span><span class="n-en">Salamander</span><span class="tier-tag fuse">T6 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="fire_7" width="16" height="16"></canvas><span class="n-ja">ヘルハウンド</span><span class="n-en">Hellhound</span><span class="tier-tag fuse">T7 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="fire_8" width="16" height="16"></canvas><span class="n-ja">フェニックス</span><span class="n-en">Phoenix</span><span class="tier-tag fuse">T8 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="fire_9" width="16" height="16"></canvas><span class="n-ja">インフェルノドラゴン</span><span class="n-en">Inferno Dragon</span><span class="tier-tag fuse">T9 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="fire_10" width="16" height="16"></canvas><span class="n-ja">アグニロード</span><span class="n-en">Agni Lord</span><span class="tier-tag fuse">T10 ・ 合成専用</span></div>
     </div>
 
     <div class="fam-head"><span class="chip el-water"><i class="dot"></i>水のなかま</span></div>
-    <div class="fam-grid">
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><span class="n-ja">スライム</span><span class="n-en">Slime<br>（最初の仲間）</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="kingslime" width="16" height="16"></canvas><span class="n-ja">キングスライム</span><span class="n-en">King Slime</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="snowman" width="16" height="16"></canvas><span class="n-ja">ゆきだるまん</span><span class="n-en">Snowman</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="yukionna" width="16" height="16"></canvas><span class="n-ja">ゆきおんな</span><span class="n-en">Yuki-onna</span></div>
-      </div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><span class="n-ja">スライム</span><span class="n-en">Slime</span><span class="tier-tag wild">T1 ・ 28%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="water_2" width="16" height="16"></canvas><span class="n-ja">うみへび</span><span class="n-en">Sea Serpent</span><span class="tier-tag wild">T2 ・ 18%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="water_3" width="16" height="16"></canvas><span class="n-ja">マーマン</span><span class="n-en">Merman</span><span class="tier-tag wild">T3 ・ 12%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="water_4" width="16" height="16"></canvas><span class="n-ja">アクアゴーレム</span><span class="n-en">Aqua Golem</span><span class="tier-tag fuse">T4 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="water_5" width="16" height="16"></canvas><span class="n-ja">リヴァイアサンのこ</span><span class="n-en">Leviathan Spawn</span><span class="tier-tag fuse">T5 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="water_6" width="16" height="16"></canvas><span class="n-ja">クラーケン</span><span class="n-en">Kraken</span><span class="tier-tag fuse">T6 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="water_7" width="16" height="16"></canvas><span class="n-ja">マーマンナイト</span><span class="n-en">Merman Knight</span><span class="tier-tag fuse">T7 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="water_8" width="16" height="16"></canvas><span class="n-ja">ウンディーネ</span><span class="n-en">Undine</span><span class="tier-tag fuse">T8 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="water_9" width="16" height="16"></canvas><span class="n-ja">タイダルドラゴン</span><span class="n-en">Tidal Dragon</span><span class="tier-tag fuse">T9 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="water_10" width="16" height="16"></canvas><span class="n-ja">リヴァイアサン</span><span class="n-en">Leviathan</span><span class="tier-tag fuse">T10 ・ 合成専用</span></div>
     </div>
 
-    <div class="fam-head"><span class="chip el-wood"><i class="dot"></i>木のなかま</span></div>
-    <div class="fam-grid">
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><span class="n-ja">わるキノコ</span><span class="n-en">Bad Shroom</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="eldershroom" width="16" height="16"></canvas><span class="n-ja">おおおにキノコ</span><span class="n-en">Elder Shroom</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="fairy" width="16" height="16"></canvas><span class="n-ja">もりのせい</span><span class="n-en">Forest Sprite</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="elderent" width="16" height="16"></canvas><span class="n-ja">たいじゅのせいれい</span><span class="n-en">Elder Ent</span></div>
-      </div>
+    <div class="fam-head"><span class="chip el-wind"><i class="dot"></i>風のなかま</span></div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="wind_1" width="16" height="16"></canvas><span class="n-ja">こがらし</span><span class="n-en">Chill Gust</span><span class="tier-tag wild">T1 ・ 25%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="wind_2" width="16" height="16"></canvas><span class="n-ja">はねうさぎ</span><span class="n-en">Windfoot Rabbit</span><span class="tier-tag wild">T2 ・ 18%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="wind_3" width="16" height="16"></canvas><span class="n-ja">わたぐも</span><span class="n-en">Cloud Puff</span><span class="tier-tag wild">T3 ・ 12%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="wind_4" width="16" height="16"></canvas><span class="n-ja">ハーピー</span><span class="n-en">Harpy</span><span class="tier-tag fuse">T4 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="wind_5" width="16" height="16"></canvas><span class="n-ja">ウィングタイガー</span><span class="n-en">Wing Tiger</span><span class="tier-tag fuse">T5 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="wind_6" width="16" height="16"></canvas><span class="n-ja">ストームホーク</span><span class="n-en">Storm Hawk</span><span class="tier-tag fuse">T6 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="wind_7" width="16" height="16"></canvas><span class="n-ja">ジェットドラゴン</span><span class="n-en">Jet Dragon</span><span class="tier-tag fuse">T7 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="wind_8" width="16" height="16"></canvas><span class="n-ja">テンペストロード</span><span class="n-en">Tempest Lord</span><span class="tier-tag fuse">T8 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="wind_9" width="16" height="16"></canvas><span class="n-ja">ガルーダ</span><span class="n-en">Garuda</span><span class="tier-tag fuse">T9 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="wind_10" width="16" height="16"></canvas><span class="n-ja">シルフクイーン</span><span class="n-en">Sylph Queen</span><span class="tier-tag fuse">T10 ・ 合成専用</span></div>
     </div>
 
-    <div class="fam-head"><span class="chip el-metal"><i class="dot"></i>金のなかま</span></div>
-    <div class="fam-grid">
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="scrapbot" width="16" height="16"></canvas><span class="n-ja">くずてつロボ</span><span class="n-en">Scrap Bot</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="clockworktitan" width="16" height="16"></canvas><span class="n-ja">ぜんまいタイタン</span><span class="n-en">Clockwork Titan</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="tinsoldier" width="16" height="16"></canvas><span class="n-ja">ブリキへい</span><span class="n-en">Tin Soldier</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="warmachine" width="16" height="16"></canvas><span class="n-ja">せんとうロボ</span><span class="n-en">War Machine</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="metalbee" width="16" height="16"></canvas><span class="n-ja">メタルビー</span><span class="n-en">Metal Bee</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="steelhornetqueen" width="16" height="16"></canvas><span class="n-ja">メタルクイーン</span><span class="n-en">Steel Hornet Queen</span></div>
-      </div>
+    <div class="fam-head"><span class="chip el-thunder"><i class="dot"></i>雷のなかま</span></div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="thunder_1" width="16" height="16"></canvas><span class="n-ja">スパーク</span><span class="n-en">Spark</span><span class="tier-tag wild">T1 ・ 25%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="thunder_2" width="16" height="16"></canvas><span class="n-ja">でんきねずみ</span><span class="n-en">Electric Mouse</span><span class="tier-tag wild">T2 ・ 18%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="thunder_3" width="16" height="16"></canvas><span class="n-ja">サンダーバード</span><span class="n-en">Thunderbird</span><span class="tier-tag wild">T3 ・ 12%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="thunder_4" width="16" height="16"></canvas><span class="n-ja">ライトニングウルフ</span><span class="n-en">Lightning Wolf</span><span class="tier-tag fuse">T4 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="thunder_5" width="16" height="16"></canvas><span class="n-ja">サンダーゴーレム</span><span class="n-en">Thunder Golem</span><span class="tier-tag fuse">T5 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="thunder_6" width="16" height="16"></canvas><span class="n-ja">カミナリおとこ</span><span class="n-en">Thunder Man</span><span class="tier-tag fuse">T6 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="thunder_7" width="16" height="16"></canvas><span class="n-ja">サンダードラゴン</span><span class="n-en">Thunder Dragon</span><span class="tier-tag fuse">T7 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="thunder_8" width="16" height="16"></canvas><span class="n-ja">ライデンナイト</span><span class="n-en">Raiden Knight</span><span class="tier-tag fuse">T8 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="thunder_9" width="16" height="16"></canvas><span class="n-ja">サンダーロード</span><span class="n-en">Thunder Lord</span><span class="tier-tag fuse">T9 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="thunder_10" width="16" height="16"></canvas><span class="n-ja">ライジンオー</span><span class="n-en">Raijin King</span><span class="tier-tag fuse">T10 ・ 合成専用</span></div>
+    </div>
+
+    <div class="fam-head"><span class="chip el-forest"><i class="dot"></i>森のなかま</span></div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="forest_1" width="16" height="16"></canvas><span class="n-ja">こだま</span><span class="n-en">Kodama</span><span class="tier-tag wild">T1 ・ 25%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="forest_2" width="16" height="16"></canvas><span class="n-ja">マンドレイク</span><span class="n-en">Mandrake</span><span class="tier-tag wild">T2 ・ 18%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="forest_3" width="16" height="16"></canvas><span class="n-ja">リーフラビット</span><span class="n-en">Leaf Rabbit</span><span class="tier-tag wild">T3 ・ 12%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="forest_4" width="16" height="16"></canvas><span class="n-ja">トレント</span><span class="n-en">Treant</span><span class="tier-tag fuse">T4 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="forest_5" width="16" height="16"></canvas><span class="n-ja">フォレストウルフ</span><span class="n-en">Forest Wolf</span><span class="tier-tag fuse">T5 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="forest_6" width="16" height="16"></canvas><span class="n-ja">ドリアード</span><span class="n-en">Dryad</span><span class="tier-tag fuse">T6 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="forest_7" width="16" height="16"></canvas><span class="n-ja">エルダートレント</span><span class="n-en">Elder Treant</span><span class="tier-tag fuse">T7 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="forest_8" width="16" height="16"></canvas><span class="n-ja">フォレストドラゴン</span><span class="n-en">Forest Dragon</span><span class="tier-tag fuse">T8 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="forest_9" width="16" height="16"></canvas><span class="n-ja">グレートドリアード</span><span class="n-en">Great Dryad</span><span class="tier-tag fuse">T9 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="forest_10" width="16" height="16"></canvas><span class="n-ja">せかいじゅのぬし</span><span class="n-en">World Tree Guardian</span><span class="tier-tag fuse">T10 ・ 合成専用</span></div>
+    </div>
+
+    <div class="fam-head"><span class="chip el-ice"><i class="dot"></i>氷のなかま</span></div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="ice_1" width="16" height="16"></canvas><span class="n-ja">ゆきだま</span><span class="n-en">Snowball</span><span class="tier-tag wild">T1 ・ 25%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="ice_2" width="16" height="16"></canvas><span class="n-ja">ペンギット</span><span class="n-en">Pengit</span><span class="tier-tag wild">T2 ・ 18%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="ice_3" width="16" height="16"></canvas><span class="n-ja">アイスラビット</span><span class="n-en">Ice Rabbit</span><span class="tier-tag wild">T3 ・ 12%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="ice_4" width="16" height="16"></canvas><span class="n-ja">スノーマン</span><span class="n-en">Snowman</span><span class="tier-tag fuse">T4 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="ice_5" width="16" height="16"></canvas><span class="n-ja">フロストウルフ</span><span class="n-en">Frost Wolf</span><span class="tier-tag fuse">T5 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="ice_6" width="16" height="16"></canvas><span class="n-ja">アイスゴーレム</span><span class="n-en">Ice Golem</span><span class="tier-tag fuse">T6 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="ice_7" width="16" height="16"></canvas><span class="n-ja">ブリザードドラゴン</span><span class="n-en">Blizzard Dragon</span><span class="tier-tag fuse">T7 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="ice_8" width="16" height="16"></canvas><span class="n-ja">フロストナイト</span><span class="n-en">Frost Knight</span><span class="tier-tag fuse">T8 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="ice_9" width="16" height="16"></canvas><span class="n-ja">アイスクイーン</span><span class="n-en">Ice Queen</span><span class="tier-tag fuse">T9 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="ice_10" width="16" height="16"></canvas><span class="n-ja">アブソリュートゼロ</span><span class="n-en">Absolute Zero</span><span class="tier-tag fuse">T10 ・ 合成専用</span></div>
     </div>
 
     <div class="fam-head"><span class="chip el-earth"><i class="dot"></i>土のなかま</span></div>
-    <div class="fam-grid">
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="goblin" width="16" height="16"></canvas><span class="n-ja">いたずらゴブリン</span><span class="n-en">Prank Goblin</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="goblinking" width="16" height="16"></canvas><span class="n-ja">ゴブリンキング</span><span class="n-en">Goblin King</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="golem" width="16" height="16"></canvas><span class="n-ja">いわゴーレム</span><span class="n-en">Rock Golem</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="titangolem" width="16" height="16"></canvas><span class="n-ja">だいちのタイタン</span><span class="n-en">Titan Golem</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="mudman" width="16" height="16"></canvas><span class="n-ja">どろにんぎょう</span><span class="n-en">Mud Doll</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="claycolossus" width="16" height="16"></canvas><span class="n-ja">どろのきょじん</span><span class="n-en">Clay Colossus</span></div>
-      </div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="earth_1" width="16" height="16"></canvas><span class="n-ja">つちんこ</span><span class="n-en">Tsuchinoko</span><span class="tier-tag wild">T1 ・ 25%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="earth_2" width="16" height="16"></canvas><span class="n-ja">モグラット</span><span class="n-en">Molerat</span><span class="tier-tag wild">T2 ・ 18%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="earth_3" width="16" height="16"></canvas><span class="n-ja">ロックリザード</span><span class="n-en">Rock Lizard</span><span class="tier-tag wild">T3 ・ 12%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="earth_4" width="16" height="16"></canvas><span class="n-ja">ストーンゴーレム</span><span class="n-en">Stone Golem</span><span class="tier-tag fuse">T4 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="earth_5" width="16" height="16"></canvas><span class="n-ja">アースワーム</span><span class="n-en">Earthworm</span><span class="tier-tag fuse">T5 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="earth_6" width="16" height="16"></canvas><span class="n-ja">マッドマン</span><span class="n-en">Mud Man</span><span class="tier-tag fuse">T6 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="earth_7" width="16" height="16"></canvas><span class="n-ja">アイアンゴーレム</span><span class="n-en">Iron Golem</span><span class="tier-tag fuse">T7 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="earth_8" width="16" height="16"></canvas><span class="n-ja">アースドラゴン</span><span class="n-en">Earth Dragon</span><span class="tier-tag fuse">T8 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="earth_9" width="16" height="16"></canvas><span class="n-ja">タイタン</span><span class="n-en">Titan</span><span class="tier-tag fuse">T9 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="earth_10" width="16" height="16"></canvas><span class="n-ja">ガイアロード</span><span class="n-en">Gaia Lord</span><span class="tier-tag fuse">T10 ・ 合成専用</span></div>
     </div>
 
-    <div class="fam-head"><span class="chip el-light"><i class="dot"></i>光のなかま</span></div>
-    <div class="fam-grid">
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="glowmoth" width="16" height="16"></canvas><span class="n-ja">ひかりが</span><span class="n-en">Glow Moth</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="lunamoth" width="16" height="16"></canvas><span class="n-ja">るなが</span><span class="n-en">Luna Moth</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="starkid" width="16" height="16"></canvas><span class="n-ja">ほしのこ</span><span class="n-en">Star Kid</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="cometkid" width="16" height="16"></canvas><span class="n-ja">りゅうせいのこ</span><span class="n-en">Comet Kid</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="reindeer" width="16" height="16"></canvas><span class="n-ja">あばれトナカイ</span><span class="n-en">Wild Reindeer</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="auroradeer" width="16" height="16"></canvas><span class="n-ja">オーロラトナカイ</span><span class="n-en">Aurora Reindeer</span></div>
-      </div>
-      <div class="line-card single">
-        <div class="mon"><canvas class="spr" data-mon="knight" width="16" height="16"></canvas><span class="n-ja">ホーリーナイト</span><span class="n-en">Holy Knight</span><span class="line-note">王様からのほうび（Lv12）</span></div>
-      </div>
-      <div class="line-card single">
-        <div class="mon"><canvas class="spr" data-mon="santa" width="16" height="16"></canvas><span class="n-ja">サンタさま</span><span class="n-en">Santa</span><span class="line-note">特別合成のみ／09章</span></div>
-      </div>
+    <div class="fam-head"><span class="chip el-metal"><i class="dot"></i>メタルのなかま</span></div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="metal_1" width="16" height="16"></canvas><span class="n-ja">くずてつ</span><span class="n-en">Scrap Iron</span><span class="tier-tag wild">T1 ・ 25%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="metal_2" width="16" height="16"></canvas><span class="n-ja">メタルスライム</span><span class="n-en">Metal Slime</span><span class="tier-tag wild">T2 ・ 18%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="metal_3" width="16" height="16"></canvas><span class="n-ja">ブリキへい</span><span class="n-en">Tin Soldier</span><span class="tier-tag wild">T3 ・ 12%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="metal_4" width="16" height="16"></canvas><span class="n-ja">メタルドッグ</span><span class="n-en">Metal Dog</span><span class="tier-tag fuse">T4 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="metal_5" width="16" height="16"></canvas><span class="n-ja">アイアンナイト</span><span class="n-en">Iron Knight</span><span class="tier-tag fuse">T5 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="metal_6" width="16" height="16"></canvas><span class="n-ja">メタルドラゴン</span><span class="n-en">Metal Dragon</span><span class="tier-tag fuse">T6 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="metal_7" width="16" height="16"></canvas><span class="n-ja">ミスリルゴーレム</span><span class="n-en">Mithril Golem</span><span class="tier-tag fuse">T7 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="metal_8" width="16" height="16"></canvas><span class="n-ja">オリハルコンナイト</span><span class="n-en">Orichalcum Knight</span><span class="tier-tag fuse">T8 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="metal_9" width="16" height="16"></canvas><span class="n-ja">メタルキング</span><span class="n-en">Metal King</span><span class="tier-tag fuse">T9 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="metal_10" width="16" height="16"></canvas><span class="n-ja">アダマンタイト</span><span class="n-en">Adamantite</span><span class="tier-tag fuse">T10 ・ 合成専用</span></div>
     </div>
 
     <div class="fam-head"><span class="chip el-dark"><i class="dot"></i>闇のなかま</span></div>
-    <div class="fam-grid">
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="bat" width="16" height="16"></canvas><span class="n-ja">おおコウモリ</span><span class="n-en">Big Bat</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="vampirelord" width="16" height="16"></canvas><span class="n-ja">きゅうけつコウモリおう</span><span class="n-en">Vampire Lord</span></div>
-      </div>
-      <div class="line-card">
-        <div class="mon"><canvas class="spr" data-mon="shadowbeast" width="16" height="16"></canvas><span class="n-ja">やみけもの</span><span class="n-en">Shadow Beast</span></div>
-        <div class="arrow-mid">→</div>
-        <div class="mon"><canvas class="spr" data-mon="nightmarelord" width="16" height="16"></canvas><span class="n-ja">あくむのおう</span><span class="n-en">Nightmare Lord</span></div>
-      </div>
-      <div class="line-card single">
-        <div class="mon"><canvas class="spr" data-mon="nightmarehound" width="16" height="16"></canvas><span class="n-ja">あくむいぬ</span><span class="n-en">Nightmare Hound</span><span class="line-note">進化なし・野生のみ</span></div>
-      </div>
-      <div class="line-card single">
-        <div class="mon"><canvas class="spr" data-mon="blacksanta" width="16" height="16"></canvas><span class="n-ja">ブラックサンタ</span><span class="n-en">Black Santa</span><span class="tag boss" style="margin-top:4px">BOSS</span></div>
-      </div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><span class="n-ja">やみのわらべ</span><span class="n-en">Shadow Child</span><span class="tier-tag wild">T1 ・ 25%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="bat" width="16" height="16"></canvas><span class="n-ja">おおコウモリ</span><span class="n-en">Big Bat</span><span class="tier-tag wild">T2 ・ 20%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="shadowbeast" width="16" height="16"></canvas><span class="n-ja">やみけもの</span><span class="n-en">Shadow Beast</span><span class="tier-tag wild">T3 ・ 8%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="dark_4" width="16" height="16"></canvas><span class="n-ja">ナイトメア</span><span class="n-en">Nightmare</span><span class="tier-tag fuse">T4 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="dark_5" width="16" height="16"></canvas><span class="n-ja">デーモン</span><span class="n-en">Demon</span><span class="tier-tag fuse">T5 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="dark_6" width="16" height="16"></canvas><span class="n-ja">シャドウナイト</span><span class="n-en">Shadow Knight</span><span class="tier-tag fuse">T6 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="dark_7" width="16" height="16"></canvas><span class="n-ja">デスナイト</span><span class="n-en">Death Knight</span><span class="tier-tag fuse">T7 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="dark_8" width="16" height="16"></canvas><span class="n-ja">ナイトメアロード</span><span class="n-en">Nightmare Lord</span><span class="tier-tag fuse">T8 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="dark_9" width="16" height="16"></canvas><span class="n-ja">アークデーモン</span><span class="n-en">Arch Demon</span><span class="tier-tag fuse">T9 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="blacksanta" width="16" height="16"></canvas><span class="n-ja">あくむのおう</span><span class="n-en">Nightmare King</span><span class="tag boss" style="margin-top:2px">BOSS</span></div>
     </div>
 
-    <div class="fam-head" style="margin-top:40px"><span class="chip"><i class="dot" style="background:var(--candle)"></i>クロス合成・とくべつなモンスター</span></div>
-    <p class="prose" style="font-size:13.5px; color:var(--frost-dim); margin-bottom:6px">
-      違う系統どうしを掛け合わせて生まれる、進化ラインに属さないモンスターたち。
-    </p>
-    <div class="special-grid">
-      <div class="special-card">
-        <div class="mon"><canvas class="spr" data-mon="irongolem" width="16" height="16"></canvas></div>
-        <div class="txt"><b>はがねのゴーレム</b>いわゴーレム × ブリキへい</div>
-      </div>
-      <div class="special-card">
-        <div class="mon"><canvas class="spr" data-mon="fallenknight" width="16" height="16"></canvas></div>
-        <div class="txt"><b>だらくのきし</b>ホーリーナイト × やみけもの</div>
-      </div>
-      <div class="special-card">
-        <div class="mon"><canvas class="spr" data-mon="sleighdeer" width="16" height="16"></canvas></div>
-        <div class="txt"><b>そりびきトナカイ</b>あばれトナカイ × ゆきだるまん</div>
-      </div>
-      <div class="special-card">
-        <div class="mon"><canvas class="spr" data-mon="chaosdragon" width="16" height="16"></canvas></div>
-        <div class="txt"><b>こんとんのりゅう</b><span class="tag lock">POSTGAME</span><br>こりゅう × あくむのおう</div>
-      </div>
-      <div class="special-card">
-        <div class="mon"><canvas class="spr" data-mon="eve" width="16" height="16"></canvas></div>
-        <div class="txt"><b>イヴ</b><span class="tag lock">POSTGAME</span><br>ブラックサンタ × サンタさま</div>
-      </div>
+    <div class="fam-head"><span class="chip el-light"><i class="dot"></i>光のなかま</span></div>
+    <div class="chain-card">
+      <div class="mon"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><span class="n-ja">ひかりのつぶ</span><span class="n-en">Light Mote</span><span class="tier-tag wild">T1 ・ 25%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="light_2" width="16" height="16"></canvas><span class="n-ja">エンジェルベビー</span><span class="n-en">Angel Baby</span><span class="tier-tag wild">T2 ・ 18%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="light_3" width="16" height="16"></canvas><span class="n-ja">ホーリーラビット</span><span class="n-en">Holy Rabbit</span><span class="tier-tag wild">T3 ・ 12%</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="light_4" width="16" height="16"></canvas><span class="n-ja">クレリック</span><span class="n-en">Cleric</span><span class="tier-tag fuse">T4 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="knight" width="16" height="16"></canvas><span class="n-ja">ホーリーナイト</span><span class="n-en">Holy Knight</span><span class="tier-tag" style="color:var(--candle);border:1px solid color-mix(in srgb, var(--candle) 40%, var(--line))">王様の褒美/合成</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="light_6" width="16" height="16"></canvas><span class="n-ja">セラフ</span><span class="n-en">Seraph</span><span class="tier-tag fuse">T6 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="light_7" width="16" height="16"></canvas><span class="n-ja">エンジェルナイト</span><span class="n-en">Angel Knight</span><span class="tier-tag fuse">T7 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="light_8" width="16" height="16"></canvas><span class="n-ja">アークエンジェル</span><span class="n-en">Archangel</span><span class="tier-tag fuse">T8 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="light_9" width="16" height="16"></canvas><span class="n-ja">ホーリードラゴン</span><span class="n-en">Holy Dragon</span><span class="tier-tag fuse">T9 ・ 合成専用</span></div><div class="arrow-mid">→</div>
+      <div class="mon"><canvas class="spr" data-mon="light_10" width="16" height="16"></canvas><span class="n-ja">セイントロード</span><span class="n-en">Saint Lord</span><span class="tier-tag fuse">T10 ・ 合成専用</span></div>
     </div>
+
   </section>
 
   <section id="fusion">
@@ -851,118 +854,108 @@
       <p class="lede">まほうつかいの家の「まほうのなべ」で使う早見表。生まれる子は必ず<strong>Lv1</strong>から。</p>
     </div>
     <div class="prose">
-      <p>
-        合成には<strong>2ひきともLv10以上</strong>が必要です。判定には優先順位があり、
-        <strong>①同じ種族どうし</strong>なら08章の進化ライン（特別レシピ）が優先され、
-        <strong>②違う種族どうし</strong>の場合は、両者の<strong>属性の組みあわせ</strong>で
-        下の表を参照します。
-      </p>
+      <p>合成には<strong>2ひきともLv10以上</strong>が必要です。結果は次の優先順で決まります。
+      <strong>①個別レシピ</strong>（下の特別レシピ表にある組み合わせ）が最優先。
+      <strong>②同じ属性どうし</strong>で個別レシピが無ければ、その属性の<strong>Tier1（赤ちゃん）</strong>に戻ります。
+      <strong>③違う属性どうし</strong>で個別レシピも無ければ、下の属性フォールバック表で決まる属性のTier1が生まれます。</p>
     </div>
 
-    <h3 style="font-size:.95rem; margin:24px 0 10px; color:var(--frost-dim)">属性ごうせい表（種族が違う場合）</h3>
+    <h3 style="font-size:.95rem; margin:24px 0 10px; color:var(--frost-dim)">属性フォールバック表（個別レシピが無い・違う属性どうしの場合）</h3>
     <div class="matrix-wrap">
       <table class="matrix">
         <thead>
-          <tr>
-            <th class="corner"></th>
-            <th><span class="chip el-fire"><i class="dot"></i>火</span></th>
-            <th><span class="chip el-water"><i class="dot"></i>水</span></th>
-            <th><span class="chip el-wood"><i class="dot"></i>木</span></th>
-            <th><span class="chip el-metal"><i class="dot"></i>金</span></th>
-            <th><span class="chip el-earth"><i class="dot"></i>土</span></th>
-            <th><span class="chip el-light"><i class="dot"></i>光</span></th>
-            <th><span class="chip el-dark"><i class="dot"></i>闇</span></th>
-          </tr>
+          <tr><th class="corner"></th><th><span class="chip el-fire"><i class="dot"></i>火</span></th><th><span class="chip el-water"><i class="dot"></i>水</span></th><th><span class="chip el-wind"><i class="dot"></i>風</span></th><th><span class="chip el-thunder"><i class="dot"></i>雷</span></th><th><span class="chip el-forest"><i class="dot"></i>森</span></th><th><span class="chip el-ice"><i class="dot"></i>氷</span></th><th><span class="chip el-earth"><i class="dot"></i>土</span></th><th><span class="chip el-metal"><i class="dot"></i>メタル</span></th><th><span class="chip el-dark"><i class="dot"></i>闇</span></th><th><span class="chip el-light"><i class="dot"></i>光</span></th></tr>
         </thead>
         <tbody>
-          <tr>
-            <th class="rowhead"><span class="chip el-fire"><i class="dot"></i>火</span></th>
-            <td class="cell"><canvas class="spr" data-mon="dragonkid" width="16" height="16"></canvas><div class="cn">ドラゴンぼうや</div></td>
-            <td class="cell"><canvas class="spr" data-mon="lizard" width="16" height="16"></canvas><div class="cn">ほのおトカゲ</div></td>
-            <td class="cell"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><div class="cn">わるキノコ</div></td>
-            <td class="cell"><canvas class="spr" data-mon="metalbee" width="16" height="16"></canvas><div class="cn">メタルビー</div></td>
-            <td class="cell"><canvas class="spr" data-mon="lizard" width="16" height="16"></canvas><div class="cn">ほのおトカゲ</div></td>
-            <td class="cell"><canvas class="spr" data-mon="dragonkid" width="16" height="16"></canvas><div class="cn">ドラゴンぼうや</div></td>
-            <td class="cell"><canvas class="spr" data-mon="shadowbeast" width="16" height="16"></canvas><div class="cn">やみけもの</div></td>
-          </tr>
-          <tr>
-            <th class="rowhead"><span class="chip el-water"><i class="dot"></i>水</span></th>
-            <td class="cell"><canvas class="spr" data-mon="lizard" width="16" height="16"></canvas><div class="cn">ほのおトカゲ</div></td>
-            <td class="cell"><canvas class="spr" data-mon="snowman" width="16" height="16"></canvas><div class="cn">ゆきだるまん</div></td>
-            <td class="cell"><canvas class="spr" data-mon="fairy" width="16" height="16"></canvas><div class="cn">もりのせい</div></td>
-            <td class="cell"><canvas class="spr" data-mon="tinsoldier" width="16" height="16"></canvas><div class="cn">ブリキへい</div></td>
-            <td class="cell"><canvas class="spr" data-mon="mudman" width="16" height="16"></canvas><div class="cn">どろにんぎょう</div></td>
-            <td class="cell"><canvas class="spr" data-mon="snowman" width="16" height="16"></canvas><div class="cn">ゆきだるまん</div></td>
-            <td class="cell"><canvas class="spr" data-mon="bat" width="16" height="16"></canvas><div class="cn">おおコウモリ</div></td>
-          </tr>
-          <tr>
-            <th class="rowhead"><span class="chip el-wood"><i class="dot"></i>木</span></th>
-            <td class="cell"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><div class="cn">わるキノコ</div></td>
-            <td class="cell"><canvas class="spr" data-mon="fairy" width="16" height="16"></canvas><div class="cn">もりのせい</div></td>
-            <td class="cell"><canvas class="spr" data-mon="fairy" width="16" height="16"></canvas><div class="cn">もりのせい</div></td>
-            <td class="cell"><canvas class="spr" data-mon="metalbee" width="16" height="16"></canvas><div class="cn">メタルビー</div></td>
-            <td class="cell"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><div class="cn">わるキノコ</div></td>
-            <td class="cell"><canvas class="spr" data-mon="fairy" width="16" height="16"></canvas><div class="cn">もりのせい</div></td>
-            <td class="cell"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><div class="cn">わるキノコ</div></td>
-          </tr>
-          <tr>
-            <th class="rowhead"><span class="chip el-metal"><i class="dot"></i>金</span></th>
-            <td class="cell"><canvas class="spr" data-mon="metalbee" width="16" height="16"></canvas><div class="cn">メタルビー</div></td>
-            <td class="cell"><canvas class="spr" data-mon="tinsoldier" width="16" height="16"></canvas><div class="cn">ブリキへい</div></td>
-            <td class="cell"><canvas class="spr" data-mon="metalbee" width="16" height="16"></canvas><div class="cn">メタルビー</div></td>
-            <td class="cell"><canvas class="spr" data-mon="metalbee" width="16" height="16"></canvas><div class="cn">メタルビー</div></td>
-            <td class="cell"><canvas class="spr" data-mon="golem" width="16" height="16"></canvas><div class="cn">いわゴーレム</div></td>
-            <td class="cell"><canvas class="spr" data-mon="knight" width="16" height="16"></canvas><div class="cn">ホーリーナイト</div></td>
-            <td class="cell"><canvas class="spr" data-mon="tinsoldier" width="16" height="16"></canvas><div class="cn">ブリキへい</div></td>
-          </tr>
-          <tr>
-            <th class="rowhead"><span class="chip el-earth"><i class="dot"></i>土</span></th>
-            <td class="cell"><canvas class="spr" data-mon="lizard" width="16" height="16"></canvas><div class="cn">ほのおトカゲ</div></td>
-            <td class="cell"><canvas class="spr" data-mon="mudman" width="16" height="16"></canvas><div class="cn">どろにんぎょう</div></td>
-            <td class="cell"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><div class="cn">わるキノコ</div></td>
-            <td class="cell"><canvas class="spr" data-mon="golem" width="16" height="16"></canvas><div class="cn">いわゴーレム</div></td>
-            <td class="cell"><canvas class="spr" data-mon="golem" width="16" height="16"></canvas><div class="cn">いわゴーレム</div></td>
-            <td class="cell"><canvas class="spr" data-mon="reindeer" width="16" height="16"></canvas><div class="cn">あばれトナカイ</div></td>
-            <td class="cell"><canvas class="spr" data-mon="bat" width="16" height="16"></canvas><div class="cn">おおコウモリ</div></td>
-          </tr>
-          <tr>
-            <th class="rowhead"><span class="chip el-light"><i class="dot"></i>光</span></th>
-            <td class="cell"><canvas class="spr" data-mon="dragonkid" width="16" height="16"></canvas><div class="cn">ドラゴンぼうや</div></td>
-            <td class="cell"><canvas class="spr" data-mon="snowman" width="16" height="16"></canvas><div class="cn">ゆきだるまん</div></td>
-            <td class="cell"><canvas class="spr" data-mon="fairy" width="16" height="16"></canvas><div class="cn">もりのせい</div></td>
-            <td class="cell"><canvas class="spr" data-mon="knight" width="16" height="16"></canvas><div class="cn">ホーリーナイト</div></td>
-            <td class="cell"><canvas class="spr" data-mon="reindeer" width="16" height="16"></canvas><div class="cn">あばれトナカイ</div></td>
-            <td class="cell"><canvas class="spr" data-mon="knight" width="16" height="16"></canvas><div class="cn">ホーリーナイト</div></td>
-            <td class="cell"><canvas class="spr" data-mon="mudman" width="16" height="16"></canvas><div class="cn">どろにんぎょう</div></td>
-          </tr>
-          <tr>
-            <th class="rowhead"><span class="chip el-dark"><i class="dot"></i>闇</span></th>
-            <td class="cell"><canvas class="spr" data-mon="shadowbeast" width="16" height="16"></canvas><div class="cn">やみけもの</div></td>
-            <td class="cell"><canvas class="spr" data-mon="bat" width="16" height="16"></canvas><div class="cn">おおコウモリ</div></td>
-            <td class="cell"><canvas class="spr" data-mon="mushroom" width="16" height="16"></canvas><div class="cn">わるキノコ</div></td>
-            <td class="cell"><canvas class="spr" data-mon="tinsoldier" width="16" height="16"></canvas><div class="cn">ブリキへい</div></td>
-            <td class="cell"><canvas class="spr" data-mon="bat" width="16" height="16"></canvas><div class="cn">おおコウモリ</div></td>
-            <td class="cell"><canvas class="spr" data-mon="mudman" width="16" height="16"></canvas><div class="cn">どろにんぎょう</div></td>
-            <td class="cell"><canvas class="spr" data-mon="shadowbeast" width="16" height="16"></canvas><div class="cn">やみけもの</div></td>
-          </tr>
+          <tr><th class="rowhead"><span class="chip el-fire"><i class="dot"></i>火</span></th><td class="cell" style="font-size:11px;color:var(--frost-dim)">(同属性→T1)</td><td class="cell"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><div class="cn">スライム</div></td><td class="cell"><canvas class="spr" data-mon="wind_1" width="16" height="16"></canvas><div class="cn">こがらし</div></td><td class="cell"><canvas class="spr" data-mon="thunder_1" width="16" height="16"></canvas><div class="cn">スパーク</div></td><td class="cell"><canvas class="spr" data-mon="forest_1" width="16" height="16"></canvas><div class="cn">こだま</div></td><td class="cell"><canvas class="spr" data-mon="ice_1" width="16" height="16"></canvas><div class="cn">ゆきだま</div></td><td class="cell"><canvas class="spr" data-mon="earth_1" width="16" height="16"></canvas><div class="cn">つちんこ</div></td><td class="cell"><canvas class="spr" data-mon="metal_1" width="16" height="16"></canvas><div class="cn">くずてつ</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">やみのわらべ</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">ひかりのつぶ</div></td></tr>
+          <tr><th class="rowhead"><span class="chip el-water"><i class="dot"></i>水</span></th><td class="cell"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><div class="cn">スライム</div></td><td class="cell" style="font-size:11px;color:var(--frost-dim)">(同属性→T1)</td><td class="cell"><canvas class="spr" data-mon="thunder_1" width="16" height="16"></canvas><div class="cn">スパーク</div></td><td class="cell"><canvas class="spr" data-mon="forest_1" width="16" height="16"></canvas><div class="cn">こだま</div></td><td class="cell"><canvas class="spr" data-mon="ice_1" width="16" height="16"></canvas><div class="cn">ゆきだま</div></td><td class="cell"><canvas class="spr" data-mon="earth_1" width="16" height="16"></canvas><div class="cn">つちんこ</div></td><td class="cell"><canvas class="spr" data-mon="metal_1" width="16" height="16"></canvas><div class="cn">くずてつ</div></td><td class="cell"><canvas class="spr" data-mon="fire_1" width="16" height="16"></canvas><div class="cn">ひのたま</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">やみのわらべ</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">ひかりのつぶ</div></td></tr>
+          <tr><th class="rowhead"><span class="chip el-wind"><i class="dot"></i>風</span></th><td class="cell"><canvas class="spr" data-mon="wind_1" width="16" height="16"></canvas><div class="cn">こがらし</div></td><td class="cell"><canvas class="spr" data-mon="thunder_1" width="16" height="16"></canvas><div class="cn">スパーク</div></td><td class="cell" style="font-size:11px;color:var(--frost-dim)">(同属性→T1)</td><td class="cell"><canvas class="spr" data-mon="ice_1" width="16" height="16"></canvas><div class="cn">ゆきだま</div></td><td class="cell"><canvas class="spr" data-mon="earth_1" width="16" height="16"></canvas><div class="cn">つちんこ</div></td><td class="cell"><canvas class="spr" data-mon="metal_1" width="16" height="16"></canvas><div class="cn">くずてつ</div></td><td class="cell"><canvas class="spr" data-mon="fire_1" width="16" height="16"></canvas><div class="cn">ひのたま</div></td><td class="cell"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><div class="cn">スライム</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">やみのわらべ</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">ひかりのつぶ</div></td></tr>
+          <tr><th class="rowhead"><span class="chip el-thunder"><i class="dot"></i>雷</span></th><td class="cell"><canvas class="spr" data-mon="thunder_1" width="16" height="16"></canvas><div class="cn">スパーク</div></td><td class="cell"><canvas class="spr" data-mon="forest_1" width="16" height="16"></canvas><div class="cn">こだま</div></td><td class="cell"><canvas class="spr" data-mon="ice_1" width="16" height="16"></canvas><div class="cn">ゆきだま</div></td><td class="cell" style="font-size:11px;color:var(--frost-dim)">(同属性→T1)</td><td class="cell"><canvas class="spr" data-mon="metal_1" width="16" height="16"></canvas><div class="cn">くずてつ</div></td><td class="cell"><canvas class="spr" data-mon="fire_1" width="16" height="16"></canvas><div class="cn">ひのたま</div></td><td class="cell"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><div class="cn">スライム</div></td><td class="cell"><canvas class="spr" data-mon="wind_1" width="16" height="16"></canvas><div class="cn">こがらし</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">やみのわらべ</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">ひかりのつぶ</div></td></tr>
+          <tr><th class="rowhead"><span class="chip el-forest"><i class="dot"></i>森</span></th><td class="cell"><canvas class="spr" data-mon="forest_1" width="16" height="16"></canvas><div class="cn">こだま</div></td><td class="cell"><canvas class="spr" data-mon="ice_1" width="16" height="16"></canvas><div class="cn">ゆきだま</div></td><td class="cell"><canvas class="spr" data-mon="earth_1" width="16" height="16"></canvas><div class="cn">つちんこ</div></td><td class="cell"><canvas class="spr" data-mon="metal_1" width="16" height="16"></canvas><div class="cn">くずてつ</div></td><td class="cell" style="font-size:11px;color:var(--frost-dim)">(同属性→T1)</td><td class="cell"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><div class="cn">スライム</div></td><td class="cell"><canvas class="spr" data-mon="wind_1" width="16" height="16"></canvas><div class="cn">こがらし</div></td><td class="cell"><canvas class="spr" data-mon="thunder_1" width="16" height="16"></canvas><div class="cn">スパーク</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">やみのわらべ</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">ひかりのつぶ</div></td></tr>
+          <tr><th class="rowhead"><span class="chip el-ice"><i class="dot"></i>氷</span></th><td class="cell"><canvas class="spr" data-mon="ice_1" width="16" height="16"></canvas><div class="cn">ゆきだま</div></td><td class="cell"><canvas class="spr" data-mon="earth_1" width="16" height="16"></canvas><div class="cn">つちんこ</div></td><td class="cell"><canvas class="spr" data-mon="metal_1" width="16" height="16"></canvas><div class="cn">くずてつ</div></td><td class="cell"><canvas class="spr" data-mon="fire_1" width="16" height="16"></canvas><div class="cn">ひのたま</div></td><td class="cell"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><div class="cn">スライム</div></td><td class="cell" style="font-size:11px;color:var(--frost-dim)">(同属性→T1)</td><td class="cell"><canvas class="spr" data-mon="thunder_1" width="16" height="16"></canvas><div class="cn">スパーク</div></td><td class="cell"><canvas class="spr" data-mon="forest_1" width="16" height="16"></canvas><div class="cn">こだま</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">やみのわらべ</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">ひかりのつぶ</div></td></tr>
+          <tr><th class="rowhead"><span class="chip el-earth"><i class="dot"></i>土</span></th><td class="cell"><canvas class="spr" data-mon="earth_1" width="16" height="16"></canvas><div class="cn">つちんこ</div></td><td class="cell"><canvas class="spr" data-mon="metal_1" width="16" height="16"></canvas><div class="cn">くずてつ</div></td><td class="cell"><canvas class="spr" data-mon="fire_1" width="16" height="16"></canvas><div class="cn">ひのたま</div></td><td class="cell"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><div class="cn">スライム</div></td><td class="cell"><canvas class="spr" data-mon="wind_1" width="16" height="16"></canvas><div class="cn">こがらし</div></td><td class="cell"><canvas class="spr" data-mon="thunder_1" width="16" height="16"></canvas><div class="cn">スパーク</div></td><td class="cell" style="font-size:11px;color:var(--frost-dim)">(同属性→T1)</td><td class="cell"><canvas class="spr" data-mon="ice_1" width="16" height="16"></canvas><div class="cn">ゆきだま</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">やみのわらべ</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">ひかりのつぶ</div></td></tr>
+          <tr><th class="rowhead"><span class="chip el-metal"><i class="dot"></i>メタル</span></th><td class="cell"><canvas class="spr" data-mon="metal_1" width="16" height="16"></canvas><div class="cn">くずてつ</div></td><td class="cell"><canvas class="spr" data-mon="fire_1" width="16" height="16"></canvas><div class="cn">ひのたま</div></td><td class="cell"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><div class="cn">スライム</div></td><td class="cell"><canvas class="spr" data-mon="wind_1" width="16" height="16"></canvas><div class="cn">こがらし</div></td><td class="cell"><canvas class="spr" data-mon="thunder_1" width="16" height="16"></canvas><div class="cn">スパーク</div></td><td class="cell"><canvas class="spr" data-mon="forest_1" width="16" height="16"></canvas><div class="cn">こだま</div></td><td class="cell"><canvas class="spr" data-mon="ice_1" width="16" height="16"></canvas><div class="cn">ゆきだま</div></td><td class="cell" style="font-size:11px;color:var(--frost-dim)">(同属性→T1)</td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">やみのわらべ</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">ひかりのつぶ</div></td></tr>
+          <tr><th class="rowhead"><span class="chip el-dark"><i class="dot"></i>闇</span></th><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">やみのわらべ</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">やみのわらべ</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">やみのわらべ</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">やみのわらべ</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">やみのわらべ</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">やみのわらべ</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">やみのわらべ</div></td><td class="cell"><canvas class="spr" data-mon="dark_1" width="16" height="16"></canvas><div class="cn">やみのわらべ</div></td><td class="cell" style="font-size:11px;color:var(--frost-dim)">(同属性→T1)</td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">ひかりのつぶ</div></td></tr>
+          <tr><th class="rowhead"><span class="chip el-light"><i class="dot"></i>光</span></th><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">ひかりのつぶ</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">ひかりのつぶ</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">ひかりのつぶ</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">ひかりのつぶ</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">ひかりのつぶ</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">ひかりのつぶ</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">ひかりのつぶ</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">ひかりのつぶ</div></td><td class="cell"><canvas class="spr" data-mon="light_1" width="16" height="16"></canvas><div class="cn">ひかりのつぶ</div></td><td class="cell" style="font-size:11px;color:var(--frost-dim)">(同属性→T1)</td></tr>
         </tbody>
       </table>
     </div>
 
-    <h3 style="font-size:.95rem; margin:26px 0 4px; color:var(--frost-dim)">特別レシピ（種族が優先される組み合わせ）</h3>
+    <h3 style="font-size:.95rem; margin:26px 0 4px; color:var(--frost-dim)">特別レシピ（70件・個別レシピが優先）</h3>
     <ul class="recipe-list">
-      <li><span class="combo"><canvas class="spr" data-mon="slime" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>スライム × スライム</span><span class="result">→ キングスライム</span></li>
-      <li><span class="combo"><canvas class="spr" data-mon="kingslime" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>キングスライム × ホーリーナイト</span><span class="result">→ サンタさま</span></li>
-      <li><span class="combo"><canvas class="spr" data-mon="knight" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ホーリーナイト × あばれトナカイ</span><span class="result">→ サンタさま</span></li>
-      <li><span class="combo">17系統の「進化ライン」（08章参照）</span><span class="result">→ 各系統の上位種</span></li>
-      <li><span class="combo"><canvas class="spr" data-mon="golem" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>いわゴーレム × ブリキへい</span><span class="result">→ はがねのゴーレム</span></li>
-      <li><span class="combo"><canvas class="spr" data-mon="knight" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ホーリーナイト × やみけもの</span><span class="result">→ だらくのきし</span></li>
-      <li><span class="combo"><canvas class="spr" data-mon="reindeer" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>あばれトナカイ × ゆきだるまん</span><span class="result">→ そりびきトナカイ</span></li>
-      <li><span class="combo"><canvas class="spr" data-mon="elderdragon" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>こりゅう × あくむのおう</span><span class="result">→ こんとんのりゅう <span class="tag lock">POSTGAME</span></span></li>
-      <li><span class="combo"><canvas class="spr" data-mon="blacksanta" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ブラックサンタ × サンタさま</span><span class="result">→ イヴ <span class="tag lock">POSTGAME</span></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>あかいトカゲ × アイスラビット</span><span class="result">→ マグマゴーレム</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="bat" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>おおコウモリ × うみへび</span><span class="result">→ フレイムナイト</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="water_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>うみへび × マーマン</span><span class="result">→ アクアゴーレム</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_1" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>やみのわらべ × でんきねずみ</span><span class="result">→ リヴァイアサンのこ</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>リーフラビット × アイスラビット</span><span class="result">→ ハーピー</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="wind_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>はねうさぎ × わたぐも</span><span class="result">→ ウィングタイガー</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="bat" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>おおコウモリ × マーマン</span><span class="result">→ ライトニングウルフ</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ペンギット × エンジェルベビー</span><span class="result">→ サンダーゴーレム</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>リーフラビット × うみへび</span><span class="result">→ トレント</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>リーフラビット × リーフラビット</span><span class="result">→ フォレストウルフ</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>エンジェルベビー × わたぐも</span><span class="result">→ スノーマン</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>アイスラビット × アイスラビット</span><span class="result">→ フロストウルフ</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>あかいトカゲ × マンドレイク</span><span class="result">→ ストーンゴーレム</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ロックリザード × ロックリザード</span><span class="result">→ アースワーム</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="metal_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>メタルスライム × メタルスライム</span><span class="result">→ メタルドッグ</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="metal_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>メタルスライム × ブリキへい</span><span class="result">→ アイアンナイト</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>モグラット × ペンギット</span><span class="result">→ ナイトメア</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="thunder_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>サンダーバード × マーマン</span><span class="result">→ デーモン</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>エンジェルベビー × ホーリーラビット</span><span class="result">→ クレリック</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ホーリーラビット × マーマン</span><span class="result">→ ホーリーナイト</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>あかいトカゲ × ブリキへい</span><span class="result">→ サラマンダー</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>スノーマン × リヴァイアサンのこ</span><span class="result">→ ヘルハウンド</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="water_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>アクアゴーレム × リヴァイアサンのこ</span><span class="result">→ クラーケン</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="water_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>マーマン × アクアゴーレム</span><span class="result">→ マーマンナイト</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="slime" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>スライム × ウィングタイガー</span><span class="result">→ ストームホーク</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_5" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>デーモン × はねうさぎ</span><span class="result">→ ジェットドラゴン</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ナイトメア × サンダーバード</span><span class="result">→ カミナリおとこ</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ナイトメア × メタルドッグ</span><span class="result">→ サンダードラゴン</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>トレント × ライトニングウルフ</span><span class="result">→ ドリアード</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>クレリック × リヴァイアサンのこ</span><span class="result">→ エルダートレント</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="knight" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ホーリーナイト × メタルスライム</span><span class="result">→ アイスゴーレム</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_5" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>フロストウルフ × フロストウルフ</span><span class="result">→ ブリザードドラゴン</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_5" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>フレイムナイト × こがらし</span><span class="result">→ マッドマン</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ストーンゴーレム × アースワーム</span><span class="result">→ アイアンゴーレム</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="metal_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>メタルドッグ × メタルドッグ</span><span class="result">→ メタルドラゴン</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="metal_1" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>くずてつ × メタルスライム</span><span class="result">→ ミスリルゴーレム</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_1" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>やみのわらべ × ナイトメア</span><span class="result">→ シャドウナイト</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_5" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>デーモン × デーモン</span><span class="result">→ デスナイト</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="knight" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ホーリーナイト × ホーリーナイト</span><span class="result">→ セラフ</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_1" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ひかりのつぶ × クレリック</span><span class="result">→ エンジェルナイト</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>サラマンダー × サラマンダー</span><span class="result">→ フェニックス</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="water_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>クラーケン × ストームホーク</span><span class="result">→ インフェルノドラゴン</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ヘルハウンド × はねうさぎ</span><span class="result">→ ウンディーネ</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>アイスゴーレム × サンダードラゴン</span><span class="result">→ タイダルドラゴン</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>サラマンダー × クラーケン</span><span class="result">→ テンペストロード</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>マッドマン × はねうさぎ</span><span class="result">→ ガルーダ</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>シャドウナイト × エルダートレント</span><span class="result">→ ライデンナイト</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="thunder_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>でんきねずみ × クラーケン</span><span class="result">→ サンダーロード</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>エルダートレント × エルダートレント</span><span class="result">→ フォレストドラゴン</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_1" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ひのたま × エルダートレント</span><span class="result">→ グレートドリアード</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ペンギット × アイスゴーレム</span><span class="result">→ フロストナイト</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>シャドウナイト × マッドマン</span><span class="result">→ アイスクイーン</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>アイスゴーレム × エンジェルナイト</span><span class="result">→ アースドラゴン</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>アイアンゴーレム × サラマンダー</span><span class="result">→ タイタン</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>モグラット × ジェットドラゴン</span><span class="result">→ オリハルコンナイト</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>アイアンゴーレム × マグマゴーレム</span><span class="result">→ メタルキング</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>アイスゴーレム × カミナリおとこ</span><span class="result">→ ナイトメアロード</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ドリアード × ライトニングウルフ</span><span class="result">→ アークデーモン</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>セラフ × エンジェルナイト</span><span class="result">→ アークエンジェル</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>アイアンゴーレム × エルダートレント</span><span class="result">→ ホーリードラゴン</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_9" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>アイスクイーン × タイダルドラゴン</span><span class="result">→ アグニロード</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="water_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>マーマンナイト × ウンディーネ</span><span class="result">→ リヴァイアサン</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="wind_9" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ガルーダ × ガルーダ</span><span class="result">→ シルフクイーン</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="thunder_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ライデンナイト × サンダーロード</span><span class="result">→ ライジンオー</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>フォレストドラゴン × グレートドリアード</span><span class="result">→ せかいじゅのぬし</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_9" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>グレートドリアード × ホーリードラゴン</span><span class="result">→ アブソリュートゼロ</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="metal_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>オリハルコンナイト × サンダーロード</span><span class="result">→ ガイアロード</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>フォレストドラゴン × オリハルコンナイト</span><span class="result">→ アダマンタイト</span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_9" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>アイスクイーン × ホーリードラゴン</span><span class="result">→ あくむのおう <span class="tag boss">BOSS</span></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="water_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas>ウンディーネ × ガルーダ</span><span class="result">→ セイントロード</span></li>
     </ul>
     <p class="prose" style="font-size:12.5px; color:var(--frost-dim); margin-top:12px">
-      <span class="tag lock">POSTGAME</span> の2レシピは、どうくつ最深部のボスを倒すまで「ふしぎなちからで ふうじられて」おり選べません。
+      ほとんどの特別レシピはTier4以上（合成専用の強さ）を作るための経路です。同属性のTier1〜3どうしを普通に合成すると、上の②のルールでTier1に戻ってしまうだけなので注意。
     </p>
   </section>
 
@@ -980,18 +973,20 @@
       <p class="lede">遊びながら見えてきた、覚えておくと得するポイント。</p>
     </div>
     <div class="tips">
-      <div class="tip"><div class="n">01</div><div class="prose">同じ種族を2ひき、Lv10まで育てるだけで確実に上位種へ進化できます。合成は運試しではなく、
-      どの系統を伸ばすか決める育成プランです。ねらいの属性を1本決めてから野生で仲間を集めましょう。</div></div>
+      <div class="tip"><div class="n">01</div><div class="prose">同じ属性どうしを合成しても、下の特別レシピに無い組み合わせだと
+      <strong>Tier1(赤ちゃん)に戻ってしまう</strong>だけです。育てたレベルは無駄になるので、Tier4以上をねらうときは
+      必ず09章の特別レシピ表で組み合わせを確認してから合成しましょう。</div></div>
       <div class="tip"><div class="n">02</div><div class="prose">とくぎの消費MPは全体的に低め（基本技は2〜5MP）なので、序盤から遠慮なく撃って大丈夫です。
       MPが尽きたときの保険に「まほうのみず」を1〜2個持っておくと安心。</div></div>
       <div class="tip"><div class="n">03</div><div class="prose">「いろいろやろう」の回復役は<strong>じんけい</strong>で後列（右寄りの列）に置くと、
       敵の初撃を受けにくくなります。前衛はDEFの高いゴーレム系・タイタン系がおすすめ。</div></div>
       <div class="tip"><div class="n">04</div><div class="prose">どうくつは入口付近で足踏みしても敵は弱いまま。序盤の資金稼ぎ・とくぎのレベル上げは
       入口寄りで、装備とパーティが整ってから奥へ踏み込むのが安全です。</div></div>
-      <div class="tip"><div class="n">05</div><div class="prose">ブラックサンタ戦は闇属性。<strong>光属性の技（シャインフラッシュ／ホーリーレイ）</strong>
-      なら1.5倍のダメージが狙えます。ホーリーナイトやほしのこ系統を1体編成に入れておきましょう。</div></div>
-      <div class="tip"><div class="n">06</div><div class="prose">クリア後は必ずどうくつ最深部でブラックサンタに再戦を。勝つと仲間にでき、
-      さらに「サンタさま × ブラックサンタ → イヴ」の最終合成ルートが開きます。</div></div>
+      <div class="tip"><div class="n">05</div><div class="prose">あくむのおう戦は闇属性。<strong>光属性の技（シャインフラッシュ／ホーリーレイ）</strong>
+      なら2倍のダメージが狙えます（闇⇄光はおたがいに弱点）。ホーリーナイトなど光属性モンスターを1体編成に入れておきましょう。</div></div>
+      <div class="tip"><div class="n">06</div><div class="prose">クリア後は必ずどうくつ最深部であくむのおうに再戦を。勝つと仲間にできます。
+      さらに「まものの平原」でTier4級のモンスターと戦えるようになりますが、捕獲はできず合成でのみ入手可能。
+      Tier5〜10は特別レシピ（09章）を順にたどらないと生まれないので、育成計画は早めに立てておきましょう。</div></div>
     </div>
   </section>
 
@@ -1084,6 +1079,101 @@
   };
 
   var SPR = {
+    fire_1:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    fire_2:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    fire_3:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    fire_4:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    fire_5:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    fire_6:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    fire_7:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    fire_8:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    fire_9:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    fire_10:{tpl:'dragon', pal:{'1':'#e61e1e', '2':'#ff8c00', '4':'#ffd2ac'}},
+    water_2:{tpl:'blob', pal:{'1':'#1e50dc', '2':'#87ceeb'}},
+    water_3:{tpl:'blob', pal:{'1':'#1e50dc', '2':'#87ceeb'}},
+    water_4:{tpl:'blob', pal:{'1':'#1e50dc', '2':'#87ceeb'}},
+    water_5:{tpl:'blob', pal:{'1':'#1e50dc', '2':'#87ceeb'}},
+    water_6:{tpl:'blob', pal:{'1':'#1e50dc', '2':'#87ceeb'}},
+    water_7:{tpl:'blob', pal:{'1':'#1e50dc', '2':'#87ceeb'}},
+    water_8:{tpl:'blob', pal:{'1':'#1e50dc', '2':'#87ceeb'}},
+    water_9:{tpl:'blob', pal:{'1':'#1e50dc', '2':'#87ceeb'}},
+    water_10:{tpl:'blob', pal:{'1':'#1e50dc', '2':'#87ceeb'}},
+    wind_1:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    wind_2:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    wind_3:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    wind_4:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    wind_5:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    wind_6:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    wind_7:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    wind_8:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    wind_9:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    wind_10:{tpl:'bee', pal:{'1':'#8ab52a', '2':'#e8f7c8'}},
+    thunder_1:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    thunder_2:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    thunder_3:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    thunder_4:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    thunder_5:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    thunder_6:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    thunder_7:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    thunder_8:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    thunder_9:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    thunder_10:{tpl:'beast', pal:{'1':'#e8c81e', '2':'#8000c8', '3':'#3a2a4a'}},
+    forest_1:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    forest_2:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    forest_3:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    forest_4:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    forest_5:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    forest_6:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    forest_7:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    forest_8:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    forest_9:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    forest_10:{tpl:'fairy', pal:{'1':'#228b22', '2':'#8ee88e'}},
+    ice_1:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    ice_2:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    ice_3:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    ice_4:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    ice_5:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    ice_6:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    ice_7:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    ice_8:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    ice_9:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    ice_10:{tpl:'snowman', pal:{'1':'#87ceeb', '2':'#ffffff', '3':'#2a3a5a'}},
+    earth_1:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    earth_2:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    earth_3:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    earth_4:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    earth_5:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    earth_6:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    earth_7:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    earth_8:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    earth_9:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    earth_10:{tpl:'golem', pal:{'1':'#8b5a2b'}},
+    metal_1:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    metal_2:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    metal_3:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    metal_4:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    metal_5:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    metal_6:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    metal_7:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    metal_8:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    metal_9:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    metal_10:{tpl:'golem', pal:{'1':'#a8a8b8'}},
+    dark_1:{tpl:'beast', pal:{'1':'#3a2a4a', '2':'#8000c8', '3':'#1a1424'}},
+    dark_4:{tpl:'beast', pal:{'1':'#3a2a4a', '2':'#8000c8', '3':'#1a1424'}},
+    dark_5:{tpl:'beast', pal:{'1':'#3a2a4a', '2':'#8000c8', '3':'#1a1424'}},
+    dark_6:{tpl:'beast', pal:{'1':'#3a2a4a', '2':'#8000c8', '3':'#1a1424'}},
+    dark_7:{tpl:'beast', pal:{'1':'#3a2a4a', '2':'#8000c8', '3':'#1a1424'}},
+    dark_8:{tpl:'beast', pal:{'1':'#3a2a4a', '2':'#8000c8', '3':'#1a1424'}},
+    dark_9:{tpl:'beast', pal:{'1':'#3a2a4a', '2':'#8000c8', '3':'#1a1424'}},
+    light_1:{tpl:'humanoid', pal:{'1':'#f2f2ec', '2':'#ffd700', '3':'#c8a23a', '4':'#f2d2ac'}},
+    light_2:{tpl:'humanoid', pal:{'1':'#f2f2ec', '2':'#ffd700', '3':'#c8a23a', '4':'#f2d2ac'}},
+    light_3:{tpl:'humanoid', pal:{'1':'#f2f2ec', '2':'#ffd700', '3':'#c8a23a', '4':'#f2d2ac'}},
+    light_4:{tpl:'humanoid', pal:{'1':'#f2f2ec', '2':'#ffd700', '3':'#c8a23a', '4':'#f2d2ac'}},
+    light_6:{tpl:'humanoid', pal:{'1':'#f2f2ec', '2':'#ffd700', '3':'#c8a23a', '4':'#f2d2ac'}},
+    light_7:{tpl:'humanoid', pal:{'1':'#f2f2ec', '2':'#ffd700', '3':'#c8a23a', '4':'#f2d2ac'}},
+    light_8:{tpl:'humanoid', pal:{'1':'#f2f2ec', '2':'#ffd700', '3':'#c8a23a', '4':'#f2d2ac'}},
+    light_9:{tpl:'humanoid', pal:{'1':'#f2f2ec', '2':'#ffd700', '3':'#c8a23a', '4':'#f2d2ac'}},
+    light_10:{tpl:'humanoid', pal:{'1':'#f2f2ec', '2':'#ffd700', '3':'#c8a23a', '4':'#f2d2ac'}},
     hero:{tpl:'hero_d', pal:{'1':'#3a6ec2','2':'#2f4a96','3':'#c2453a','4':'#f2d2ac'}},
     slime:{tpl:'blob', pal:{'1':'#4aa3e8','2':'#dff4ff'}},
     kingslime:{tpl:'kingblob', pal:{'1':'#3a7be5','2':'#dff4ff','3':'#e8c84a'}},
