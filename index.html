@@ -368,7 +368,7 @@
       <div class="fact"><b>10</b><span>ぞくせい</span></div>
       <div class="fact"><b>100</b><span>モンスター</span></div>
       <div class="fact"><b>39</b><span>とくぎ</span></div>
-      <div class="fact"><b>3</b><span>さくせん</span></div>
+      <div class="fact"><b>5</b><span>さくせん</span></div>
     </div>
     <div class="vignette">
       <canvas class="spr" data-mon="slime" width="16" height="16" title="スライム"></canvas>
@@ -566,7 +566,7 @@
       <p>
         バトルそのものは、10×10マスのフィールドに味方は左側・敵は右側で対峙します。
         行動順は<strong>すばやさ（AGI）の高い順</strong>。各モンスターに移動・攻撃・とくぎの
-        指示を出すのではなく、次の3つの「さくせん」を割り当てて、あとは自動で戦ってもらいます。
+        指示を出すのではなく、次の5つの「さくせん」を割り当てて、あとは自動で戦ってもらいます。
       </p>
     </div>
     <div class="tactics" style="margin-top:16px">
@@ -581,6 +581,14 @@
       <div class="card tactic-card">
         <h3>いのちをだいじに<span class="tag" style="margin-left:8px">Stay safe</span></h3>
         <p class="prose">HP60%未満の味方をまず回復。自分のHPが25%を切ると距離を取る、堅実型。回復役に向く。</p>
+      </div>
+      <div class="card tactic-card">
+        <h3>そこからうごくな<span class="tag" style="margin-left:8px">Don't move</span></h3>
+        <p class="prose">移動範囲0あつかいになり、そのマスから一切動かず、届く範囲の敵だけを迎え撃つ。じんけいの「こうげきアップマス」に固定して効果を維持し続けたいときや、後列を死守させたいときに。</p>
+      </div>
+      <div class="card tactic-card">
+        <h3>てきをひきつけろ<span class="tag" style="margin-left:8px">Draw enemy fire</span></h3>
+        <p class="prose">単体をねらう敵の攻撃・技を最優先で一手に引き受ける「おとり」役。範囲攻撃には巻き込まれてしまうので過信は禁物。HP・DEFの高いモンスターに向く。</p>
       </div>
     </div>
     <figure class="screenshot">
@@ -598,6 +606,14 @@
         状態異常もいくつかあります。<strong>どく</strong>は毎ラウンド最大HPの8%を削り、
         <strong>しばり</strong>（ルートバインド等）は確率で1ターン行動不能に、
         <strong>アイアンウォール</strong>は自分の防御を3ラウンドの間1.5倍にします。
+      </p>
+      <p>
+        じんけい画面の配置エリアには、ランダムで<strong>こうげきアップマス</strong>と
+        <strong>大ダメージマス</strong>が数枚配置されます。バトルが始まってもマスは盤面上に
+        表示されたままで、<strong>そこに立っているあいだ毎ラウンド</strong>効果が発動します
+        （こうげきアップは乗っている間だけ攻撃力1.5倍、大ダメージは乗り続ける限り
+        毎ラウンド最大HPの30%のダメージを受けます）。「そこからうごくな」と組み合わせて
+        こうげきアップマスに固定すれば、ずっと火力を底上げできます。
       </p>
     </div>
   </section>
@@ -640,7 +656,7 @@
       <div class="eyebrow">07 / Spellbook</div>
       <h2>とくぎ図鑑</h2>
       <div class="rule"></div>
-      <p class="lede">全39の技・魔法。射程はバトルグリッド上のマス距離です。</p>
+      <p class="lede">全39の技・魔法。射程はバトルグリッド上のマス距離です。「範囲◯マス」と書かれた技は、命中した着弾点を中心に指定マス数以内にいる敵をまとめて巻き込みます（敵全体には当たりません）。</p>
     </div>
     <div class="tbl-wrap">
       <table>
@@ -665,13 +681,13 @@
           <tr><td><span class="name-ja">フレイムクロー</span><br><span class="name-en">Flame Claw</span></td><td><span class="chip el-fire"><i class="dot"></i>火</span></td><td>こうげき</td><td class="num">2</td><td class="num">18</td><td class="num">1</td><td style="font-size:12px">-</td></tr>
           <tr><td><span class="name-ja">アイアンウォール</span><br><span class="name-en">Iron Wall</span></td><td><span class="chip el-metal"><i class="dot"></i>メタル</span></td><td>バフ (自分DEF×1.5, 3R)</td><td class="num">2</td><td class="num">—</td><td class="num">0</td><td style="font-size:12px">アイアンナイト@12・メタルドラゴン@12・ミスリルゴーレム@9・オリハルコンナイト@9・メタルキング@1・アダマンタイト@1</td></tr>
           <tr><td><span class="name-ja">ムーンビーム</span><br><span class="name-en">Moonbeam</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>こうげき</td><td class="num">3</td><td class="num">22</td><td class="num">3</td><td style="font-size:12px">-</td></tr>
-          <tr><td><span class="name-ja">クエイク</span><br><span class="name-en">Quake</span></td><td><span class="chip el-earth"><i class="dot"></i>土</span></td><td>こうげき (敵全体)</td><td class="num">6</td><td class="num">18</td><td class="num">3</td><td style="font-size:12px">アースワーム@12・マッドマン@12・アイアンゴーレム@9・アースドラゴン@9・タイタン@1・ガイアロード@1</td></tr>
+          <tr><td><span class="name-ja">クエイク</span><br><span class="name-en">Quake</span></td><td><span class="chip el-earth"><i class="dot"></i>土</span></td><td>こうげき (範囲2マス)</td><td class="num">6</td><td class="num">18</td><td class="num">3</td><td style="font-size:12px">アースワーム@12・マッドマン@12・アイアンゴーレム@9・アースドラゴン@9・タイタン@1・ガイアロード@1</td></tr>
           <tr><td><span class="name-ja">フロストキス</span><br><span class="name-en">Frost Kiss</span></td><td><span class="chip el-water"><i class="dot"></i>水</span></td><td>こうげき (しばり 40%)</td><td class="num">4</td><td class="num">24</td><td class="num">2</td><td style="font-size:12px">リヴァイアサンのこ@12・クラーケン@12・マーマンナイト@9・ウンディーネ@9・タイダルドラゴン@1・リヴァイアサン@1</td></tr>
-          <tr><td><span class="name-ja">スターシャワー</span><br><span class="name-en">Star Shower</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>こうげき (敵全体)</td><td class="num">6</td><td class="num">16</td><td class="num">3</td><td style="font-size:12px">ホーリーナイト@12・セラフ@12・エンジェルナイト@9・アークエンジェル@9・ホーリードラゴン@1・セイントロード@1</td></tr>
+          <tr><td><span class="name-ja">スターシャワー</span><br><span class="name-en">Star Shower</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>こうげき (範囲2マス)</td><td class="num">6</td><td class="num">16</td><td class="num">3</td><td style="font-size:12px">ホーリーナイト@12・セラフ@12・エンジェルナイト@9・アークエンジェル@9・ホーリードラゴン@1・セイントロード@1</td></tr>
           <tr><td><span class="name-ja">ナイトメア</span><br><span class="name-en">Nightmare</span></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td>こうげき (しばり 40%)</td><td class="num">4</td><td class="num">24</td><td class="num">3</td><td style="font-size:12px">あくむのおう@1・デーモン@12・シャドウナイト@12・デスナイト@9・ナイトメアロード@9・アークデーモン@1</td></tr>
-          <tr><td><span class="name-ja">ニードルストーム</span><br><span class="name-en">Needle Storm</span></td><td><span class="chip el-metal"><i class="dot"></i>メタル</span></td><td>こうげき (敵全体)</td><td class="num">6</td><td class="num">16</td><td class="num">3</td><td style="font-size:12px">-</td></tr>
+          <tr><td><span class="name-ja">ニードルストーム</span><br><span class="name-en">Needle Storm</span></td><td><span class="chip el-metal"><i class="dot"></i>メタル</span></td><td>こうげき (範囲2マス)</td><td class="num">6</td><td class="num">16</td><td class="num">3</td><td style="font-size:12px">-</td></tr>
           <tr><td><span class="name-ja">インフェルノ</span><br><span class="name-en">Inferno</span></td><td><span class="chip el-fire"><i class="dot"></i>火</span></td><td>こうげき</td><td class="num">7</td><td class="num">40</td><td class="num">3</td><td style="font-size:12px">フレイムナイト@12・サラマンダー@12・ヘルハウンド@9・フェニックス@9・インフェルノドラゴン@1・アグニロード@1</td></tr>
-          <tr><td><span class="name-ja">オブリビオン</span><br><span class="name-en">Oblivion</span></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td>こうげき (敵全体)</td><td class="num">8</td><td class="num">26</td><td class="num">3</td><td style="font-size:12px">-</td></tr>
+          <tr><td><span class="name-ja">オブリビオン</span><br><span class="name-en">Oblivion</span></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td>こうげき (範囲3マス)</td><td class="num">8</td><td class="num">26</td><td class="num">3</td><td style="font-size:12px">-</td></tr>
           <tr><td><span class="name-ja">ジェネシス</span><br><span class="name-en">Genesis</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>全体回復</td><td class="num">8</td><td class="num">45</td><td class="num">0</td><td style="font-size:12px">-</td></tr>
           <tr><td><span class="name-ja">リーフストーム</span><br><span class="name-en">Leaf Storm</span></td><td><span class="chip el-forest"><i class="dot"></i>森</span></td><td>こうげき</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">リーフラビット@8・トレント@8・フォレストウルフ@7・ドリアード@7・エルダートレント@1・フォレストドラゴン@1・グレートドリアード@1・せかいじゅのぬし@1</td></tr>
           <tr><td><span class="name-ja">スチールランス</span><br><span class="name-en">Steel Lance</span></td><td><span class="chip el-metal"><i class="dot"></i>メタル</span></td><td>こうげき</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">ブリキへい@8・メタルドッグ@8・アイアンナイト@7・メタルドラゴン@7・ミスリルゴーレム@1・オリハルコンナイト@1・メタルキング@1・アダマンタイト@1</td></tr>
@@ -684,7 +700,7 @@
           <tr><td><span class="name-ja">パラライズボルト</span><br><span class="name-en">Paralyzing Bolt</span></td><td><span class="chip el-thunder"><i class="dot"></i>雷</span></td><td>こうげき (しばり 40%)</td><td class="num">3</td><td class="num">18</td><td class="num">3</td><td style="font-size:12px">サンダーゴーレム@12・カミナリおとこ@12・サンダードラゴン@9・ライデンナイト@9・サンダーロード@1・ライジンオー@1</td></tr>
           <tr><td><span class="name-ja">アイスニードル</span><br><span class="name-en">Ice Needle</span></td><td><span class="chip el-ice"><i class="dot"></i>氷</span></td><td>こうげき</td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td style="font-size:12px">ゆきだま@1・ペンギット@1・アイスラビット@1・スノーマン@1・フロストウルフ@1・アイスゴーレム@1</td></tr>
           <tr><td><span class="name-ja">フリーズランス</span><br><span class="name-en">Freeze Lance</span></td><td><span class="chip el-ice"><i class="dot"></i>氷</span></td><td>こうげき</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">アイスラビット@8・スノーマン@8・フロストウルフ@7・アイスゴーレム@7・ブリザードドラゴン@1・フロストナイト@1・アイスクイーン@1・アブソリュートゼロ@1</td></tr>
-          <tr><td><span class="name-ja">ブリザード</span><br><span class="name-en">Blizzard</span></td><td><span class="chip el-ice"><i class="dot"></i>氷</span></td><td>こうげき (敵全体)</td><td class="num">6</td><td class="num">16</td><td class="num">3</td><td style="font-size:12px">フロストウルフ@12・アイスゴーレム@12・ブリザードドラゴン@9・フロストナイト@9・アイスクイーン@1・アブソリュートゼロ@1</td></tr>
+          <tr><td><span class="name-ja">ブリザード</span><br><span class="name-en">Blizzard</span></td><td><span class="chip el-ice"><i class="dot"></i>氷</span></td><td>こうげき (範囲2マス)</td><td class="num">6</td><td class="num">16</td><td class="num">3</td><td style="font-size:12px">フロストウルフ@12・アイスゴーレム@12・ブリザードドラゴン@9・フロストナイト@9・アイスクイーン@1・アブソリュートゼロ@1</td></tr>
         </tbody>
       </table>
     </div>
@@ -987,6 +1003,12 @@
       <div class="tip"><div class="n">06</div><div class="prose">クリア後は必ずどうくつ最深部であくむのおうに再戦を。勝つと仲間にできます。
       さらに「まものの平原」でTier4級のモンスターと戦えるようになりますが、捕獲はできず合成でのみ入手可能。
       Tier5〜10は特別レシピ（09章）を順にたどらないと生まれないので、育成計画は早めに立てておきましょう。</div></div>
+      <div class="tip"><div class="n">07</div><div class="prose">「そこからうごくな」は<strong>じんけいのこうげきアップマス</strong>と相性抜群。
+      マスの効果は乗っている間だけ発動するので、動かない設定にして固定すれば火力1.5倍を維持できます。
+      反対に大ダメージマスの上で使うと毎ラウンド食らい続けるので、じんけい画面でマスの位置を確認してから配置しましょう。</div></div>
+      <div class="tip"><div class="n">08</div><div class="prose">「てきをひきつけろ」はHP・DEFの高いモンスターに設定すると壁役に。単体をねらう攻撃・技を
+      一手に引き受けてくれます（範囲攻撃には巻き込まれるので過信は禁物）。逆にこちらが範囲技を撃つときは、
+      敵がかたまっているタイミングを狙うと一度に複数体を巻き込めて効率的です。</div></div>
     </div>
   </section>
 
