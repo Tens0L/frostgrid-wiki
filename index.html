@@ -372,8 +372,8 @@
     <div class="facts">
       <div class="fact"><b>10</b><span>ぞくせい</span></div>
       <div class="fact"><b>全</b><span>モンスター</span></div>
-      <div class="fact"><b>39</b><span>とくぎ</span></div>
-      <div class="fact"><b>5</b><span>さくせん</span></div>
+      <div class="fact"><b>47</b><span>とくぎ</span></div>
+      <div class="fact"><b>6</b><span>さくせん</span></div>
     </div>
     <div class="vignette">
       <canvas class="spr" data-mon="slime" width="16" height="16" title="スライム"></canvas>
@@ -472,7 +472,8 @@
       <div class="step" data-n="2">
         <h3>カステラ城下町に到着</h3>
         <p class="prose">森を北へ抜けると城下町。<strong>やどや・どうぐや・まほうつかいの家・ぼくじょう・大工の家</strong>が並び、
-        ここが以後の拠点になります（詳しくは次の章）。</p>
+        ここが以後の拠点になります（詳しくは次の章）。東の通路の先には海沿いの城壁都市
+        <strong>「みなとまち ラグーザ」</strong>もあり、酒場や漁師の家、パン屋、商館などを歩き回れます。</p>
       </div>
       <div class="step" data-n="3">
         <h3>お城で王様に話す</h3>
@@ -480,10 +481,16 @@
         話し終えると、みはりの兵士が退き、どうくつへ入れるようになります。</p>
       </div>
       <div class="step" data-n="4">
-        <h3>どうくつ B1・B2を進む</h3>
-        <p class="prose">ランダムエンカウントの2階層。入口付近は弱い敵が1体だけですが、
-        奥へ進むほど同時に出る数（最大3体）もレベルも上がっていきます。焦らず入口周辺で
-        レベルを整えてから奥を目指すのがコツです。</p>
+        <h3>どうくつを進む（B1〜B10）</h3>
+        <p class="prose">シンボルエンカウント（敵の姿がそのままフィールドに見える）の全10階。
+        地形は階ごとに固定で、1フロアは48×36マスとかなり広大です。深さによって見た目が変わり、
+        <strong>B1〜B3は土の洞くつ・B4〜B6は氷の洞くつ・B7〜B9は水晶の洞くつ・B10は深淵</strong>。
+        中は暗く、たき火や光る飾りのまわりだけ明るく見えます。氷の床ですべる・つららが落ちる・
+        ひびの入った壁を崩す・押せる岩でスイッチを入れる・ワープ魔法陣・往復する足場・流れる床・
+        レバーで開け閉めする扉など、階層ごとに違う仕掛けが登場します。B3・B6・B9には中ボス
+        （ストーンゴーレム・ブリザードドラゴン・ホーリードラゴン）とキャンプ地（たき火の安全地帯。
+        宿泊・セーブ・行商人との売買ができる）があります。焦らず浅い階でレベルを整えてから
+        奥を目指すのがコツです。</p>
       </div>
       <div class="step" data-n="5">
         <h3>最深部であくむのおう戦</h3>
@@ -528,24 +535,31 @@
       </div>
       <div class="card facility">
         <h3>🎒 どうぐや</h3>
-        <p class="prose">アイテムの売買。「かう」画面ではカーソルを合わせた品の説明が下に表示されます。</p>
+        <p class="prose">アイテムの売買。「かう」画面ではカーソルを合わせた品の説明が下に表示されます。
+        品ぞろえはトータルバトル数に応じて段階的に解禁されます。</p>
         <ul class="price-list">
           <li>やくそう（HP+30）<b>30G</b></li>
           <li>どくけしそう（どく治療）<b>10G</b></li>
-          <li>まほうのみず（MP+20）<b>80G</b></li>
+          <li>まほうのみず（MP+20）<b>10G</b></li>
           <li>かえりのはね（城下町へワープ）<b>25G</b></li>
+          <li>だっしゅつのゆびわ（バトル専用の緊急脱出）<b>60G</b></li>
           <li>ちからのたね（こうげき+3）<b>300G</b></li>
+          <li>ふしぎなキャンディ（レベル+1）<b>700G</b></li>
         </ul>
       </div>
       <div class="card facility">
         <h3>🧪 まほうつかいの家</h3>
         <p class="prose"><strong>Lv10以上</strong>のモンスター2ひきを「まほうのなべ」に入れると、
-        新しいモンスターが生まれます（09章で詳しく）。ごうせい表もこの場で確認できます。</p>
+        新しいモンスターが生まれます（08章で詳しく）。ごうせい表もこの場で確認できます。</p>
       </div>
       <div class="card facility">
         <h3>🐑 ぼくじょう</h3>
-        <p class="prose">手持ちが3ぴきいっぱいのときに預けておける場所。あずかり中のモンスターは
+        <p class="prose">手持ちが16ぴきいっぱいのときに預けておける場所。あずかり中のモンスターは
         話しかけると右側にリスト表示され、いつでも入れ替えできます（最後の1ぴきは預けられません）。</p>
+      </div>
+      <div class="card facility">
+        <h3>🔨 大工の家</h3>
+        <p class="prose">話しかけると雑談するだけのNPC。「レンガに木材にくぎ…だいくのしごとはおわりがないねえ」</p>
       </div>
     </div>
   </section>
@@ -569,7 +583,7 @@
       <p>
         バトルそのものは、20×20マスのフィールドに味方は左側・敵は右側で対峙します。
         行動順は<strong>すばやさ（AGI）の高い順</strong>。各モンスターに移動・攻撃・とくぎの
-        指示を出すのではなく、次の5つの「さくせん」を割り当てて、あとは自動で戦ってもらいます。
+        指示を出すのではなく、次の6つの「さくせん」を割り当てて、あとは自動で戦ってもらいます。
       </p>
     </div>
     <div class="tactics" style="margin-top:16px">
@@ -587,11 +601,15 @@
       </div>
       <div class="card tactic-card">
         <h3>そこからうごくな<span class="tag" style="margin-left:8px">Don't move</span></h3>
-        <p class="prose">移動範囲0あつかいになり、そのマスから一切動かず、届く範囲の敵だけを迎え撃つ。じんけいの「こうげきアップマス」に固定して効果を維持し続けたいときや、後列を死守させたいときに。</p>
+        <p class="prose">移動範囲0あつかいになり、そのマスから一切動かず、届く範囲の敵だけを迎え撃つ。後列を死守させたいときに。</p>
       </div>
       <div class="card tactic-card">
         <h3>てきをひきつけろ<span class="tag" style="margin-left:8px">Draw enemy fire</span></h3>
         <p class="prose">単体をねらう敵の攻撃・技を最優先で一手に引き受ける「おとり」役。範囲攻撃には巻き込まれてしまうので過信は禁物。HP・DEFの高いモンスターに向く。</p>
+      </div>
+      <div class="card tactic-card">
+        <h3>あいしょうでせめろ<span class="tag" style="margin-left:8px">Play matchups</span></h3>
+        <p class="prose">自分の攻撃(格闘=自分の属性、とくぎ=その属性)が効果抜群になる相手を最優先で狙う。有利な相手がいなければ、自分に不利な(弱点を突かれる)相手を避けて距離を取る。属性相性を自動で突いてくれる。</p>
       </div>
     </div>
     <figure class="screenshot">
@@ -600,10 +618,13 @@
     </figure>
     <div class="prose" style="margin-top:18px">
       <p>
-        バトル中に<kbd>X</kbd> / <kbd>ESC</kbd>を押すと、次のラウンドから全員のさくせんを変更できます
-        （画面下にも操作説明が常時表示されます）。攻撃時には属性ごとに専用パーティクルが出るほか、
-        バトルの演出速度は「せってい」の<strong>バトルスピード</strong>（ゆっくり／ふつう／はやい）で
-        調整可能です。デフォルトはゆっくりめの「ふつう」。
+        バトル中に<kbd>X</kbd> / <kbd>ESC</kbd>を押すと一時停止を予約し、行動中のモンスターの動きが
+        終わったところで「さいかい／いどう・さくせん／どうぐ」のメニューが開きます。ここから
+        じんけい画面と同じ操作で味方の配置やさくせんをその場で組み直せます（画面下にも操作説明が
+        常時表示されます）。攻撃時には属性ごとに専用パーティクルが出るほか、バトルの演出速度は
+        「せってい」の<strong>バトルスピード</strong>（タップ／ゆっくり／ふつう／はやい）で調整可能です。
+        デフォルトはゆっくりめの「ふつう」。「タップ」はログが1行出るたびに止まり、スペース
+        （スマホはタップ）を押すまで次の行動に進みません。
       </p>
       <p>
         状態異常もいくつかあります。<strong>どく</strong>は毎ラウンド最大HPの8%を削り、
@@ -611,12 +632,22 @@
         <strong>アイアンウォール</strong>は自分の防御を3ラウンドの間1.5倍にします。
       </p>
       <p>
-        じんけい画面の配置エリアには、ランダムで<strong>こうげきアップマス</strong>と
-        <strong>大ダメージマス</strong>が数枚配置されます。バトルが始まってもマスは盤面上に
-        表示されたままで、<strong>そこに立っているあいだ毎ラウンド</strong>効果が発動します
-        （こうげきアップは乗っている間だけ攻撃力1.5倍、大ダメージは乗り続ける限り
-        毎ラウンド最大HPの30%のダメージを受けます）。「そこからうごくな」と組み合わせて
-        こうげきアップマスに固定すれば、ずっと火力を底上げできます。
+        じんけい画面（バトル開始前）と、バトル中の各ラウンドの始まりには、属性が有利な
+        （効果抜群の）相手のうち、いちばん近い1体へ向かう<strong>矢印</strong>が表示されます
+        （味方→敵は青、敵→味方は赤）。「あいしょうでせめろ」と組み合わせると分かりやすく活用できます。
+        じんけい画面でモンスターにカーソルを合わせると、そのモンスターの<strong>いどうできるマス</strong>
+        （青）と<strong>とどくマス</strong>（赤）、覚えているとくぎも右パネルに表示されます。
+      </p>
+      <p>
+        ピンチのときは、どうぐやで買える<strong>「だっしゅつのゆびわ」</strong>（バトル専用アイテム、60G）
+        を使うと、バトルを放り出して城下町の宿屋の受付前へ飛べます。報酬も全滅ペナルティもありませんが、
+        HP・MPは回復しません（チュートリアルとボス戦では使用不可）。
+      </p>
+      <p>
+        盤面で2×2マスを占める<strong>「大きいモンスター」</strong>（合成でのみ入手。08章参照）は、
+        HP・DEFがとても高く、ふつうの攻撃も範囲攻撃になる一方、移動力は低め。1マス幅のすき間を通れず、
+        範囲攻撃や属性の床は4マスのどれか1つでも触れれば巻き込まれ、体が大きく目立つぶん毎ラウンド
+        ヘイト値が上がって狙われやすい、というデメリットもあります。
       </p>
     </div>
   </section>
@@ -659,7 +690,7 @@
       <div class="eyebrow">07 / Spellbook</div>
       <h2>とくぎ図鑑</h2>
       <div class="rule"></div>
-      <p class="lede">全39の技・魔法。射程はバトルグリッド上のマス距離です。「範囲◯マス」と書かれた技は、命中した着弾点を中心に指定マス数以内にいる敵をまとめて巻き込みます（敵全体には当たりません）。</p>
+      <p class="lede">全47の技・魔法。射程はバトルグリッド上のマス距離です。「範囲◯マス」と書かれた技は、命中した着弾点を中心に指定マス数以内にいる敵をまとめて巻き込みます（敵全体には当たりません）。</p>
     </div>
     <div class="tbl-wrap">
       <table>
@@ -704,7 +735,14 @@
           <tr><td><span class="name-ja">アイスニードル</span><br><span class="name-en">Ice Needle</span></td><td><span class="chip el-ice"><i class="dot"></i>氷</span></td><td>こうげき</td><td class="num">2</td><td class="num">12</td><td class="num">3</td><td style="font-size:12px">ゆきだま@1・ペンギット@1・アイスラビット@1・スノーマン@1・フロストウルフ@1・アイスゴーレム@1</td></tr>
           <tr><td><span class="name-ja">フリーズランス</span><br><span class="name-en">Freeze Lance</span></td><td><span class="chip el-ice"><i class="dot"></i>氷</span></td><td>こうげき</td><td class="num">5</td><td class="num">28</td><td class="num">3</td><td style="font-size:12px">アイスラビット@8・スノーマン@8・フロストウルフ@7・アイスゴーレム@7・ブリザードドラゴン@1・フロストナイト@1・アイスクイーン@1・アブソリュートゼロ@1</td></tr>
           <tr><td><span class="name-ja">ブリザード</span><br><span class="name-en">Blizzard</span></td><td><span class="chip el-ice"><i class="dot"></i>氷</span></td><td>こうげき (範囲2マス)</td><td class="num">6</td><td class="num">16</td><td class="num">3</td><td style="font-size:12px">フロストウルフ@12・アイスゴーレム@12・ブリザードドラゴン@9・フロストナイト@9・アイスクイーン@1・アブソリュートゼロ@1</td></tr>
-        </tbody>
+          <tr><td><span class="name-ja">リザレクション</span><br><span class="name-en">Resurrection</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>復活</td><td class="num">10</td><td class="num">50</td><td class="num">4</td><td style="font-size:12px">グランドセイジ@1・ホーリードラゴン@15・セイントロード@15</td></tr>
+          <tr><td><span class="name-ja">ボルトファング</span><br><span class="name-en">Volt Fang</span></td><td><span class="chip el-thunder"><i class="dot"></i>雷</span></td><td>こうげき (しばり 25%)</td><td class="num">3</td><td class="num">26</td><td class="num">1</td><td style="font-size:12px">スパーク@10・でんきねずみ@10・サンダーバード@11・ライトニングウルフ@11・サンダーゴーレム@10・カミナリおとこ@10・サンダードラゴン@12・ライデンナイト@12・サンダーロード@8・ライジンオー@8・ライジュウ@10・サンダーコロッサス@10</td></tr>
+          <tr><td><span class="name-ja">アクアヒール</span><br><span class="name-en">Aqua Heal</span></td><td><span class="chip el-water"><i class="dot"></i>水</span></td><td>回復 (どくも治療)</td><td class="num">3</td><td class="num">28</td><td class="num">4</td><td style="font-size:12px">スライム@10・ジャイアントスライム@1・うみへび@5・マーマン@4・アクアゴーレム@4・リヴァイアサンのたまご@4・クラーケン@4・マーマンナイト@5・ウンディーネ@5・ふなしずめ@4</td></tr>
+          <tr><td><span class="name-ja">ヒールレイン</span><br><span class="name-en">Healing Rain</span></td><td><span class="chip el-water"><i class="dot"></i>水</span></td><td>全体回復</td><td class="num">6</td><td class="num">26</td><td class="num">0</td><td style="font-size:12px">スライム@26・ジャイアントスライム@20・うみへび@28・マーマン@22・アクアゴーレム@22・リヴァイアサンのたまご@18・クラーケン@18・マーマンナイト@16・ウンディーネ@16・タイダルドラゴン@1・リヴァイアサン@1・ふなしずめ@18</td></tr>
+          <tr><td><span class="name-ja">いのちのしずく</span><br><span class="name-en">Life Dew</span></td><td><span class="chip el-forest"><i class="dot"></i>森</span></td><td>回復 (どくも治療)</td><td class="num">3</td><td class="num">30</td><td class="num">4</td><td style="font-size:12px">こだま@5・マンドレイク@5・リーフラビット@4・トレント@4・フォレストウルフ@4・ドリアード@4・エルダートレント@5・フォレストドラゴン@5・マンドラゴラ@5・もりのばんにん@4</td></tr>
+          <tr><td><span class="name-ja">もりのいぶき</span><br><span class="name-en">Forest Breath</span></td><td><span class="chip el-forest"><i class="dot"></i>森</span></td><td>全体回復</td><td class="num">7</td><td class="num">32</td><td class="num">0</td><td style="font-size:12px">こだま@28・マンドレイク@28・リーフラビット@22・トレント@22・フォレストウルフ@18・ドリアード@18・エルダートレント@16・フォレストドラゴン@16・グレートドリアード@1・せかいじゅのぬし@1・マンドラゴラ@28・もりのばんにん@22</td></tr>
+          <tr><td><span class="name-ja">いやしのかぜ</span><br><span class="name-en">Healing Breeze</span></td><td><span class="chip el-wind"><i class="dot"></i>風</span></td><td>全体回復</td><td class="num">5</td><td class="num">20</td><td class="num">0</td><td style="font-size:12px">コロロット@28・はねうさぎ@28・わたぐも@22・ハーピー@22・ウィングタイガー@18・ストームホーク@18・ジェットドラゴン@16・テンペストロード@16・ガルーダ@1・シルフクイーン@1・あらしぐも@22・テンペストイーグル@18</td></tr>
+          <tr><td><span class="name-ja">メガヒール</span><br><span class="name-en">Mega Heal</span></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td>回復 (どくも治療)</td><td class="num">9</td><td class="num">110</td><td class="num">4</td><td style="font-size:12px">ホーリードラゴン@22・セイントロード@22</td></tr>        </tbody>
       </table>
     </div>
   </section>
@@ -751,7 +789,7 @@
       </table>
     </div>
 
-    <h3 style="font-size:.95rem; margin:26px 0 4px; color:var(--frost-dim)">特別レシピ（70件・個別レシピが優先）</h3>
+    <h3 style="font-size:.95rem; margin:26px 0 4px; color:var(--frost-dim)">特別レシピ（140件・個別レシピが優先）</h3>
     <ul class="recipe-list">
       <li><span class="combo"><canvas class="spr" data-mon="fire_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-fire_2" class="mon-link">あかいトカゲ</a> × <a href="#mon-ice_3" class="mon-link">アイスラビット</a></span><span class="result">→ <a href="#mon-fire_4" class="mon-link">マグマゴーレム</a></span></li>
       <li><span class="combo"><canvas class="spr" data-mon="bat" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-bat" class="mon-link">おおコウモリ</a> × <a href="#mon-water_2" class="mon-link">うみへび</a></span><span class="result">→ <a href="#mon-fire_5" class="mon-link">フレイムナイト</a></span></li>
@@ -823,10 +861,138 @@
       <li><span class="combo"><canvas class="spr" data-mon="forest_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-forest_8" class="mon-link">フォレストドラゴン</a> × <a href="#mon-metal_8" class="mon-link">オリハルコンナイト</a></span><span class="result">→ <a href="#mon-metal_10" class="mon-link">アダマンタイト</a></span></li>
       <li><span class="combo"><canvas class="spr" data-mon="ice_9" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-ice_9" class="mon-link">アイスクイーン</a> × <a href="#mon-light_9" class="mon-link">ホーリードラゴン</a></span><span class="result">→ <a href="#mon-blacksanta" class="mon-link">あくむのおう</a></span></li>
       <li><span class="combo"><canvas class="spr" data-mon="water_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-water_8" class="mon-link">ウンディーネ</a> × <a href="#mon-wind_9" class="mon-link">ガルーダ</a></span><span class="result">→ <a href="#mon-light_10" class="mon-link">セイントロード</a></span></li>
-    </ul>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_3" class="mon-link">ロックリザード</a> × <a href="#mon-fire_3" class="mon-link">ほのおのオオカミ</a></span><span class="result">→ <a href="#mon-fire_4" class="mon-link">マグマゴーレム</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_3" class="mon-link">ロックリザード</a> × <a href="#mon-slime" class="mon-link">スライム</a></span><span class="result">→ <a href="#mon-water_4" class="mon-link">アクアゴーレム</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="bat" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-bat" class="mon-link">おおコウモリ</a> × <a href="#mon-wind_3" class="mon-link">わたぐも</a></span><span class="result">→ <a href="#mon-wind_4" class="mon-link">ハーピー</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-fire_3" class="mon-link">ほのおのオオカミ</a> × <a href="#mon-thunder_1" class="mon-link">スパーク</a></span><span class="result">→ <a href="#mon-thunder_4" class="mon-link">ライトニングウルフ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_1" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_1" class="mon-link">つちのこ</a> × <a href="#mon-forest_1" class="mon-link">こだま</a></span><span class="result">→ <a href="#mon-forest_4" class="mon-link">トレント</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_1" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-ice_1" class="mon-link">ゆきだま</a> × <a href="#mon-ice_1" class="mon-link">ゆきだま</a></span><span class="result">→ <a href="#mon-ice_4" class="mon-link">スノーマン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_1" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_1" class="mon-link">つちのこ</a> × <a href="#mon-metal_1" class="mon-link">くずてつ</a></span><span class="result">→ <a href="#mon-earth_4" class="mon-link">ストーンゴーレム</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-fire_3" class="mon-link">ほのおのオオカミ</a> × <a href="#mon-metal_3" class="mon-link">ブリキへい</a></span><span class="result">→ <a href="#mon-metal_4" class="mon-link">メタルドッグ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_1" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-dark_1" class="mon-link">やみのわらべ</a> × <a href="#mon-shadowbeast" class="mon-link">やみけもの</a></span><span class="result">→ <a href="#mon-dark_4" class="mon-link">ナイトメア</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-forest_2" class="mon-link">マンドレイク</a> × <a href="#mon-light_1" class="mon-link">ひかりのつぶ</a></span><span class="result">→ <a href="#mon-light_4" class="mon-link">クレリック</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-fire_4" class="mon-link">マグマゴーレム</a> × <a href="#mon-metal_3" class="mon-link">ブリキへい</a></span><span class="result">→ <a href="#mon-fire_5" class="mon-link">フレイムナイト</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="slime" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-slime" class="mon-link">スライム</a> × <a href="#mon-water_4" class="mon-link">アクアゴーレム</a></span><span class="result">→ <a href="#mon-water_5" class="mon-link">リヴァイアサンのたまご</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-fire_3" class="mon-link">ほのおのオオカミ</a> × <a href="#mon-wind_4" class="mon-link">ハーピー</a></span><span class="result">→ <a href="#mon-wind_5" class="mon-link">ウィングタイガー</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_4" class="mon-link">ストーンゴーレム</a> × <a href="#mon-thunder_4" class="mon-link">ライトニングウルフ</a></span><span class="result">→ <a href="#mon-thunder_5" class="mon-link">サンダーゴーレム</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-fire_3" class="mon-link">ほのおのオオカミ</a> × <a href="#mon-forest_4" class="mon-link">トレント</a></span><span class="result">→ <a href="#mon-forest_5" class="mon-link">フォレストウルフ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-fire_3" class="mon-link">ほのおのオオカミ</a> × <a href="#mon-ice_4" class="mon-link">スノーマン</a></span><span class="result">→ <a href="#mon-ice_5" class="mon-link">フロストウルフ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_4" class="mon-link">ストーンゴーレム</a> × <a href="#mon-forest_1" class="mon-link">こだま</a></span><span class="result">→ <a href="#mon-earth_5" class="mon-link">アースワーム</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-light_3" class="mon-link">ホーリーラビット</a> × <a href="#mon-metal_4" class="mon-link">メタルドッグ</a></span><span class="result">→ <a href="#mon-metal_5" class="mon-link">アイアンナイト</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-dark_4" class="mon-link">ナイトメア</a> × <a href="#mon-shadowbeast" class="mon-link">やみけもの</a></span><span class="result">→ <a href="#mon-dark_5" class="mon-link">デーモン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-light_4" class="mon-link">クレリック</a> × <a href="#mon-metal_3" class="mon-link">ブリキへい</a></span><span class="result">→ <a href="#mon-knight" class="mon-link">ホーリーナイト</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-fire_4" class="mon-link">マグマゴーレム</a> × <a href="#mon-fire_5" class="mon-link">フレイムナイト</a></span><span class="result">→ <a href="#mon-fire_6" class="mon-link">サラマンダー</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-dark_4" class="mon-link">ナイトメア</a> × <a href="#mon-water_5" class="mon-link">リヴァイアサンのたまご</a></span><span class="result">→ <a href="#mon-water_6" class="mon-link">クラーケン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="thunder_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-thunder_4" class="mon-link">ライトニングウルフ</a> × <a href="#mon-wind_5" class="mon-link">ウィングタイガー</a></span><span class="result">→ <a href="#mon-wind_6" class="mon-link">ストームホーク</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="thunder_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-thunder_4" class="mon-link">ライトニングウルフ</a> × <a href="#mon-thunder_5" class="mon-link">サンダーゴーレム</a></span><span class="result">→ <a href="#mon-thunder_6" class="mon-link">カミナリおとこ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_5" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-forest_5" class="mon-link">フォレストウルフ</a> × <a href="#mon-light_4" class="mon-link">クレリック</a></span><span class="result">→ <a href="#mon-forest_6" class="mon-link">ドリアード</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_4" class="mon-link">ストーンゴーレム</a> × <a href="#mon-ice_4" class="mon-link">スノーマン</a></span><span class="result">→ <a href="#mon-ice_6" class="mon-link">アイスゴーレム</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_5" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_5" class="mon-link">アースワーム</a> × <a href="#mon-water_4" class="mon-link">アクアゴーレム</a></span><span class="result">→ <a href="#mon-earth_6" class="mon-link">マッドマン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="metal_5" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-metal_5" class="mon-link">アイアンナイト</a> × <a href="#mon-metal_5" class="mon-link">アイアンナイト</a></span><span class="result">→ <a href="#mon-metal_6" class="mon-link">メタルドラゴン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_5" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-dark_5" class="mon-link">デーモン</a> × <a href="#mon-metal_5" class="mon-link">アイアンナイト</a></span><span class="result">→ <a href="#mon-dark_6" class="mon-link">シャドウナイト</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-light_4" class="mon-link">クレリック</a> × <a href="#mon-wind_5" class="mon-link">ウィングタイガー</a></span><span class="result">→ <a href="#mon-light_6" class="mon-link">セラフ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_5" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-dark_5" class="mon-link">デーモン</a> × <a href="#mon-fire_6" class="mon-link">サラマンダー</a></span><span class="result">→ <a href="#mon-fire_7" class="mon-link">ヘルハウンド</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="knight" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-knight" class="mon-link">ホーリーナイト</a> × <a href="#mon-water_6" class="mon-link">クラーケン</a></span><span class="result">→ <a href="#mon-water_7" class="mon-link">マーマンナイト</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="metal_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-metal_6" class="mon-link">メタルドラゴン</a> × <a href="#mon-wind_6" class="mon-link">ストームホーク</a></span><span class="result">→ <a href="#mon-wind_7" class="mon-link">ジェットドラゴン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="thunder_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-thunder_6" class="mon-link">カミナリおとこ</a> × <a href="#mon-thunder_6" class="mon-link">カミナリおとこ</a></span><span class="result">→ <a href="#mon-thunder_7" class="mon-link">サンダードラゴン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-forest_6" class="mon-link">ドリアード</a> × <a href="#mon-forest_6" class="mon-link">ドリアード</a></span><span class="result">→ <a href="#mon-forest_7" class="mon-link">エルダートレント</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-ice_6" class="mon-link">アイスゴーレム</a> × <a href="#mon-wind_6" class="mon-link">ストームホーク</a></span><span class="result">→ <a href="#mon-ice_7" class="mon-link">ブリザードドラゴン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_6" class="mon-link">マッドマン</a> × <a href="#mon-metal_5" class="mon-link">アイアンナイト</a></span><span class="result">→ <a href="#mon-earth_7" class="mon-link">グランドゴーレム</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-light_6" class="mon-link">セラフ</a> × <a href="#mon-metal_6" class="mon-link">メタルドラゴン</a></span><span class="result">→ <a href="#mon-metal_7" class="mon-link">ミスリルゴーレム</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-dark_6" class="mon-link">シャドウナイト</a> × <a href="#mon-dark_6" class="mon-link">シャドウナイト</a></span><span class="result">→ <a href="#mon-dark_7" class="mon-link">デスナイト</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="knight" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-knight" class="mon-link">ホーリーナイト</a> × <a href="#mon-light_6" class="mon-link">セラフ</a></span><span class="result">→ <a href="#mon-light_7" class="mon-link">エンジェルナイト</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-fire_7" class="mon-link">ヘルハウンド</a> × <a href="#mon-light_7" class="mon-link">エンジェルナイト</a></span><span class="result">→ <a href="#mon-fire_8" class="mon-link">フェニックス</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-forest_6" class="mon-link">ドリアード</a> × <a href="#mon-water_7" class="mon-link">マーマンナイト</a></span><span class="result">→ <a href="#mon-water_8" class="mon-link">ウンディーネ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="thunder_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-thunder_7" class="mon-link">サンダードラゴン</a> × <a href="#mon-wind_7" class="mon-link">ジェットドラゴン</a></span><span class="result">→ <a href="#mon-wind_8" class="mon-link">テンペストロード</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-dark_7" class="mon-link">デスナイト</a> × <a href="#mon-thunder_7" class="mon-link">サンダードラゴン</a></span><span class="result">→ <a href="#mon-thunder_8" class="mon-link">ライデンナイト</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-forest_7" class="mon-link">エルダートレント</a> × <a href="#mon-wind_7" class="mon-link">ジェットドラゴン</a></span><span class="result">→ <a href="#mon-forest_8" class="mon-link">フォレストドラゴン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-ice_7" class="mon-link">ブリザードドラゴン</a> × <a href="#mon-metal_5" class="mon-link">アイアンナイト</a></span><span class="result">→ <a href="#mon-ice_8" class="mon-link">こおりのきし</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_7" class="mon-link">グランドゴーレム</a> × <a href="#mon-earth_7" class="mon-link">グランドゴーレム</a></span><span class="result">→ <a href="#mon-earth_8" class="mon-link">アースドラゴン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="knight" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-knight" class="mon-link">ホーリーナイト</a> × <a href="#mon-metal_7" class="mon-link">ミスリルゴーレム</a></span><span class="result">→ <a href="#mon-metal_8" class="mon-link">オリハルコンナイト</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-dark_6" class="mon-link">シャドウナイト</a> × <a href="#mon-dark_7" class="mon-link">デスナイト</a></span><span class="result">→ <a href="#mon-dark_8" class="mon-link">ナイトメアロード</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-light_7" class="mon-link">エンジェルナイト</a> × <a href="#mon-light_7" class="mon-link">エンジェルナイト</a></span><span class="result">→ <a href="#mon-light_8" class="mon-link">アークエンジェル</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-fire_7" class="mon-link">ヘルハウンド</a> × <a href="#mon-fire_8" class="mon-link">フェニックス</a></span><span class="result">→ <a href="#mon-fire_9" class="mon-link">インフェルノドラゴン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-ice_7" class="mon-link">ブリザードドラゴン</a> × <a href="#mon-water_8" class="mon-link">ウンディーネ</a></span><span class="result">→ <a href="#mon-water_9" class="mon-link">タイダルドラゴン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-fire_8" class="mon-link">フェニックス</a> × <a href="#mon-wind_8" class="mon-link">テンペストロード</a></span><span class="result">→ <a href="#mon-wind_9" class="mon-link">ガルーダ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="thunder_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-thunder_8" class="mon-link">ライデンナイト</a> × <a href="#mon-wind_8" class="mon-link">テンペストロード</a></span><span class="result">→ <a href="#mon-thunder_9" class="mon-link">サンダーロード</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-forest_8" class="mon-link">フォレストドラゴン</a> × <a href="#mon-water_8" class="mon-link">ウンディーネ</a></span><span class="result">→ <a href="#mon-forest_9" class="mon-link">グレートドリアード</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_7" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-ice_7" class="mon-link">ブリザードドラゴン</a> × <a href="#mon-ice_8" class="mon-link">こおりのきし</a></span><span class="result">→ <a href="#mon-ice_9" class="mon-link">アイスクイーン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_8" class="mon-link">アースドラゴン</a> × <a href="#mon-metal_7" class="mon-link">ミスリルゴーレム</a></span><span class="result">→ <a href="#mon-earth_9" class="mon-link">タイタン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="metal_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-metal_6" class="mon-link">メタルドラゴン</a> × <a href="#mon-metal_8" class="mon-link">オリハルコンナイト</a></span><span class="result">→ <a href="#mon-metal_9" class="mon-link">メタルキング</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-dark_8" class="mon-link">ナイトメアロード</a> × <a href="#mon-fire_7" class="mon-link">ヘルハウンド</a></span><span class="result">→ <a href="#mon-dark_9" class="mon-link">アークデーモン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-fire_8" class="mon-link">フェニックス</a> × <a href="#mon-light_8" class="mon-link">アークエンジェル</a></span><span class="result">→ <a href="#mon-light_9" class="mon-link">ホーリードラゴン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-fire_8" class="mon-link">フェニックス</a> × <a href="#mon-fire_9" class="mon-link">インフェルノドラゴン</a></span><span class="result">→ <a href="#mon-fire_10" class="mon-link">アグニロード</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="water_9" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-water_9" class="mon-link">タイダルドラゴン</a> × <a href="#mon-water_9" class="mon-link">タイダルドラゴン</a></span><span class="result">→ <a href="#mon-water_10" class="mon-link">リヴァイアサン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-light_8" class="mon-link">アークエンジェル</a> × <a href="#mon-wind_9" class="mon-link">ガルーダ</a></span><span class="result">→ <a href="#mon-wind_10" class="mon-link">シルフクイーン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="thunder_9" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-thunder_9" class="mon-link">サンダーロード</a> × <a href="#mon-thunder_9" class="mon-link">サンダーロード</a></span><span class="result">→ <a href="#mon-thunder_10" class="mon-link">ライジンオー</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_9" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_9" class="mon-link">タイタン</a> × <a href="#mon-forest_9" class="mon-link">グレートドリアード</a></span><span class="result">→ <a href="#mon-forest_10" class="mon-link">せかいじゅのぬし</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_9" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-ice_9" class="mon-link">アイスクイーン</a> × <a href="#mon-ice_9" class="mon-link">アイスクイーン</a></span><span class="result">→ <a href="#mon-ice_10" class="mon-link">アブソリュートゼロ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_8" class="mon-link">アースドラゴン</a> × <a href="#mon-earth_9" class="mon-link">タイタン</a></span><span class="result">→ <a href="#mon-earth_10" class="mon-link">ガイアロード</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="metal_9" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-metal_9" class="mon-link">メタルキング</a> × <a href="#mon-metal_9" class="mon-link">メタルキング</a></span><span class="result">→ <a href="#mon-metal_10" class="mon-link">アダマンタイト</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-dark_8" class="mon-link">ナイトメアロード</a> × <a href="#mon-dark_9" class="mon-link">アークデーモン</a></span><span class="result">→ <a href="#mon-blacksanta" class="mon-link">あくむのおう</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_8" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-light_8" class="mon-link">アークエンジェル</a> × <a href="#mon-light_9" class="mon-link">ホーリードラゴン</a></span><span class="result">→ <a href="#mon-light_10" class="mon-link">セイントロード</a></span></li>    </ul>
     <p class="prose" style="font-size:12.5px; color:var(--frost-dim); margin-top:12px">
       ほとんどの特別レシピは第4段階以上（合成専用の強さ）を作るための経路です。同属性の第1〜3段階どうしを普通に合成すると、上の②のルールで第1段階に戻ってしまうだけなので注意。
     </p>
+    <h3 style="font-size:.95rem; margin:26px 0 4px; color:var(--frost-dim)">大きいモンスターの合成レシピ（50件）</h3>
+    <p class="prose" style="font-size:12.5px; color:var(--frost-dim)">
+      盤面で2×2マスを占める「大きいモンスター」(全20種)は捕獲ではなく<strong>合成でのみ</strong>手に入ります。
+      ① ふつうのモンスター2ひき(各種2通りのレシピ)から大きいモンスターが生まれるルートと、
+      ② 大きいモンスター同士を合成してさらに属性の最上位種(第9・10段階)を生むルートがあります。
+    </p>
+    <ul class="recipe-list">
+      <li><span class="combo"><canvas class="spr" data-mon="slime" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-slime" class="mon-link">スライム</a> × <a href="#mon-slime" class="mon-link">スライム</a></span><span class="result">→ <a href="#mon-giant_slime" class="mon-link">ジャイアントスライム</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="slime" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-slime" class="mon-link">スライム</a> × <a href="#mon-water_2" class="mon-link">うみへび</a></span><span class="result">→ <a href="#mon-giant_slime" class="mon-link">ジャイアントスライム</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-fire_2" class="mon-link">あかいトカゲ</a> × <a href="#mon-fire_2" class="mon-link">あかいトカゲ</a></span><span class="result">→ <a href="#mon-armor_lizard" class="mon-link">よろいトカゲ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_2" class="mon-link">モグラット</a> × <a href="#mon-fire_2" class="mon-link">あかいトカゲ</a></span><span class="result">→ <a href="#mon-armor_lizard" class="mon-link">よろいトカゲ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-fire_4" class="mon-link">マグマゴーレム</a> × <a href="#mon-fire_6" class="mon-link">サラマンダー</a></span><span class="result">→ <a href="#mon-volca_salamander" class="mon-link">ボルカサラマンダー</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_6" class="mon-link">マッドマン</a> × <a href="#mon-fire_6" class="mon-link">サラマンダー</a></span><span class="result">→ <a href="#mon-volca_salamander" class="mon-link">ボルカサラマンダー</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="water_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-water_6" class="mon-link">クラーケン</a> × <a href="#mon-water_6" class="mon-link">クラーケン</a></span><span class="result">→ <a href="#mon-ship_kraken" class="mon-link">ふなしずめ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="water_5" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-water_5" class="mon-link">リヴァイアサンのたまご</a> × <a href="#mon-water_6" class="mon-link">クラーケン</a></span><span class="result">→ <a href="#mon-ship_kraken" class="mon-link">ふなしずめ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="wind_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-wind_3" class="mon-link">わたぐも</a> × <a href="#mon-wind_3" class="mon-link">わたぐも</a></span><span class="result">→ <a href="#mon-storm_cloud" class="mon-link">あらしぐも</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_1" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-ice_1" class="mon-link">ゆきだま</a> × <a href="#mon-wind_3" class="mon-link">わたぐも</a></span><span class="result">→ <a href="#mon-storm_cloud" class="mon-link">あらしぐも</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="wind_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-wind_6" class="mon-link">ストームホーク</a> × <a href="#mon-wind_6" class="mon-link">ストームホーク</a></span><span class="result">→ <a href="#mon-tempest_eagle" class="mon-link">テンペストイーグル</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="thunder_3" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-thunder_3" class="mon-link">サンダーバード</a> × <a href="#mon-wind_6" class="mon-link">ストームホーク</a></span><span class="result">→ <a href="#mon-tempest_eagle" class="mon-link">テンペストイーグル</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="thunder_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-thunder_2" class="mon-link">でんきねずみ</a> × <a href="#mon-thunder_2" class="mon-link">でんきねずみ</a></span><span class="result">→ <a href="#mon-raiju" class="mon-link">ライジュウ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_2" class="mon-link">モグラット</a> × <a href="#mon-thunder_2" class="mon-link">でんきねずみ</a></span><span class="result">→ <a href="#mon-raiju" class="mon-link">ライジュウ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="thunder_5" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-thunder_5" class="mon-link">サンダーゴーレム</a> × <a href="#mon-thunder_5" class="mon-link">サンダーゴーレム</a></span><span class="result">→ <a href="#mon-thunder_colossus" class="mon-link">サンダーコロッサス</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_4" class="mon-link">ストーンゴーレム</a> × <a href="#mon-thunder_5" class="mon-link">サンダーゴーレム</a></span><span class="result">→ <a href="#mon-thunder_colossus" class="mon-link">サンダーコロッサス</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-forest_2" class="mon-link">マンドレイク</a> × <a href="#mon-forest_2" class="mon-link">マンドレイク</a></span><span class="result">→ <a href="#mon-mandragora" class="mon-link">マンドラゴラ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-forest_2" class="mon-link">マンドレイク</a> × <a href="#mon-water_2" class="mon-link">うみへび</a></span><span class="result">→ <a href="#mon-mandragora" class="mon-link">マンドラゴラ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-forest_4" class="mon-link">トレント</a> × <a href="#mon-forest_4" class="mon-link">トレント</a></span><span class="result">→ <a href="#mon-forest_warden" class="mon-link">もりのばんにん</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_4" class="mon-link">ストーンゴーレム</a> × <a href="#mon-forest_4" class="mon-link">トレント</a></span><span class="result">→ <a href="#mon-forest_warden" class="mon-link">もりのばんにん</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_1" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-ice_1" class="mon-link">ゆきだま</a> × <a href="#mon-ice_2" class="mon-link">ペンギット</a></span><span class="result">→ <a href="#mon-snow_boulder" class="mon-link">スノーボルダー</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_1" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-ice_1" class="mon-link">ゆきだま</a> × <a href="#mon-wind_2" class="mon-link">はねうさぎ</a></span><span class="result">→ <a href="#mon-snow_boulder" class="mon-link">スノーボルダー</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-ice_4" class="mon-link">スノーマン</a> × <a href="#mon-ice_4" class="mon-link">スノーマン</a></span><span class="result">→ <a href="#mon-winter_general" class="mon-link">ふゆしょうぐん</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="ice_1" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-ice_1" class="mon-link">ゆきだま</a> × <a href="#mon-ice_4" class="mon-link">スノーマン</a></span><span class="result">→ <a href="#mon-winter_general" class="mon-link">ふゆしょうぐん</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_2" class="mon-link">モグラット</a> × <a href="#mon-earth_2" class="mon-link">モグラット</a></span><span class="result">→ <a href="#mon-drill_mole" class="mon-link">ドリルモグラ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_1" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_1" class="mon-link">つちのこ</a> × <a href="#mon-earth_2" class="mon-link">モグラット</a></span><span class="result">→ <a href="#mon-drill_mole" class="mon-link">ドリルモグラ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_4" class="mon-link">ストーンゴーレム</a> × <a href="#mon-earth_4" class="mon-link">ストーンゴーレム</a></span><span class="result">→ <a href="#mon-rock_guardian" class="mon-link">ロックガーディアン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="earth_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-earth_4" class="mon-link">ストーンゴーレム</a> × <a href="#mon-metal_4" class="mon-link">メタルドッグ</a></span><span class="result">→ <a href="#mon-rock_guardian" class="mon-link">ロックガーディアン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="metal_9" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-metal_9" class="mon-link">メタルキング</a> × <a href="#mon-slime" class="mon-link">スライム</a></span><span class="result">→ <a href="#mon-golden_slime" class="mon-link">ゴールデンスライム</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="giant_slime" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-giant_slime" class="mon-link">ジャイアントスライム</a> × <a href="#mon-metal_9" class="mon-link">メタルキング</a></span><span class="result">→ <a href="#mon-golden_slime" class="mon-link">ゴールデンスライム</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="metal_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-metal_6" class="mon-link">メタルドラゴン</a> × <a href="#mon-metal_6" class="mon-link">メタルドラゴン</a></span><span class="result">→ <a href="#mon-steel_wyrm" class="mon-link">こうてつのりゅう</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="fire_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-fire_6" class="mon-link">サラマンダー</a> × <a href="#mon-metal_6" class="mon-link">メタルドラゴン</a></span><span class="result">→ <a href="#mon-steel_wyrm" class="mon-link">こうてつのりゅう</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="shadowbeast" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-shadowbeast" class="mon-link">やみけもの</a> × <a href="#mon-shadowbeast" class="mon-link">やみけもの</a></span><span class="result">→ <a href="#mon-dark_behemoth" class="mon-link">やみのまじゅう</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="bat" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-bat" class="mon-link">おおコウモリ</a> × <a href="#mon-shadowbeast" class="mon-link">やみけもの</a></span><span class="result">→ <a href="#mon-dark_behemoth" class="mon-link">やみのまじゅう</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_5" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-dark_5" class="mon-link">デーモン</a> × <a href="#mon-fire_5" class="mon-link">フレイムナイト</a></span><span class="result">→ <a href="#mon-blood_demon" class="mon-link">ブラッドデーモン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="dark_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-dark_4" class="mon-link">ナイトメア</a> × <a href="#mon-dark_5" class="mon-link">デーモン</a></span><span class="result">→ <a href="#mon-blood_demon" class="mon-link">ブラッドデーモン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-light_2" class="mon-link">エンジェルベビー</a> × <a href="#mon-light_2" class="mon-link">エンジェルベビー</a></span><span class="result">→ <a href="#mon-cherubim" class="mon-link">ケルビム</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_2" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-light_2" class="mon-link">エンジェルベビー</a> × <a href="#mon-wind_2" class="mon-link">はねうさぎ</a></span><span class="result">→ <a href="#mon-cherubim" class="mon-link">ケルビム</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_6" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-light_6" class="mon-link">セラフ</a> × <a href="#mon-light_6" class="mon-link">セラフ</a></span><span class="result">→ <a href="#mon-holy_guardian" class="mon-link">せいなるしゅご</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="light_4" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-light_4" class="mon-link">クレリック</a> × <a href="#mon-light_6" class="mon-link">セラフ</a></span><span class="result">→ <a href="#mon-holy_guardian" class="mon-link">せいなるしゅご</a></span></li>    </ul>
+    <p class="prose" style="font-size:12.5px; color:var(--frost-dim); margin-top:12px">大きいモンスター同士 → 各属性の最上位種</p>
+    <ul class="recipe-list">
+      <li><span class="combo"><canvas class="spr" data-mon="armor_lizard" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-armor_lizard" class="mon-link">よろいトカゲ</a> × <a href="#mon-volca_salamander" class="mon-link">ボルカサラマンダー</a></span><span class="result">→ <a href="#mon-fire_9" class="mon-link">インフェルノドラゴン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="giant_slime" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-giant_slime" class="mon-link">ジャイアントスライム</a> × <a href="#mon-ship_kraken" class="mon-link">ふなしずめ</a></span><span class="result">→ <a href="#mon-water_10" class="mon-link">リヴァイアサン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="storm_cloud" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-storm_cloud" class="mon-link">あらしぐも</a> × <a href="#mon-tempest_eagle" class="mon-link">テンペストイーグル</a></span><span class="result">→ <a href="#mon-wind_9" class="mon-link">ガルーダ</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="raiju" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-raiju" class="mon-link">ライジュウ</a> × <a href="#mon-thunder_colossus" class="mon-link">サンダーコロッサス</a></span><span class="result">→ <a href="#mon-thunder_9" class="mon-link">サンダーロード</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="forest_warden" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-forest_warden" class="mon-link">もりのばんにん</a> × <a href="#mon-mandragora" class="mon-link">マンドラゴラ</a></span><span class="result">→ <a href="#mon-forest_9" class="mon-link">グレートドリアード</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="snow_boulder" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-snow_boulder" class="mon-link">スノーボルダー</a> × <a href="#mon-winter_general" class="mon-link">ふゆしょうぐん</a></span><span class="result">→ <a href="#mon-ice_9" class="mon-link">アイスクイーン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="drill_mole" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-drill_mole" class="mon-link">ドリルモグラ</a> × <a href="#mon-rock_guardian" class="mon-link">ロックガーディアン</a></span><span class="result">→ <a href="#mon-earth_9" class="mon-link">タイタン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="giant_slime" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-giant_slime" class="mon-link">ジャイアントスライム</a> × <a href="#mon-golden_slime" class="mon-link">ゴールデンスライム</a></span><span class="result">→ <a href="#mon-metal_10" class="mon-link">アダマンタイト</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="blood_demon" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-blood_demon" class="mon-link">ブラッドデーモン</a> × <a href="#mon-dark_behemoth" class="mon-link">やみのまじゅう</a></span><span class="result">→ <a href="#mon-dark_9" class="mon-link">アークデーモン</a></span></li>
+      <li><span class="combo"><canvas class="spr" data-mon="cherubim" width="16" height="16" style="width:24px;height:24px;image-rendering:pixelated"></canvas><a href="#mon-cherubim" class="mon-link">ケルビム</a> × <a href="#mon-holy_guardian" class="mon-link">せいなるしゅご</a></span><span class="result">→ <a href="#mon-light_9" class="mon-link">ホーリードラゴン</a></span></li>    </ul>
   </section>
 
   <!-- 広告スロット3: 最後のチャプターの手前 -->
@@ -845,7 +1011,7 @@
     <div class="tips">
       <div class="tip"><div class="n">01</div><div class="prose">同じ属性どうしを合成しても、下の特別レシピに無い組み合わせだと
       <strong>第1段階(赤ちゃん)に戻ってしまう</strong>だけです。育てたレベルは無駄になるので、第4段階以上をねらうときは
-      必ず09章の特別レシピ表で組み合わせを確認してから合成しましょう。</div></div>
+      必ず08章の特別レシピ表で組み合わせを確認してから合成しましょう。</div></div>
       <div class="tip"><div class="n">02</div><div class="prose">とくぎの消費MPは全体的に低め（基本技は2〜5MP）なので、序盤から遠慮なく撃って大丈夫です。
       MPが尽きたときの保険に「まほうのみず」を1〜2個持っておくと安心。</div></div>
       <div class="tip"><div class="n">03</div><div class="prose">回復役には<strong>「いのちをだいじに」</strong>（HP60%未満を無条件で回復し、自分のHPが低いと下がる安定型）が向きます。
@@ -856,13 +1022,19 @@
       なら2倍のダメージが狙えます（闇⇄光はおたがいに弱点）。ホーリーナイトなど光属性モンスターを1体編成に入れておきましょう。</div></div>
       <div class="tip"><div class="n">06</div><div class="prose">クリア後は必ずどうくつ最深部であくむのおうに再戦を。勝つと仲間にできます。
       さらに「まものの平原」で第6段階級のモンスターと戦えるようになりますが、捕獲はできず合成でのみ入手可能。
-      第5〜10段階は特別レシピ（09章）を順にたどらないと生まれないので、育成計画は早めに立てておきましょう。</div></div>
-      <div class="tip"><div class="n">07</div><div class="prose">「そこからうごくな」は<strong>じんけいのこうげきアップマス</strong>と相性抜群。
-      マスの効果は乗っている間だけ発動するので、動かない設定にして固定すれば火力1.5倍を維持できます。
-      反対に大ダメージマスの上で使うと毎ラウンド食らい続けるので、じんけい画面でマスの位置を確認してから配置しましょう。</div></div>
+      第5〜10段階は特別レシピ（08章）を順にたどらないと生まれないので、育成計画は早めに立てておきましょう。</div></div>
+      <div class="tip"><div class="n">07</div><div class="prose">「大きいモンスター」（2×2マス、合成でのみ入手）はHP・DEFが圧倒的ですが、
+      1マス幅のすき間を通れず移動力も低いので、じんけい画面で池や味方どうしのあいだに1マスの細い道ができないよう配置しましょう。
+      体が大きく目立つぶんヘイトが上がりやすいので、「てきをひきつけろ」と組み合わせてあえて狙わせるのも有効です。</div></div>
       <div class="tip"><div class="n">08</div><div class="prose">「てきをひきつけろ」はHP・DEFの高いモンスターに設定すると壁役に。単体をねらう攻撃・技を
       一手に引き受けてくれます（範囲攻撃には巻き込まれるので過信は禁物）。逆にこちらが範囲技を撃つときは、
       敵がかたまっているタイミングを狙うと一度に複数体を巻き込めて効率的です。</div></div>
+      <div class="tip"><div class="n">09</div><div class="prose">「あいしょうでせめろ」は相性の良い相手を自動で選んでくれるので、
+      手持ちの属性がバラけているパーティに1〜2体混ぜておくと安定します。ただし不利な相手からは距離を取ろうとする分、
+      移動力の低いモンスターには向きません。</div></div>
+      <div class="tip"><div class="n">10</div><div class="prose">ボス戦や強敵との戦いで全滅が見えたら、
+      どうぐやで買える「だっしゅつのゆびわ」でバトルを切り上げましょう。ペナルティなしで宿屋前まで戻れます
+      （HP・MPは回復しないので、すぐに休んでから出直すのがおすすめ）。</div></div>
     </div>
   </section>
 
@@ -871,7 +1043,7 @@
       <div class="eyebrow">10 / Compendium</div>
       <h2>モンスターステータス</h2>
       <div class="rule"></div>
-      <p class="lede">全モンスターのHP・MP・ATK・DEF・AGI・MAG(Lv20基準)と入手方法の早見表。 ステータスは段階が上がるほど急に強くなり、レベルも上がりにくくなります。</p>
+      <p class="lede">全モンスター(通常種100＋大きいモンスター20の計120種)のHP・MP・ATK・DEF・AGI・MAG(Lv20基準)と入手方法の早見表。 ステータスは段階が上がるほど急に強くなり、レベルも上がりにくくなります。表の最後にある「BIG」の20件は合成でのみ生まれる大きいモンスターで、絵は元になった種のものを流用しています（実際は2×2マスの拡大版・専用デザイン）。</p>
     </div>
     <div class="tbl-wrap">
       <table>
@@ -977,7 +1149,26 @@
           <tr id="mon-light_8"><td class="mon-cell"><canvas class="spr" data-mon="light_8" width="16" height="16"></canvas><div><span class="name-ja">アークエンジェル</span><br><span class="name-en">Archangel</span></div></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td class="num">8</td><td class="num">354</td><td class="num">165</td><td class="num">87</td><td class="num">118</td><td class="num">84</td><td class="num">87</td><td style="font-size:12px">合成: セラフ×エンジェルナイト</td></tr>
           <tr id="mon-light_9"><td class="mon-cell"><canvas class="spr" data-mon="light_9" width="16" height="16"></canvas><div><span class="name-ja">ホーリードラゴン</span><br><span class="name-en">Holy Dragon</span></div></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td class="num">9</td><td class="num">354</td><td class="num">165</td><td class="num">87</td><td class="num">118</td><td class="num">84</td><td class="num">87</td><td style="font-size:12px">合成: アイアンゴーレム×エルダートレント</td></tr>
           <tr id="mon-light_10"><td class="mon-cell"><canvas class="spr" data-mon="light_10" width="16" height="16"></canvas><div><span class="name-ja">セイントロード</span><br><span class="name-en">Saint Lord</span></div></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td class="num">10</td><td class="num">354</td><td class="num">165</td><td class="num">125</td><td class="num">118</td><td class="num">121</td><td class="num">125</td><td style="font-size:12px">合成: ウンディーネ×ガルーダ</td></tr>
-        </tbody>
+          <tr id="mon-giant_slime"><td class="mon-cell"><canvas class="spr" data-mon="slime" width="16" height="16"></canvas><div><span class="name-ja">ジャイアントスライム</span><br><span class="name-en">Giant Slime</span></div></td><td><span class="chip el-water"><i class="dot"></i>水</span></td><td class="num">BIG</td><td class="num">499</td><td class="num">61</td><td class="num">73</td><td class="num">151</td><td class="num">23</td><td class="num">57</td><td style="font-size:12px">合成: スライム×スライム<br>合成: スライム×うみへび</td></tr>
+          <tr id="mon-armor_lizard"><td class="mon-cell"><canvas class="spr" data-mon="fire_2" width="16" height="16"></canvas><div><span class="name-ja">よろいトカゲ</span><br><span class="name-en">Armored Lizard</span></div></td><td><span class="chip el-fire"><i class="dot"></i>火</span></td><td class="num">BIG</td><td class="num">500</td><td class="num">82</td><td class="num">106</td><td class="num">146</td><td class="num">24</td><td class="num">82</td><td style="font-size:12px">合成: あかいトカゲ×あかいトカゲ<br>合成: モグラット×あかいトカゲ</td></tr>
+          <tr id="mon-volca_salamander"><td class="mon-cell"><canvas class="spr" data-mon="fire_6" width="16" height="16"></canvas><div><span class="name-ja">ボルカサラマンダー</span><br><span class="name-en">Volca Salamander</span></div></td><td><span class="chip el-fire"><i class="dot"></i>火</span></td><td class="num">BIG</td><td class="num">537</td><td class="num">167</td><td class="num">191</td><td class="num">155</td><td class="num">46</td><td class="num">153</td><td style="font-size:12px">合成: マグマゴーレム×サラマンダー<br>合成: マッドマン×サラマンダー</td></tr>
+          <tr id="mon-ship_kraken"><td class="mon-cell"><canvas class="spr" data-mon="water_6" width="16" height="16"></canvas><div><span class="name-ja">ふなしずめ</span><br><span class="name-en">Shipwrecker</span></div></td><td><span class="chip el-water"><i class="dot"></i>水</span></td><td class="num">BIG</td><td class="num">568</td><td class="num">167</td><td class="num">139</td><td class="num">162</td><td class="num">33</td><td class="num">109</td><td style="font-size:12px">合成: クラーケン×クラーケン<br>合成: リヴァイアサンのたまご×クラーケン</td></tr>
+          <tr id="mon-storm_cloud"><td class="mon-cell"><canvas class="spr" data-mon="wind_3" width="16" height="16"></canvas><div><span class="name-ja">あらしぐも</span><br><span class="name-en">Storm Cloud</span></div></td><td><span class="chip el-wind"><i class="dot"></i>風</span></td><td class="num">BIG</td><td class="num">490</td><td class="num">57</td><td class="num">65</td><td class="num">146</td><td class="num">33</td><td class="num">46</td><td style="font-size:12px">合成: わたぐも×わたぐも<br>合成: ゆきだま×わたぐも</td></tr>
+          <tr id="mon-tempest_eagle"><td class="mon-cell"><canvas class="spr" data-mon="wind_6" width="16" height="16"></canvas><div><span class="name-ja">テンペストイーグル</span><br><span class="name-en">Tempest Eagle</span></div></td><td><span class="chip el-wind"><i class="dot"></i>風</span></td><td class="num">BIG</td><td class="num">517</td><td class="num">118</td><td class="num">106</td><td class="num">155</td><td class="num">66</td><td class="num">82</td><td style="font-size:12px">合成: ストームホーク×ストームホーク<br>合成: サンダーバード×ストームホーク</td></tr>
+          <tr id="mon-raiju"><td class="mon-cell"><canvas class="spr" data-mon="thunder_2" width="16" height="16"></canvas><div><span class="name-ja">ライジュウ</span><br><span class="name-en">Raiju</span></div></td><td><span class="chip el-thunder"><i class="dot"></i>雷</span></td><td class="num">BIG</td><td class="num">500</td><td class="num">82</td><td class="num">106</td><td class="num">146</td><td class="num">33</td><td class="num">82</td><td style="font-size:12px">合成: でんきねずみ×でんきねずみ<br>合成: モグラット×でんきねずみ</td></tr>
+          <tr id="mon-thunder_colossus"><td class="mon-cell"><canvas class="spr" data-mon="thunder_5" width="16" height="16"></canvas><div><span class="name-ja">サンダーコロッサス</span><br><span class="name-en">Thunder Colossus</span></div></td><td><span class="chip el-thunder"><i class="dot"></i>雷</span></td><td class="num">BIG</td><td class="num">517</td><td class="num">118</td><td class="num">139</td><td class="num">151</td><td class="num">46</td><td class="num">109</td><td style="font-size:12px">合成: サンダーゴーレム×サンダーゴーレム<br>合成: ストーンゴーレム×サンダーゴーレム</td></tr>
+          <tr id="mon-mandragora"><td class="mon-cell"><canvas class="spr" data-mon="forest_2" width="16" height="16"></canvas><div><span class="name-ja">マンドラゴラ</span><br><span class="name-en">Mandragora</span></div></td><td><span class="chip el-forest"><i class="dot"></i>森</span></td><td class="num">BIG</td><td class="num">537</td><td class="num">82</td><td class="num">65</td><td class="num">155</td><td class="num">13</td><td class="num">46</td><td style="font-size:12px">合成: マンドレイク×マンドレイク<br>合成: マンドレイク×うみへび</td></tr>
+          <tr id="mon-forest_warden"><td class="mon-cell"><canvas class="spr" data-mon="forest_4" width="16" height="16"></canvas><div><span class="name-ja">もりのばんにん</span><br><span class="name-en">Forest Warden</span></div></td><td><span class="chip el-forest"><i class="dot"></i>森</span></td><td class="num">BIG</td><td class="num">568</td><td class="num">118</td><td class="num">79</td><td class="num">162</td><td class="num">18</td><td class="num">60</td><td style="font-size:12px">合成: トレント×トレント<br>合成: ストーンゴーレム×トレント</td></tr>
+          <tr id="mon-snow_boulder"><td class="mon-cell"><canvas class="spr" data-mon="ice_1" width="16" height="16"></canvas><div><span class="name-ja">スノーボルダー</span><br><span class="name-en">Snow Boulder</span></div></td><td><span class="chip el-ice"><i class="dot"></i>氷</span></td><td class="num">BIG</td><td class="num">500</td><td class="num">57</td><td class="num">51</td><td class="num">151</td><td class="num">13</td><td class="num">36</td><td style="font-size:12px">合成: ゆきだま×ペンギット<br>合成: ゆきだま×はねうさぎ</td></tr>
+          <tr id="mon-winter_general"><td class="mon-cell"><canvas class="spr" data-mon="ice_4" width="16" height="16"></canvas><div><span class="name-ja">ふゆしょうぐん</span><br><span class="name-en">General Winter</span></div></td><td><span class="chip el-ice"><i class="dot"></i>氷</span></td><td class="num">BIG</td><td class="num">537</td><td class="num">118</td><td class="num">79</td><td class="num">162</td><td class="num">18</td><td class="num">60</td><td style="font-size:12px">合成: スノーマン×スノーマン<br>合成: ゆきだま×スノーマン</td></tr>
+          <tr id="mon-drill_mole"><td class="mon-cell"><canvas class="spr" data-mon="earth_2" width="16" height="16"></canvas><div><span class="name-ja">ドリルモグラ</span><br><span class="name-en">Drill Mole</span></div></td><td><span class="chip el-earth"><i class="dot"></i>土</span></td><td class="num">BIG</td><td class="num">537</td><td class="num">36</td><td class="num">79</td><td class="num">162</td><td class="num">13</td><td class="num">60</td><td style="font-size:12px">合成: モグラット×モグラット<br>合成: つちのこ×モグラット</td></tr>
+          <tr id="mon-rock_guardian"><td class="mon-cell"><canvas class="spr" data-mon="earth_4" width="16" height="16"></canvas><div><span class="name-ja">ロックガーディアン</span><br><span class="name-en">Rock Guardian</span></div></td><td><span class="chip el-earth"><i class="dot"></i>土</span></td><td class="num">BIG</td><td class="num">568</td><td class="num">57</td><td class="num">106</td><td class="num">172</td><td class="num">13</td><td class="num">82</td><td style="font-size:12px">合成: ストーンゴーレム×ストーンゴーレム<br>合成: ストーンゴーレム×メタルドッグ</td></tr>
+          <tr id="mon-golden_slime"><td class="mon-cell"><canvas class="spr" data-mon="metal_9" width="16" height="16"></canvas><div><span class="name-ja">ゴールデンスライム</span><br><span class="name-en">Golden Slime</span></div></td><td><span class="chip el-metal"><i class="dot"></i>メタル</span></td><td class="num">BIG</td><td class="num">568</td><td class="num">118</td><td class="num">106</td><td class="num">188</td><td class="num">66</td><td class="num">82</td><td style="font-size:12px">合成: メタルキング×スライム<br>合成: ジャイアントスライム×メタルキング</td></tr>
+          <tr id="mon-steel_wyrm"><td class="mon-cell"><canvas class="spr" data-mon="metal_6" width="16" height="16"></canvas><div><span class="name-ja">こうてつのりゅう</span><br><span class="name-en">Steel Wyrm</span></div></td><td><span class="chip el-metal"><i class="dot"></i>メタル</span></td><td class="num">BIG</td><td class="num">537</td><td class="num">82</td><td class="num">79</td><td class="num">188</td><td class="num">46</td><td class="num">60</td><td style="font-size:12px">合成: メタルドラゴン×メタルドラゴン<br>合成: サラマンダー×メタルドラゴン</td></tr>
+          <tr id="mon-dark_behemoth"><td class="mon-cell"><canvas class="spr" data-mon="shadowbeast" width="16" height="16"></canvas><div><span class="name-ja">やみのまじゅう</span><br><span class="name-en">Dark Behemoth</span></div></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td class="num">BIG</td><td class="num">500</td><td class="num">82</td><td class="num">106</td><td class="num">151</td><td class="num">24</td><td class="num">82</td><td style="font-size:12px">合成: やみけもの×やみけもの<br>合成: おおコウモリ×やみけもの</td></tr>
+          <tr id="mon-blood_demon"><td class="mon-cell"><canvas class="spr" data-mon="dark_5" width="16" height="16"></canvas><div><span class="name-ja">ブラッドデーモン</span><br><span class="name-en">Blood Demon</span></div></td><td><span class="chip el-dark"><i class="dot"></i>闇</span></td><td class="num">BIG</td><td class="num">517</td><td class="num">118</td><td class="num">139</td><td class="num">155</td><td class="num">33</td><td class="num">109</td><td style="font-size:12px">合成: デーモン×フレイムナイト<br>合成: ナイトメア×デーモン</td></tr>
+          <tr id="mon-cherubim"><td class="mon-cell"><canvas class="spr" data-mon="light_2" width="16" height="16"></canvas><div><span class="name-ja">ケルビム</span><br><span class="name-en">Cherubim</span></div></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td class="num">BIG</td><td class="num">517</td><td class="num">118</td><td class="num">65</td><td class="num">155</td><td class="num">18</td><td class="num">46</td><td style="font-size:12px">合成: エンジェルベビー×エンジェルベビー<br>合成: エンジェルベビー×はねうさぎ</td></tr>
+          <tr id="mon-holy_guardian"><td class="mon-cell"><canvas class="spr" data-mon="light_6" width="16" height="16"></canvas><div><span class="name-ja">せいなるしゅご</span><br><span class="name-en">Holy Guardian</span></div></td><td><span class="chip el-light"><i class="dot"></i>光</span></td><td class="num">BIG</td><td class="num">568</td><td class="num">236</td><td class="num">106</td><td class="num">172</td><td class="num">33</td><td class="num">82</td><td style="font-size:12px">合成: セラフ×セラフ<br>合成: クレリック×セラフ</td></tr>        </tbody>
       </table>
     </div>
   </section>
